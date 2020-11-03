@@ -3,6 +3,8 @@ import React from 'react'
 
 const Patologias = (props) => {
 
+
+
     let patologias = [
         { id: 1, name: 'Hemorroidas', link: 'hemorroidas', sintomas: 'sintomas1', exames: 'Exames1', tratamentos: 'tratamentos1' },
         { id: 2, name: 'Eczema Anal', link: 'eczemaanal', sintomas: 'sintomas2', exames: 'Exames2', tratamentos: 'tratamentos2' }
