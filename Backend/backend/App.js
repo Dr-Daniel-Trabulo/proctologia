@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-
-const port = 5000;
+const port = 3000;
 const app = express()
 
 const homepageRouter = require('./routes/homepageRouter')
@@ -13,6 +12,7 @@ const sintomasRouter = require('./routes/sintomasRouter')
 const fotosintomasRouter = require('./routes/fotosintomasRouter')
 app.use(express.json())
 
+app.use(morgan('dev'));
 app.use('/homepage', homepageRouter)
 app.use('/patologias', patologiasRouter)
 app.use('/destaques', destaquesRouter)
