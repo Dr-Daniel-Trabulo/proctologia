@@ -1,5 +1,5 @@
 import React from 'react'
-import Sintomas from './Sintomas'
+
 
 class Destaques extends React.Component {
     constructor(props) {
@@ -38,13 +38,13 @@ class Destaques extends React.Component {
         return (
             <div>
                 {this.state.destaques.map((destaque) => {
-                    <div>
+                    return (<div>
                         <div>{destaque.nome}</div>
                         <div>{destaque.texto}</div>
                         {destaque.fotos.map((foto) => {
-                            <img src={foto.fotoLink} alt={foto.alt} />
+                            return <img src={foto.fotoLink} alt={foto.alt} />
                         })}
-                    </div>
+                    </div>)
                 })
                 }
             </div>

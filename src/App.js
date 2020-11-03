@@ -18,8 +18,8 @@ class App extends React.Component {
 
   loadData = () => {
     let patologias = [
-      { id: 1, name: 'Hemorroidas', link: 'hemorroidas', sintomas: 'sintomas1', exames: 'Exames1', tratamentos: 'tratamentos1' },
-      { id: 2, name: 'Eczema Anal', link: 'eczemaanal', sintomas: 'sintomas2', exames: 'Exames2', tratamentos: 'tratamentos2' }
+      { id: 1, name: 'Hemorroidas', link: 'hemorroidas', textoIntro: 'textoIntro1', sintomas: 'sintomas1', exames: 'Exames1', tratamentos: 'tratamentos1' },
+      { id: 2, name: 'Eczema Anal', link: 'eczemaanal', textoIntro: 'textoIntro1', sintomas: 'sintomas2', exames: 'Exames2', tratamentos: 'tratamentos2' }
     ]
     this.setState({ patologias: patologias })
   }
