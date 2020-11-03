@@ -103,6 +103,3 @@ INSERT INTO `fotosSintomas`(sintomasID,fotoLink,alt) VALUES
                 ]
             }
         ]
-
-
-
