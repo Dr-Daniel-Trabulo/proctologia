@@ -1,8 +1,10 @@
 import React from 'react'
+import axios from 'axios'
 
 
 const Patologias = (props) => {
 
+    //patologias = props.patologias
 
 
     let patologias = [
@@ -10,13 +12,11 @@ const Patologias = (props) => {
         { id: 2, name: 'Eczema Anal', link: 'eczemaanal', sintomas: 'sintomas2', exames: 'Exames2', tratamentos: 'tratamentos2' }
     ]
 
-    //let patologias = props.patologias
+
+
     let patologiaLink = props.match.params.patologia
 
-
-
     return (
-
         <div>
             {
                 patologias.map((patologia) => {
@@ -29,22 +29,11 @@ const Patologias = (props) => {
                             <div>{patologia.tratamentos}</div>
                         </div>
 
-
                     )
-
-
                 })
             }
-
-
         </div>
-
-
-
     )
-
-
-
 
 }
 

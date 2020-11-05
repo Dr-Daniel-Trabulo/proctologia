@@ -5,7 +5,8 @@ function NavBar(props) {
     let patologias = props.patologias
     console.log(patologias)
 
-
+   
+    
     return (
         <div>
             <nav>
@@ -15,7 +16,7 @@ function NavBar(props) {
                     patologias.map((patologia) => {
                         return (
                             <NavLink to={`/patologias/${patologia.link}`}>
-                                {patologia.name}
+                                {patologia.nome}
                             </NavLink>
                         )
                     })

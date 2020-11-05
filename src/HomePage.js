@@ -10,27 +10,20 @@ class HomePage extends React.Component {
         }
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
         window.scrollTo(0, 0)
-
-        axios.get('/homepage')
+        axios
+            .get('/homepage')
             .then((res) => {
-                let results = res.data[0]
-                console.log('ola')
-                //console.log(`wkdjwjd${results}`)
-                this.setState({ CV_text: results.CV_text })
-                this.setState({ CV_pic: results.CV_pic })
-
+                const results = res.data[0]
+                this.setState({ CV_text: results.CV_Text })
+                this.setState({ CV_pic: results.CV_Pic })
             })
-        // let CV_pic = 'CV pic'
-        // let CV_text = 'CV text'
-        //this.setState({ CV_text, CV_pic })
     }
 
     render() {
         return (
             <div>
-                <div>Ola</div>
                 <div>{this.state.CV_pic}</div>
                 <div>{this.state.CV_text}</div>
             </div>

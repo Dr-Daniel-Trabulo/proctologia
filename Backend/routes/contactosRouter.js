@@ -5,7 +5,7 @@ const connection = require('../config')
 
 
 router.get('/', (req, res) => {
-    connection.query('SELECT * FROM homePage',
+    connection.query('SELECT * FROM contactos',
         (err, results) => {
             if (err) {
                 res.status(400).send('Query Error')

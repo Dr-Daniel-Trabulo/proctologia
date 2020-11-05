@@ -1,5 +1,6 @@
 import React from 'react'
 import FormularioContacto from './FormularioContacto'
+import axios from 'axios'
 
 class Contactos extends React.Component {
     constructor(props) {
@@ -10,13 +11,12 @@ class Contactos extends React.Component {
     }
     componentDidMount = () => {
         window.scrollTo(0, 0)
-        let contactos = {
-            telefoneContacto: +351000000000,
-            emailContacto: 'xpto@xpto.pt',
-            moradaContacto: 'Avenida Columbano Bordalo Pinheiro ...'
-        }
-
-        this.setState({ contactos })
+        axios
+            .get('/contactos')
+            .then((res) => {
+                const results = res.data[0]
+                this.setState({ contactos: results })
+            })
     }
 
     render() {

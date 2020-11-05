@@ -1,50 +1,49 @@
 import React from 'react'
+import axios from 'axios'
 
 class Sintomas extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            sintomas: []
+            sintomas: [],
+            fotoSintomas: []
         }
     }
 
-    loadData = () => {
-        let sintomas = [
-            {
-                id: 1, nome: 'nomeSintoma1', descricao: 'descricaoSintoma1',
-                fotos: [
-                    { fotoLink: 'foto1Sintoma1', alt: 'altFoto1Sintoma1' },
-                    { fotoLink: 'foto2Sintoma1', alt: 'altFoto2Sintoma1' }
-                ]
-            },
-            {
-                id: 2, nome: 'nomeSintoma2', descricao: 'descricaoSintoma2',
-                fotos: [
-                    { fotoLink: 'foto1Sintoma2', alt: 'altFoto1Sintoma2' },
-                    { fotoLink: 'foto2Sintoma2', alt: 'altFoto2Sintoma2' }
-                ]
-            }
-        ]
-        this.setState({ sintomas: sintomas })
-    }
 
     componentDidMount = () => {
         window.scrollTo(0, 0)
-        this.loadData()
+        axios
+            .get('/sintomas')
+            .then((res) => {
+                const resultSintomas = res.data
+                console.log(resultSintomas)
+                this.setState({ sintomas: resultSintomas })
+            })
+        axios
+            .get('/fotoSintomas')
+            .then((res) => {
+                const resultsFotoSintomas = res.data
+                console.log(resultsFotoSintomas)
+                this.setState({ fotoSintomas: resultsFotoSintomas })
+            })
     }
 
 
     render() {
         return (
             <div>
-                <h1>Sintomas de doença proctológica</h1>
+                {/* <h1>Sintomas de doença proctológica</h1> */}
                 {this.state.sintomas.map((sintoma) => {
                     return (
                         <div>
-                            <div>{sintoma.nome}</div>
-                            <div>{sintoma.descricao}</div>
-                            {sintoma.fotos.map((foto) => <img src={foto.fotoLink} alt={foto.alt} />
-                            )}
+                            <div>{sintoma.nomeSintomas}</div>
+                            <div>{sintoma.descricaoSintomas}</div>
+                            {this.state.fotoSintomas.map((foto) => {
+                                return (
+                                    foto.sintomasID === sintoma.sintomasID &&
+                                    <img src={foto.fotoLink} alt={foto.alt} />)
+                            })}
                         </div>)
                 })}
             </div>
