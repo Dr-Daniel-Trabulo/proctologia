@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import Footer from './Footer'
+
 
 
 const Patologias = (props) => {
@@ -32,6 +34,8 @@ const Patologias = (props) => {
                     )
                 })
             }
+            <Footer />
+
         </div>
     )
 

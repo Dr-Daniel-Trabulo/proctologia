@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import Footer from './Footer'
+
 
 class Sintomas extends React.Component {
     constructor(props) {
@@ -46,6 +48,7 @@ class Sintomas extends React.Component {
                             })}
                         </div>)
                 })}
+                <Footer />
             </div>
         )
     }

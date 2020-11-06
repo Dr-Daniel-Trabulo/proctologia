@@ -9,7 +9,8 @@ import Contactos from './Contactos'
 import HomePage from './HomePage'
 import Sintomas from './Sintomas'
 import Destaques from './Destaques'
-
+import BackofficeContactos from './Backoffice/backofficeContactos'
+import BackofficeHomePage from './Backoffice/backofficeHomepage'
 
 class App extends React.Component {
   constructor(props) {
@@ -33,19 +34,20 @@ class App extends React.Component {
     this.loadData()
   }
 
+
   render() {
     let currentPath = window.location.pathname
     return (
       <div>
         <BrowserRouter>
-          <NavBar patologias={this.state.patologias} />
+          {!currentPath.includes('backoffice') && <NavBar patologias={this.state.patologias} />}
           <Route exact path='/' component={HomePage} />
           <Route exact path='/sintomas_doenca_proctologica' component={Sintomas} />
-          <Route exact path='/patologias/:patologia' render={() => <Patologias patologias={this.state.patologias} />} component={Patologias} />
+          <Route exact path='/patologias/:patologia' component={Patologias} />
           <Route exact path='/destaques_doenca_proctologica' component={Destaques} />
           <Route exact path='/contactos_dr_daniel_trabulo' component={Contactos} />
-          {!currentPath.includes('contactos') &&
-            <Footer />}
+          <Route exact path='/backoffice/contactos' component={BackofficeContactos} />
+          <Route exact path='/backoffice/homepage' component={BackofficeHomePage} />
         </BrowserRouter>
 
       </div>

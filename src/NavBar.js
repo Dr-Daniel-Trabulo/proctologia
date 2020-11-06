@@ -5,8 +5,8 @@ function NavBar(props) {
     let patologias = props.patologias
     console.log(patologias)
 
-   
-    
+
+
     return (
         <div>
             <nav>
