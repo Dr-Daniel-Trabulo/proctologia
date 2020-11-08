@@ -3,43 +3,51 @@ import axios from 'axios'
 import Footer from './Footer'
 
 
+class Patologias extends React.Component {
 
-const Patologias = (props) => {
+    constructor(props) {
+        super(props)
+        this.state = { patologias: [] }
+    }
 
-    //patologias = props.patologias
+    loadData = () => {
+        axios
+            .get('/patologias')
+            .then((res) => {
+                const results = res.data
+                console.log(results)
+                this.setState({ patologias: results })
+            })
 
+    }
 
-    let patologias = [
-        { id: 1, name: 'Hemorroidas', link: 'hemorroidas', sintomas: 'sintomas1', exames: 'Exames1', tratamentos: 'tratamentos1' },
-        { id: 2, name: 'Eczema Anal', link: 'eczemaanal', sintomas: 'sintomas2', exames: 'Exames2', tratamentos: 'tratamentos2' }
-    ]
+    componentDidMount = () => {
+        window.scrollTo(0, 0)
+        this.loadData()
+    }
 
+    render() {
+        let patologiaLink = this.props.match.params.patologia
 
-
-    let patologiaLink = props.match.params.patologia
-
-    return (
-        <div>
-            {
-                patologias.map((patologia) => {
-                    return (
-                        patologia.link === patologiaLink &&
-                        <div>
-                            <div>{patologia.name}</div>
-                            <div>{patologia.sintomas}</div>
-                            <div>{patologia.exames}</div>
-                            <div>{patologia.tratamentos}</div>
-                        </div>
-
-                    )
-                })
-            }
-            <Footer />
-
-        </div>
-    )
-
+        return (
+            <div>
+                {
+                    this.state.patologias.map((patologia) => {
+                        return (
+                            patologia.link === patologiaLink &&
+                            <div>
+                                <div>{patologia.name}</div>
+                                <div>{patologia.sintomas}</div>
+                                <div>{patologia.exames}</div>
+                                <div>{patologia.tratamentos}</div>
+                            </div>
+                        )
+                    })
+                }
+                <Footer />
+            </div>
+        )
+    }
 }
-
 
 export default Patologias;

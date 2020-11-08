@@ -11,9 +11,6 @@ class Destaques extends React.Component {
         }
     }
 
-
-
-
     componentDidMount() {
         window.scrollTo(0, 0)
         axios

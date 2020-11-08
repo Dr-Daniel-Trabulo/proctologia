@@ -8,7 +8,8 @@ class backOfficeContactos extends React.Component {
             emailContacto: '',
             telefoneContacto: '',
             moradaContacto: '',
-            flash: ''
+            flash: '',
+            messageStatus: ''
         }
     }
 
@@ -32,11 +33,10 @@ class backOfficeContactos extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         //const { emailContacto, telefoneContacto, moradaContacto } = this.state
-        const { flash, ...contactos } = this.state
+        const { flash, messageStatus, ...contactos } = this.state
         console.log(contactos)
-
         axios
-            .post('/contactos/editContactos', contactos)
+            .put('/contactos/editContactos', contactos)
             .then((res) => {
                 this.setState({ flash: 'Alterado com sucesso' })
             })
@@ -52,18 +52,15 @@ class backOfficeContactos extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <div>Email Contacto</div>
-                        <input type='text' name='emailContacto' value={this.state.emailContacto} onChange={(event) => this.handleChange(event)}>
-                        </input>
+                        <input type='text' name='emailContacto' value={this.state.emailContacto} onChange={(event) => this.handleChange(event)} />
                     </div>
                     <div>
                         <div>Telefone Contacto</div>
-                        <input type='text' name='telefoneContacto' value={this.state.telefoneContacto} onChange={(event) => this.handleChange(event)}>
-                        </input>
+                        <input type='text' name='telefoneContacto' value={this.state.telefoneContacto} onChange={(event) => this.handleChange(event)} />
                     </div>
                     <div>
                         <div>Morada Contacto</div>
-                        <input type='text' name='moradaContacto' value={this.state.moradaContacto} onChange={(event) => this.handleChange(event)}>
-                        </input>
+                        <input type='text' name='moradaContacto' value={this.state.moradaContacto} onChange={(event) => this.handleChange(event)} />
                     </div>
                     <button type='submit'>
                         GUARDAR
