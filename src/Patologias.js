@@ -36,7 +36,7 @@ class Patologias extends React.Component {
                         return (
                             patologia.link === patologiaLink &&
                             <div>
-                                <div>{patologia.name}</div>
+                                <div>{patologia.nome}</div>
                                 <div>{patologia.sintomas}</div>
                                 <div>{patologia.exames}</div>
                                 <div>{patologia.tratamentos}</div>

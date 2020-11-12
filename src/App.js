@@ -12,6 +12,7 @@ import BackofficeContactos from './Backoffice/backofficeContactos'
 import BackofficeHomePage from './Backoffice/backofficeHomepage'
 import BackofficePatologias from './Backoffice/backofficePatologias'
 import BackofficeDestaques from './Backoffice/backofficeDestaques'
+import BackofficeSintomas from './Backoffice/backofficeSintomas'
 
 class App extends React.Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class App extends React.Component {
           <Route exact path='/backoffice/homepage' component={BackofficeHomePage} />
           <Route exact path='/backoffice/patologias' component={BackofficePatologias} />
           <Route exact path='/backoffice/destaques' component={BackofficeDestaques} />
-
+          <Route exact path='/backoffice/sintomas' component={BackofficeSintomas} />
         </BrowserRouter>
       </div>
     )

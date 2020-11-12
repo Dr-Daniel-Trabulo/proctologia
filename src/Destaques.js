@@ -6,8 +6,7 @@ class Destaques extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            destaques: [],
-            fotosDestaques: []
+            destaques: []
         }
     }
 
@@ -20,13 +19,6 @@ class Destaques extends React.Component {
                 console.log(resultsDestaques)
                 this.setState({ destaques: resultsDestaques })
             })
-        axios
-            .get('/fotosDestaques')
-            .then((res) => {
-                const resultsFotosDestaques = res.data
-                console.log(resultsFotosDestaques)
-                this.setState({ fotosDestaques: resultsFotosDestaques })
-            })
     }
 
 
@@ -37,18 +29,16 @@ class Destaques extends React.Component {
                     return (<div>
                         <div>{destaque.nome}</div>
                         <div>{destaque.texto}</div>
-                        {this.state.fotosDestaques.map((foto) => {
-                            return (
-                                destaque.DestaquesID === foto.DestaquesID &&
-                                <img src={foto.fotoLink} alt={foto.alt} />
-                            )
-                        })}
+                        <img src={destaque.fotoLink1} alt={destaque.foto_alt1} />
+                        <img src={destaque.fotoLink2} alt={destaque.foto_alt2} />
+                        <img src={destaque.fotoLink3} alt={destaque.foto_alt3} />
+                        <img src={destaque.fotoLink4} alt={destaque.foto_alt4} />
                     </div>)
                 })
                 }
                 <Footer />
             </div>
-            
+
 
         )
     }

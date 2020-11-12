@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import BackofficePatologiasDetalhe from './backofficePatologiasDetalhe'
-import Select from 'react-select'
 
 class backofficePatologias extends React.Component {
     constructor(props) {
@@ -14,6 +13,7 @@ class backofficePatologias extends React.Component {
     }
 
     componentDidMount = () => {
+        window.scrollTo(0, 0)
         axios
             .get('/patologias')
             .then((res) => {
@@ -47,6 +47,7 @@ class backofficePatologias extends React.Component {
             <div>
                 <div>Patologia</div>
                 <select name='patologias' onChange={(event => this.handleClick(event))}>
+                    <option selected="selected">Seleccione uma patologia</option>
                     {this.state.patologias.map((patologia) => {
                         return (
                             <option name={patologia.nome} value={patologia.nome}>{patologia.nome}</option>

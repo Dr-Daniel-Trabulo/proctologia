@@ -1,0 +1,29 @@
+@font-face {
+    font-family: Aileron;
+    src: url(https://fontlibrary.org/face/aileron);
+  }
+
+
+.footer{
+    width: 100%;
+    padding-right: 230px;
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(247, 241, 241);
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+.contactos{
+    font-family: Aileron;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.contactoNome{
+    font-family: Aileron;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}

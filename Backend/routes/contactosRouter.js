@@ -1,4 +1,4 @@
-    const express = require('express')
+const express = require('express')
 
 const router = express.Router()
 const connection = require('../config')
@@ -20,10 +20,10 @@ router.put('/editContactos', (req, res) => {
         [req.body],
         (err, results) => {
             if (err) {
-                res.status(400).json({ flash: 'Ocorreu um erro' })
+                res.status(400).send('Ocorreu um erro')
                 console.log(err)
             } else {
-                res.status(200).json({ flash: 'Alterado com sucesso' })
+                res.status(200).send('Alterado com sucesso')
             }
         }
     )

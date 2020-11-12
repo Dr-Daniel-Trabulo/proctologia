@@ -9,34 +9,29 @@ CREATE TABLE patologias (
 );
 
 INSERT INTO `patologias` (nome, link, sintomas, exames, tratamentos) VALUES 
-('Hemorroidas', 'hemorroidas', 'sintomas1', 'exames1','tratamentos1'),
-('Eczema Anal', 'eczemaanal', 'sintomas2', 'exames2','tratamentos2');
+('Patologia1', 'patologia1', 'sintomas1', 'exames1','tratamentos1'),
+('Patologia2', 'patologia2', 'sintomas2', 'exames2','tratamentos2');
 
 
 CREATE TABLE destaques (
     DestaquesID INTEGER NOT NULL AUTO_INCREMENT,
     nome VARCHAR(200),
     texto MEDIUMTEXT,
+    fotoLink1 VARCHAR(200),
+    foto_alt1 VARCHAR(200),
+    fotoLink2 VARCHAR(200),
+    foto_alt2 VARCHAR(200),
+    fotoLink3 VARCHAR(200),
+    foto_alt3 VARCHAR(200),
+    fotoLink4 VARCHAR(200),
+    foto_alt4 VARCHAR(200),
     PRIMARY KEY (`DestaquesID`)
 );
 
-INSERT INTO `destaques` (nome, texto) VALUES
-('nome Destaque 1','texto Destaque 1'),
-('nome Destaque 2','texto Destaque 2');
+INSERT INTO `destaques` (nome, texto, fotoLink1, foto_alt1, fotoLink2, foto_alt2, fotoLink3, foto_alt3, fotoLink4, foto_alt4) VALUES
+('nome Destaque 1','texto Destaque 1', 'foto 1 Destaque 1','alt Foto 1 Destaque 1', '', '', '', '','',''),
+('nome Destaque 2','texto Destaque 2', 'foto 2 Destaque 1','alt Foto 2 Destaque 1', '', '', '', '','','');
 
-CREATE TABLE fotosDestaques (
-    DestaquesID INTEGER NOT NULL,
-    fotosDestaquesID INTEGER NOT NULL AUTO_INCREMENT,
-    fotoLink VARCHAR(200) NOT NULL,
-    alt VARCHAR(200),
-    PRIMARY KEY (`fotosDestaquesID`)
-);
-
-INSERT INTO `fotosDestaques`(DestaquesID,fotoLink,alt) VALUES
-(1,'foto 1 Destaque 1','alt Foto 1 Destaque 1'),
-(1,'foto 2 Destaque 1','alt Foto 2 Destaque 1'),
-(2,'foto 1 Destaque 2','alt Foto 1 Destaque 2'),
-(2,'foto 2 Destaque 2','alt Foto 2 Destaque 2');
 
 
 CREATE TABLE homePage (
@@ -62,44 +57,23 @@ CREATE TABLE sintomas (
     sintomasID INTEGER NOT NULL AUTO_INCREMENT,
     nomeSintomas VARCHAR (200),
     descricaoSintomas MEDIUMTEXT,
+    fotoLink1 VARCHAR(200),
+    foto_alt1 VARCHAR(200),
+    fotoLink2 VARCHAR(200),
+    foto_alt2 VARCHAR(200),
+    fotoLink3 VARCHAR(200),
+    foto_alt3 VARCHAR(200),
+    fotoLink4 VARCHAR(200),
+    foto_alt4 VARCHAR(200), 
     PRIMARY KEY (`sintomasID`)
 );
 
-INSERT INTO sintomas(nomeSintomas, descricaoSintomas) VALUES
-('nomeSintoma1','descricaoSintoma1'),
-('nomeSintoma2','descricaoSintoma2');
-
-CREATE TABLE fotosSintomas (
-    sintomasID INTEGER NOT NULL,
-    fotosSintomasID INTEGER NOT NULL AUTO_INCREMENT,
-    fotoLink VARCHAR(200) NOT NULL,
-    alt VARCHAR(200),
-    PRIMARY KEY (`fotosSintomasID`)
-);
-
-INSERT INTO `fotosSintomas`(sintomasID,fotoLink,alt) VALUES
-(1,'foto 1 Sintoma 1','alt Foto 1 Sintoma 1'),
-(1,'foto 2 Sintoma 1','alt Foto 2 Sintoma 1'),
-(2,'foto 1 Sintoma 2','alt Foto 1 Sintoma 2'),
-(2,'foto 2 Sintoma 2','alt Foto 2 Sintoma 2');
+INSERT INTO sintomas(nomeSintomas, descricaoSintomas, fotoLink1, foto_alt1, fotoLink2, foto_alt2, fotoLink3, foto_alt3, fotoLink4, foto_alt4) VALUES
+('nomeSintoma1','descricaoSintoma1', 'foto 1 Sintoma 1','alt Foto 1 Sintoma 1', 'foto 2 Sintoma 1','alt Foto 2 Sintoma 1','','','',''),
+('nomeSintoma2','descricaoSintoma2', 'foto 1 Sintoma 2','alt Foto 1 Sintoma 2', 'foto 2 Sintoma 2','alt Foto 2 Sintoma 2','','','','');
 
 
 
 
 
-        let sintomas = [
-            {
-                id: 1, nome: 'nomeSintoma1', descricao: 'descricaoSintoma1',
-                fotos: [
-                    { fotoLink: 'foto1Sintoma1', alt: 'altFoto1Sintoma1' },
-                    { fotoLink: 'foto2Sintoma1', alt: 'altFoto2Sintoma1' }
-                ]
-            },
-            {
-                id: 2, nome: 'nomeSintoma2', descricao: 'descricaoSintoma2',
-                fotos: [
-                    { fotoLink: 'foto1Sintoma2', alt: 'altFoto1Sintoma2' },
-                    { fotoLink: 'foto2Sintoma2', alt: 'altFoto2Sintoma2' }
-                ]
-            }
-        ]
+

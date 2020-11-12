@@ -1,0 +1,76 @@
+@font-face {
+  font-family: Aileron;
+  src: url(https://fontlibrary.org/face/aileron);
+}
+
+.mainLink a{
+  color:black !important;
+  font-family: Aileron;
+  font-weight:7000;
+  font-size: 50px;
+  position: fixed;
+  top:0;
+  left:0;
+  
+}
+
+.mainLink a:hover{
+  text-decoration: none;
+}
+
+
+.BackSidebar {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: white;
+  box-shadow: 5px 5px 9px 3px rgb(177, 177, 177);
+  align-items: center;
+  z-index: 1;
+}
+
+
+.BackSidebar .nav {
+  display: flex;
+  flex-direction: column;
+  width: 210px;
+}
+
+.BackSidebar a {
+  text-align: start;
+  padding: 6px 15px 6px 30px;
+  margin: 0px;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color:black;
+  font-size: 17px;
+  font-family: Aileron;
+  font-weight: bold;
+  padding-bottom: 50px;
+}
+
+.BackSidebar a:hover {
+  background-color: rgb(220, 220, 220);
+  text-decoration: none;
+}
+
+
+@media(max-width: 768px) {
+  .BackSidebar .nav {
+    width: 130px;
+  }
+  .BackSidebar .nav-link {
+    padding-left: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 130px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+}
