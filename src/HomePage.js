@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Footer from './Footer'
+import Homepage from './Homepage.css'
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class HomePage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='Homepage'>
                 <div>{this.state.CV_pic}</div>
                 <div>{this.state.CV_text}</div>
                 <Footer />
