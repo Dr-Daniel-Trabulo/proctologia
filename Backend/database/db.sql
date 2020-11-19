@@ -43,9 +43,11 @@ INSERT INTO homePage (CV_Pic, CV_Text) VALUES
 ('CV_Pic', 'CV_Text');
 
 CREATE TABLE contactos (
+    id INTEGER AUTO_INCREMENT,
     telefoneContacto VARCHAR (50),
     emailContacto VARCHAR (100),
-    moradaContacto VARCHAR (200)
+    moradaContacto VARCHAR (200),
+    PRIMARY KEY (`id`)
 );
 
 INSERT INTO contactos (telefoneContacto, emailContacto, moradaContacto) VALUES

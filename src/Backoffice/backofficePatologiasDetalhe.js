@@ -4,7 +4,7 @@ const backofficePatologiasDetalhe = (props) => {
 
     return (
         <div>
-            <form>
+            <form onSubmit={props.handleSubmit}>
                 <label>Nome Patologia</label>
                 <input type='text' name='nome' value={props.nomePatologia} onChange={(event) => props.handleChange(event)} />
                 <label>Sintomas</label>

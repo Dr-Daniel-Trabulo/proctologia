@@ -22,8 +22,77 @@ class FormularioContacto extends React.Component {
 
         return (
             <div className='Geral'>
-                <form className='form' onSubmit>
-                    <span className='form1'>
+                <form className='form'>
+                    <span className='span-name'>
+                        <input
+                            className="input-nome"
+                            type='text'
+                            value={this.state.nome}
+                            name='nome'
+                            onChange={event => this.updateField(event)}
+                            placeholder='Nome'
+                            maxLength='90'
+                            required
+                        />
+                    </span>
+                    <div className='div_number-email'>
+                        <div className='span-number'>
+                            <input
+                                className="input-number"
+                                type='number'
+                                value={this.state.telefone}
+                                name='telefone'
+                                onChange={event => this.updateField(event)}
+                                placeholder='Telefone'
+                                maxLength='15'
+                                required
+                            />
+                        </div>
+                        <div className='span-email'>
+                            <input
+                                className="input-email"
+                                type='email'
+                                value={this.state.email}
+                                name='email'
+                                onChange={event => this.updateField(event)}
+                                placeholder='Email'
+                                maxLength='15'
+                                required
+                            />
+                        </div>
+                    </div>
+                    <span className='span-text'>
+                        <input
+                            className="input-text"
+                            type='text'
+                            value={this.state.message}
+                            name='message'
+                            onChange={event => this.updateField(event)}
+                            placeholder='Deixe-nos aqui a sua mensagem. Seremos breves a responder'
+                            minLength='5'
+                            required
+                        />
+                    </span>
+                    <div className='div-button'>
+                        <button className='button' type='submit'>Enviar</button>
+                    </div>
+                </form>
+
+            </div>
+
+
+
+
+
+
+        )
+    }
+}
+
+export default FormularioContacto
+
+
+{/* <span className='form1'>
                         <span className='span-name'>
                             <input
                                 className="input-nome"
@@ -59,31 +128,22 @@ class FormularioContacto extends React.Component {
                                 maxLength='15'
                                 required
                             />
-                        </span>
-
-                    </span>
-                    <div className='div-text'>
-                        <input
-                            className="input-text"
-                            type='text'
-                            value={this.state.message}
-                            name='message'
-                            onChange={event => this.updateField(event)}
-                            placeholder='Deixe-nos aqui a sua mensagem. Seremos breves a responder'
-                            minLength='5'
-                            required
-                        />
-                        <div className='div-button'>
-                            <button className='button' type='submit'>Enviar</button>
-                        </div>
-                    </div>
-
-                </form>
-
-
-            </div>
-        )
-    }
-}
-
-export default FormularioContacto
+                            <span className='span-text'>
+                                <input
+                                    className="input-text"
+                                    type='text'
+                                    value={this.state.message}
+                                    name='message'
+                                    onChange={event => this.updateField(event)}
+                                    placeholder='Deixe-nos aqui a sua mensagem. Seremos breves a responder'
+                                    minLength='5'
+                                    required
+                                />
+                            </span>
+                            <div className='div-text'>
+                                <div className='div-button'>
+                                    <button className='button' type='submit'>Enviar</button>
+                                </div>
+                            </div>
+</span>
+           </div> */}

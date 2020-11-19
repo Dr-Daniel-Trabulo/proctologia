@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const port = 5000;
+const bodyParser = require('body-parser')
 const app = express();
 const connection = require('./config');
 
@@ -23,8 +24,8 @@ const sintomasRouter = require('./routes/sintomasRouter')
 //app.use(express.json())
 
 
-
-
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use('/homepage', homepageRouter)
 app.use('/patologias', patologiasRouter)
 app.use('/destaques', destaquesRouter)

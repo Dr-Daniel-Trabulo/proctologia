@@ -37,9 +37,9 @@ class backOfficeContactos extends React.Component {
         const { flash, messageStatus, ...contactos } = this.state
         console.log(contactos)
         axios
-            .put('/contactos/editContactos', contactos)
+            .put('/contactos/contactos/editContactos', contactos)
             .then((res) => {
-                this.setState({ flash: 'Alterado com sucesso' })
+                this.setState({ flash: 'Alterado com sucesso', messageStatus:'Sucesso' })
             })
     }
 
@@ -50,7 +50,7 @@ class backOfficeContactos extends React.Component {
         return (
             <div>
                 <div>Edição Contactos</div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={event => this.handleSubmit(event)}>
                     <div>
                         <div>Email Contacto</div>
                         <input type='text' name='emailContacto' value={this.state.emailContacto} onChange={(event) => this.handleChange(event)} />

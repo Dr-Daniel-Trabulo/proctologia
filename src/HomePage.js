@@ -25,9 +25,9 @@ class HomePage extends React.Component {
 
     render() {
         return (
-            <div className='Homepage'>
-                <div>{this.state.CV_pic}</div>
-                <div>{this.state.CV_text}</div>
+            <div >
+                <div className='Homepage'>{this.state.CV_pic}</div>
+                <div className='Homepage'>{this.state.CV_text}</div>
                 <Footer />
             </div>
         )

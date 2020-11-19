@@ -52,7 +52,9 @@ class App extends React.Component {
           <Route exact path='/backoffice/homepage' component={BackofficeHomePage} />
           <Route exact path='/backoffice/patologias' component={BackofficePatologias} />
           <Route exact path='/backoffice/destaques' component={BackofficeDestaques} />
+          <Route exact path='/backoffice/destaques/new' component={BackofficeDestaques} />
           <Route exact path='/backoffice/sintomas' component={BackofficeSintomas} />
+          <Route exact path='/backoffice/sintomas/new' component={BackofficeSintomas} />
         </BrowserRouter>
       </div>
     )

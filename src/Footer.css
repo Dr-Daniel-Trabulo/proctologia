@@ -6,27 +6,57 @@
 
 .footer{
     width: 100%;
-    padding-right: 230px;
+    padding-left: 230px;
     position: fixed;
     bottom: 0;
     background-color: #00798a;
-    /* background-color: rgb(247, 241, 241); */
-    padding-top: 15px;
-    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 0px;
+    display: flex;
+    flex-direction: row;
+}
+.formulario{
+    width:65%;
 }
 
 .contactos{
     font-family: Aileron;
-    padding-left: 20px;
-    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-bottom: 0px;
     color: white;
+    width:35%;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
-.contactoNome{
-    font-family: Aileron;
-    padding-left: 20px;
-    margin-bottom: 10px;
-    font-size: 20px;
+.consulta{
+    margin-bottom: 5px;
+}
+
+.consulta_telefone{
+    margin-bottom: 0;
+    text-align: center;
     font-weight: bold;
+}
+
+.contactoTelefone{
+    text-align: center;
+    line-height: 2.5;
+    padding-left: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.numeroTelefone{
     color: white;
+    font-weight: bold;
+}
+
+.imagem_telefone{
+    height: 30px;
 }

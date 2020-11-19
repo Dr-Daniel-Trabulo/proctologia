@@ -37,7 +37,8 @@ class backofficePatologias extends React.Component {
         let value = event.target.value
         let name = event.target.name
         const patologiaDisplay = { ...this.state.patologiaDisplay, [name]: value }
-        this.setState({ patologiaDisplay })
+        console.log(patologiaDisplay)
+        this.setState({ patologiaDisplay: patologiaDisplay })
     }
 
 

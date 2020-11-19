@@ -15,19 +15,20 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/editContactos', (req, res) => {
+router.put('/contactos/editContactos', (req, res) => { 
     connection.query('UPDATE contactos SET ?',
         [req.body],
         (err, results) => {
+            console.log('router')
             if (err) {
-                res.status(400).send('Ocorreu um erro')
-                console.log(err)
+                res.status(400).json({ flash: 'Ocorreu um erro' })
             } else {
-                res.status(200).send('Alterado com sucesso')
+                res.status(200).json({ flash: 'Alterado com sucesso' })
             }
         }
     )
 })
+
 
 
 

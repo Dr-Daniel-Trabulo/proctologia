@@ -38,7 +38,7 @@ class NavBar extends React.Component {
                     <div>Médico Proctologista</div>
                 </div>
                 <div className='BackSidebar'>
-                    <Nav fixed="top">
+                    <Nav fixed="right">
                         <Link to='/sintomas_doenca_proctologica'>Sintomas Doença Proctológica</Link>
                         <NavDropdown title='Patologias' id="basic-nav-dropdown" data-toggle="collapse">
                             {
