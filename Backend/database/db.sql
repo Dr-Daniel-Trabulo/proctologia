@@ -30,7 +30,9 @@ CREATE TABLE destaques (
 
 INSERT INTO `destaques` (nome, texto, fotoLink1, foto_alt1, fotoLink2, foto_alt2, fotoLink3, foto_alt3, fotoLink4, foto_alt4) VALUES
 ('nome Destaque 1','texto Destaque 1', 'foto 1 Destaque 1','alt Foto 1 Destaque 1', '', '', '', '','',''),
-('nome Destaque 2','texto Destaque 2', 'foto 2 Destaque 1','alt Foto 2 Destaque 1', '', '', '', '','','');
+('nome Destaque 2','texto Destaque 2', 'foto 2 Destaque 1','alt Foto 2 Destaque 1', '', '', '', '','',''),
+('nome Destaque 3','texto Destaque 3', 'foto 3 Destaque 1','alt Foto 3 Destaque 1', '', '', '', '','',''),
+('nome Destaque 4','texto Destaque 4', 'foto 4 Destaque 1','alt Foto 4 Destaque 1', '', '', '', '','','');
 
 
 

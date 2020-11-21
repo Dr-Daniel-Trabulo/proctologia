@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import PopUp from '../PopUp'
 
 class backofficeHomepage extends React.Component {
 
@@ -7,7 +8,9 @@ class backofficeHomepage extends React.Component {
         super(props)
         this.state = {
             CV_text: '',
-            CV_pic: ''
+            CV_pic: '',
+            flash: '',
+            messageStatus: ''
         }
     }
 
@@ -23,21 +26,19 @@ class backofficeHomepage extends React.Component {
     }
 
     handleChange = (event) => {
-        //this.setState({ [event.target.name]: event.target.value })
         const { value, name } = event.target
         this.setState({ [name]: value })
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const { ...homepage } = this.state
-        console.log(homepage)
+        const { flash, messageStatus, ...homepage } = this.state
         axios
-            .put('/homepage', homepage)
-
+            .put('/homepage/homepage/editHomepage', homepage)
+            .then((res) => {
+                this.setState({ flash: 'Alterado com Sucesso', messageStatus: 'Sucesso' })
+            })
     }
-
-
 
     render() {
         return (
@@ -49,8 +50,11 @@ class backofficeHomepage extends React.Component {
                     <input type='text' name='CV_pic' value={this.state.CV_pic} onChange={(event) => this.handleChange(event)} />
                     <button type='submit'>GUARDAR</button>
                 </form>
+                <PopUp
+                    flashInput={this.state.flash}
+                    typeMessage={this.state.messageStatus}
+                />
             </div>
-
         )
     }
 }

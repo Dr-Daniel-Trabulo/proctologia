@@ -31,7 +31,7 @@ router.put('/destaques/editDestaques', (req, res) => {
 
 router.delete('/destaques/deleteDestaque', (req, res) => {
     connection.query('DELETE FROM destaques WHERE destaquesID = ?',
-        [req.body.destaquesDisplayID],
+        [req.body.DestaquesID],
         (err, results) => {
             if (err) {
                 res.status(400).json({ flash: 'Ocorreu um erro ao eliminar' })
@@ -48,6 +48,7 @@ router.post('/destaques/addDestaque', (req, res) => {
         [req.body],
         (err, results) => {
             if (err) {
+                console.log(err)
                 res.status(400).json({ flash: 'Ocorreu um erro ao inserir' })
             } else {
                 res.status(200).json({ flash: 'Destaque criado com sucesso' })

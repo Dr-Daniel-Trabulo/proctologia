@@ -1,6 +1,16 @@
-import React from 'react'
-import axios from 'axios'
+import React from 'react';
+import BackOfficeDestaquesForms from './backOfficeDestaquesForms'
+import BackOfficeDestaquesNew from './BackofficeDestaquesNew'
+import axios from 'axios';
 import { Link } from "react-router-dom";
+import { EditorState, ContentState, convertToRaw } from "draft-js";
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
+import 'rc-datepicker/lib/style.css';
+import PopUp from '../PopUp'
+
 
 
 class backofficeDestaques extends React.Component {
@@ -9,7 +19,18 @@ class backofficeDestaques extends React.Component {
         this.state = {
             destaques: [],
             destaquesDisplay: [],
-            destaquesDisplayID: '',
+            DestaquesID: '',
+            texto: {},
+            editorState_texto: EditorState.createEmpty(),
+            nome: '',
+            foto_alt1: '',
+            foto_alt2: '',
+            foto_alt3: '',
+            foto_alt4: '',
+            fotoLink1: '',
+            fotoLink2: '',
+            fotoLink3: '',
+            fotoLink4: '',
             flash: '',
             messageStatus: ''
         }
@@ -20,7 +41,6 @@ class backofficeDestaques extends React.Component {
             .get('/destaques')
             .then((res) => {
                 const results = res.data
-                console.log(results)
                 this.setState({ destaques: results })
             })
     }
@@ -28,17 +48,37 @@ class backofficeDestaques extends React.Component {
     componentDidMount = () => {
         window.scrollTo(0, 0)
         this.getData()
-
     }
 
     handleClick = (event) => {
         event.preventDefault()
         this.state.destaques.map((destaque) => {
-            return (
-                destaque.nome === event.target.value &&
-                this.setState({ destaquesDisplay: destaque, destaquesDisplayID: destaque.DestaquesID })
+            if (destaque.nome === event.target.value) {
+                const contentBlockPT = htmlToDraft(destaque.texto);
 
-            )
+                const contentStatePT = ContentState.createFromBlockArray(
+                    contentBlockPT.contentBlocks,
+                );
+
+                const formatContentPT = EditorState.createWithContent(contentStatePT);
+
+
+                this.setState({
+                    destaquesDisplay: destaque,
+                    DestaquesID: destaque.DestaquesID,
+                    texto: destaque.texto,
+                    nome: destaque.nome,
+                    foto_alt1: destaque.foto_alt1,
+                    foto_alt2: destaque.foto_alt2,
+                    foto_alt3: destaque.foto_alt3,
+                    foto_alt4: destaque.foto_alt4,
+                    fotoLink1: destaque.fotoLink1,
+                    fotoLink2: destaque.fotoLink2,
+                    fotoLink3: destaque.fotoLink3,
+                    fotoLink4: destaque.fotoLink4,
+                    editorState_texto: formatContentPT
+                })
+            }
         })
     }
 
@@ -47,40 +87,65 @@ class backofficeDestaques extends React.Component {
         event.preventDefault()
         let name = event.target.name
         let value = event.target.value
-        let destaquesDisplay = { ...this.state.destaquesDisplay, [name]: value }
-        this.setState({ destaquesDisplay })
+        this.setState({ [name]: value })
+    }
 
+    onEditorStateChange_texto = (editorState) => {
+        this.setState({ editorState_texto: editorState })
+        const rawContentState = convertToRaw(
+            this.state.editorState_texto.getCurrentContent(),
+        );
+        const HtmlContent = draftToHtml(rawContentState);
+        this.setState({ texto: HtmlContent });
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
-        let destaquesDisplay = this.state.destaquesDisplay
+
+        let {
+            destaques,
+            editorState_texto,
+            destaquesDisplay,
+            flash,
+            messageStatus,
+            ...destaquesDisplayPut
+        } = this.state
+
         axios
-            .put('/destaques/destaques/editDestaques', destaquesDisplay)
+            .put('/destaques/destaques/editDestaques', destaquesDisplayPut)
             .then((res) => {
                 this.setState({ flash: 'Alterado com sucesso', messageStatus: 'Sucesso' })
             })
             .catch((err) => {
                 this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
             })
-
     }
 
     handleDelete = () => {
-        let destaquesDisplayID = this.state.destaquesDisplayID
+        let DestaquesID = this.state.DestaquesID
         axios
-            .delete('/destaques/destaques/deleteDestaque', { data: { destaquesDisplayID } })
+            .delete('/destaques/destaques/deleteDestaque', { data: { DestaquesID } })
             .then((res) => {
                 this.setState({ flash: 'Eliminado com sucesso', messageStatus: 'Sucesso' })
+                console.log(DestaquesID)
             })
         window.location.reload()
         this.getData()
     }
 
     handleNewDestaque = () => {
-        let destaquesDisplay = this.state.destaquesDisplay
+        let {
+            destaques,
+            DestaquesID,
+            editorState_texto,
+            destaquesDisplay,
+            flash,
+            messageStatus,
+            ...destaquesDisplayPost
+        } = this.state
+
         axios
-            .post('/destaques/destaques/addDestaque', destaquesDisplay)
+            .post('/destaques/destaques/addDestaque', destaquesDisplayPost)
             .then((res) => {
                 this.setState({ flash: 'Adicionado com sucesso', messageStatus: 'Sucesso' })
             })
@@ -90,8 +155,8 @@ class backofficeDestaques extends React.Component {
         this.props.history.push({ pathname: '/backoffice/destaques' })
     }
 
-
     render() {
+
         let pathNew = this.props.match.path
 
         return (
@@ -108,64 +173,62 @@ class backofficeDestaques extends React.Component {
                                     )
                                 })}
                             </select>
+
                             <Link Link to='/backoffice/destaques/new' > <button type='submit'>Novo Destaque</button></Link>
+
                             {
                                 this.state.destaquesDisplay.length !== 0 &&
-                                <form onSubmit={this.handleSubmit}>
-                                    <label>Nome</label>
-                                    <input type='text' name='nome' value={this.state.destaquesDisplay.nome} onChange={event => this.handleChange(event)} />
-                                    <label>Texto</label>
-                                    <input type='text' name='texto' value={this.state.destaquesDisplay.texto} onChange={event => this.handleChange(event)} />
-                                    <div>Fotografia 1</div>
-                                    <label>Link</label>
-                                    <input type='text' name='fotoLink1' value={this.state.destaquesDisplay.fotoLink1} onChange={event => this.handleChange(event)} />
-                                    <label>Descrição</label>
-                                    <input type='text' name='foto_alt1' value={this.state.destaquesDisplay.foto_alt1} onChange={event => this.handleChange(event)} />
-                                    <div>Fotografia 2</div>
-                                    <label>Link</label>
-                                    <input type='text' name='fotoLink2' value={this.state.destaquesDisplay.fotoLink2} onChange={event => this.handleChange(event)} />
-                                    <label>Descrição</label>
-                                    <input type='text' name='foto_alt2' value={this.state.destaquesDisplay.foto_alt2} onChange={event => this.handleChange(event)} />
-                                    <div>Fotografia 3</div>
-                                    <label>Link</label>
-                                    <input type='text' name='fotoLink3' value={this.state.destaquesDisplay.fotoLink3} onChange={event => this.handleChange(event)} />
-                                    <label>Descrição</label>
-                                    <input type='text' name='foto_alt3' value={this.state.destaquesDisplay.foto_alt3} onChange={event => this.handleChange(event)} />
-                                    <button type='submit'>GUARDAR</button>
-                                    <button type='button' onClick={this.handleDelete}>Eliminar Destaque </button>
-                                </form>
+
+                                <BackOfficeDestaquesForms
+                                    destaquesDisplay={this.state.destaquesDisplay}
+                                    DestaquesID={this.state.DestaquesID}
+                                    texto={this.state.texto}
+                                    editorState_texto={this.state.editorState_texto}
+                                    nome={this.state.nome}
+                                    foto_alt1={this.state.foto_alt1}
+                                    foto_alt2={this.state.foto_alt2}
+                                    foto_alt3={this.state.foto_alt3}
+                                    foto_alt4={this.state.foto_alt4}
+                                    fotoLink1={this.state.fotoLink1}
+                                    fotoLink2={this.state.fotoLink2}
+                                    fotoLink3={this.state.fotoLink3}
+                                    fotoLink4={this.state.fotoLink4}
+                                    editorState_texto={this.state.editorState_texto}
+                                    flash={this.state.flash}
+                                    messageStatus={this.state.messageStatus}
+                                    handleChange={this.handleChange}
+                                    handleSubmit={this.handleSubmit}
+                                    handleDelete={this.handleDelete}
+                                    onEditorStateChange_texto={this.onEditorStateChange_texto}
+                                />
                             }
                         </div>
                         :
                         <div>
-                            <h3>Novo Destaque</h3>
-                            <form>
-                                <label>Nome</label>
-                                <input type='text' name='nome' value={this.state.destaquesDisplay.nome} onChange={event => this.handleChange(event)} />
-                                <label>Texto</label>
-                                <input type='text' name='texto' value={this.state.destaquesDisplay.texto} onChange={event => this.handleChange(event)} />
-                                <div>Fotografia 1</div>
-                                <label>Link</label>
-                                <input type='text' name='fotoLink1' value={this.state.destaquesDisplay.fotoLink1} onChange={event => this.handleChange(event)} />
-                                <label>Descrição</label>
-                                <input type='text' name='foto_alt1' value={this.state.destaquesDisplay.foto_alt1} onChange={event => this.handleChange(event)} />
-                                <div>Fotografia 2</div>
-                                <label>Link</label>
-                                <input type='text' name='fotoLink2' value={this.state.destaquesDisplay.fotoLink2} onChange={event => this.handleChange(event)} />
-                                <label>Descrição</label>
-                                <input type='text' name='foto_alt2' value={this.state.destaquesDisplay.foto_alt2} onChange={event => this.handleChange(event)} />
-                                <div>Fotografia 3</div>
-                                <label>Link</label>
-                                <input type='text' name='fotoLink3' value={this.state.destaquesDisplay.fotoLink3} onChange={event => this.handleChange(event)} />
-                                <label>Descrição</label>
-                                <input type='text' name='foto_alt3' value={this.state.destaquesDisplay.foto_alt3} onChange={event => this.handleChange(event)} />
-                                <button type='submit' onClick={this.handleNewDestaque}>Inserir novo Destaque</button>
-                            </form>
-
+                            <BackOfficeDestaquesNew
+                                destaquesDisplay={this.state.destaquesDisplay}
+                                DestaquesID={this.state.DestaquesID}
+                                texto={this.state.texto}
+                                editorState_texto={this.state.editorState_texto}
+                                nome={this.state.nome}
+                                foto_alt1={this.state.foto_alt1}
+                                foto_alt2={this.state.foto_alt2}
+                                foto_alt3={this.state.foto_alt3}
+                                foto_alt4={this.state.foto_alt4}
+                                fotoLink1={this.state.fotoLink1}
+                                fotoLink2={this.state.fotoLink2}
+                                fotoLink3={this.state.fotoLink3}
+                                fotoLink4={this.state.fotoLink4}
+                                editorState_texto={this.state.editorState_texto}
+                                flash={this.state.flash}
+                                messageStatus={this.state.messageStatus}
+                                handleChange={this.handleChange}
+                                handleNewDestaque={this.handleNewDestaque}
+                                onEditorStateChange_texto={this.onEditorStateChange_texto}
+                            />
                         </div>
                 }
             </div>
-
         )
     }
 }

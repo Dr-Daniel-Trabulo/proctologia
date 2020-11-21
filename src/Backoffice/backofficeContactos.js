@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import PopUp from '../PopUp'
 
 class backOfficeContactos extends React.Component {
     constructor(props) {
@@ -30,20 +31,15 @@ class backOfficeContactos extends React.Component {
         this.setState({ [name]: value })
     }
 
-
     handleSubmit = (event) => {
         event.preventDefault()
-        //const { emailContacto, telefoneContacto, moradaContacto } = this.state
         const { flash, messageStatus, ...contactos } = this.state
-        console.log(contactos)
         axios
             .put('/contactos/contactos/editContactos', contactos)
             .then((res) => {
-                this.setState({ flash: 'Alterado com sucesso', messageStatus:'Sucesso' })
+                this.setState({ flash: 'Alterado com sucesso', messageStatus: 'Sucesso' })
             })
     }
-
-
 
     render() {
 
@@ -67,8 +63,11 @@ class backOfficeContactos extends React.Component {
                         GUARDAR
                     </button>
                 </form>
+                <PopUp
+                    flashInput={this.state.flash}
+                    typeMessage={this.state.messageStatus}
+                />
             </div>
-
         )
     }
 }

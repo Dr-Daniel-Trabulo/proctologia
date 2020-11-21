@@ -1,0 +1,328 @@
+import React from 'react'
+import axios from 'axios'
+import { Link } from "react-router-dom";
+import { EditorState, ContentState, convertToRaw } from "draft-js";
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
+import 'rc-datepicker/lib/style.css';
+
+
+class backofficeDestaques extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            destaques: [],
+            destaquesDisplay: [],
+            destaquesDisplayID: '',
+            destaquesDisplayTexto: {},
+            destaquesDisplayNome: '',
+            destaquesDisplayFoto_alt1: '',
+            destaquesDisplayFoto_alt2: '',
+            destaquesDisplayFoto_alt3: '',
+            destaquesDisplayFoto_alt4: '',
+            destaquesDisplayFotoLink1: '',
+            destaquesDisplayFotoLink2: '',
+            destaquesDisplayFotoLink3: '',
+            destaquesDisplayFotoLink4: '',
+            editorState_texto: EditorState.createEmpty(),
+            flash: '',
+            messageStatus: ''
+        }
+    }
+
+    getData = () => {
+        axios
+            .get('/destaques')
+            .then((res) => {
+                const results = res.data
+                this.setState({ destaques: results })
+            })
+    }
+
+    componentDidMount = () => {
+        window.scrollTo(0, 0)
+        this.getData()
+    }
+
+    handleClick = (event) => {
+        event.preventDefault()
+        this.state.destaques.map((destaque) => {
+            return (
+                destaque.nome === event.target.value &&
+                this.setState({
+                    destaquesDisplay: destaque,
+                    destaquesDisplayID: destaque.DestaquesID,
+                    destaquesDisplayTexto: destaque.texto,
+                    destaquesDisplayNome: destaque.nome,
+                    destaquesDisplayFoto_alt1: destaque.foto_alt1,
+                    destaquesDisplayFoto_alt2: destaque.foto_alt2,
+                    destaquesDisplayFoto_alt3: destaque.foto_alt3,
+                    destaquesDisplayFoto_alt4: destaque.foto_alt4,
+                    destaquesDisplayFotoLink1: destaque.fotoLink1,
+                    destaquesDisplayFotoLink2: destaque.fotoLink2,
+                    destaquesDisplayFotoLink3: destaque.fotoLink3,
+                    destaquesDisplayFotoLink4: destaque.fotoLink4,
+                })
+            )
+        })
+        this.convertText()
+    }
+
+    convertText = () => {
+        console.log(this.state.destaquesDisplayTexto)
+        const contentBlock = htmlToDraft(this.state.destaquesDisplayTexto);
+        const contentState = ContentState.createFromBlockArray(
+            contentBlock.contentBlocks,
+        );
+        const formatContent = EditorState.createWithContent(contentState);
+        this.setState({ editorState_texto: formatContent })
+
+    }
+
+
+    handleChange = (event) => {
+        event.preventDefault()
+        let name = event.target.name
+        let value = event.target.value
+        this.setState({ [name]: value })
+    }
+
+    onEditorStateChange_texto = (editorState_texto) => {
+        this.setState({ editorState_texto })
+        const rawContentState = convertToRaw(
+            this.state.editorState_texto.getCurrentContent(),
+        );
+        const HtmlContent = draftToHtml(rawContentState);
+        this.setState({ destaquesDisplayTexto: HtmlContent });
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+
+        let {
+            destaques,
+            editorState_texto,
+            flash,
+            messageStatus,
+            ...destaquesDisplay
+        } = this.state
+
+        axios
+            .put('/destaques/destaques/editDestaques', destaquesDisplay)
+            .then((res) => {
+                this.setState({ flash: 'Alterado com sucesso', messageStatus: 'Sucesso' })
+            })
+            .catch((err) => {
+                this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
+            })
+
+    }
+
+    handleDelete = () => {
+        let destaquesDisplayID = this.state.destaquesDisplayID
+        axios
+            .delete('/destaques/destaques/deleteDestaque', { data: { destaquesDisplayID } })
+            .then((res) => {
+                this.setState({ flash: 'Eliminado com sucesso', messageStatus: 'Sucesso' })
+            })
+        window.location.reload()
+        this.getData()
+    }
+
+    handleNewDestaque = () => {
+        let {
+            destaques,
+            editorState_texto,
+            flash,
+            messageStatus,
+            ...destaquesDisplay
+        } = this.state
+
+        axios
+            .post('/destaques/destaques/addDestaque', destaquesDisplay)
+            .then((res) => {
+                this.setState({ flash: 'Adicionado com sucesso', messageStatus: 'Sucesso' })
+            })
+            .catch((err) => {
+                this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
+            })
+        this.props.history.push({ pathname: '/backoffice/destaques' })
+    }
+
+
+    render() {
+        let pathNew = this.props.match.path
+
+        return (
+            <div>
+                {
+                    pathNew !== '/backoffice/destaques/new' ?
+                        <div>
+                            <h3>Edição da secção de Destaques</h3>
+                            <select name='destaques' onChange={event => this.handleClick(event)}>
+                                <option selected="selected">Seleccione um destaque</option>
+                                {this.state.destaques.map((destaque) => {
+                                    return (
+                                        <option name={destaque.nome} value={destaque.nome} >{destaque.nome}</option>
+                                    )
+                                })}
+                            </select>
+                            <Link Link to='/backoffice/destaques/new' > <button type='submit'>Novo Destaque</button></Link>
+                            {
+                                this.state.destaquesDisplay.length !== 0 &&
+                                <form onSubmit={this.handleSubmit}>
+                                    <Editor
+                                        editorState={this.state.editorState_texto}
+                                        toolbarClassName="toolbarClassName"
+                                        wrapperClassName="wrapperClassName"
+                                        editorClassName="NoticiaInput-editor"
+                                        onEditorStateChange={this.onEditorStateChange_texto}
+                                        stripPastedStyles={true}
+                                        required
+                                        toolbar={{
+                                            options: [
+                                                'inline',
+                                                'blockType',
+                                                'fontSize',
+                                                'fontFamily',
+                                                'list',
+                                                'textAlign',
+                                                'colorPicker',
+                                                'link',
+                                                'embedded' /* , 'emoji' */,
+                                                'image' /* , 'remove' */,
+                                                'history',
+                                            ],
+                                            textAlign: {
+                                                none: 'center',
+                                            },
+                                            image: {
+                                                defaultAligh: 'center',
+                                            },
+                                            fontFamily: {
+                                                options: ['Poppins'],
+                                            },
+                                            colorPicker: {
+                                                colors: ['rgb(0, 73, 130)', 'rgb(26, 163, 219)', 'rgb(97,189,109)', 'rgb(26,188,156)',
+                                                    'rgb(84,172,210)', 'rgb(44,130,201)', 'rgb(204,204,204)', 'rgb(65,168,95)',
+                                                    'rgb(147,101,184)', 'rgb(71,85,119)', 'rgb(0,168,133)', 'rgb(61,142,185)',
+                                                    'rgb(41,105,176)', 'rgb(85,57,130)', 'rgb(40,50,78)', 'rgb(0,0,0)',
+                                                    'rgb(247,218,100)', 'rgb(251,160,38)', 'rgb(235,107,86)', 'rgb(226,80,65)',
+                                                    'rgb(163,143,132)']
+                                            },
+                                            fontSize: {
+                                                options: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '32', '40', '52']
+                                            }
+                                        }}
+                                    />
+                                    <label>Nome</label>
+                                    <input type='text' name='destaquesDisplayNome' value={this.state.destaquesDisplayNome} onChange={event => this.handleChange(event)} />
+                                    <div>Fotografia 1</div>
+                                    <label>Link</label>
+                                    <input type='text' name='destaquesDisplayFotoLink1' value={this.state.destaquesDisplayFotoLink1} onChange={event => this.handleChange(event)} />
+                                    <label>Descrição</label>
+                                    <input type='text' name='destaquesDisplayFoto_alt1' value={this.state.destaquesDisplayFoto_alt1} onChange={event => this.handleChange(event)} />
+                                    <div>Fotografia 2</div>
+                                    <label>Link</label>
+                                    <input type='text' name='destaquesDisplayFotoLink2' value={this.state.destaquesDisplayFotoLink2} onChange={event => this.handleChange(event)} />
+                                    <label>Descrição</label>
+                                    <input type='text' name='destaquesDisplayFoto_alt2' value={this.state.destaquesDisplayFoto_alt2} onChange={event => this.handleChange(event)} />
+                                    <div>Fotografia 3</div>
+                                    <label>Link</label>
+                                    <input type='text' name='destaquesDisplayFotoLink3' value={this.state.destaquesDisplayFotoLink3} onChange={event => this.handleChange(event)} />
+                                    <label>Descrição</label>
+                                    <input type='text' name='destaquesDisplayFoto_alt3' value={this.state.destaquesDisplayFoto_alt3} onChange={event => this.handleChange(event)} />
+                                    <div>Fotografia 4</div>
+                                    <label>Link</label>
+                                    <input type='text' name='destaquesDisplayFotoLink4' value={this.state.destaquesDisplayFotoLink4} onChange={event => this.handleChange(event)} />
+                                    <label>Descrição</label>
+                                    <input type='text' name='destaquesDisplayFoto_alt4' value={this.state.destaquesDisplayFoto_alt4} onChange={event => this.handleChange(event)} />
+                                    <button type='submit'>GUARDAR</button>
+                                    <button type='button' onClick={this.handleDelete}>Eliminar Destaque </button>
+                                </form>
+                            }
+                        </div>
+                        :
+                        <div>
+                            <h3>Novo Destaque</h3>
+                            <form>
+                                <Editor
+                                    editorState={this.state.editorState_texto}
+                                    toolbarClassName="toolbarClassName"
+                                    wrapperClassName="wrapperClassName"
+                                    editorClassName="NoticiaInput-editor"
+                                    onEditorStateChange={this.onEditorStateChange_texto}
+                                    stripPastedStyles={true}
+                                    required
+                                    toolbar={{
+                                        options: [
+                                            'inline',
+                                            'blockType',
+                                            'fontSize',
+                                            'fontFamily',
+                                            'list',
+                                            'textAlign',
+                                            'colorPicker',
+                                            'link',
+                                            'embedded' /* , 'emoji' */,
+                                            'image' /* , 'remove' */,
+                                            'history',
+                                        ],
+                                        textAlign: {
+                                            none: 'center',
+                                        },
+                                        image: {
+                                            defaultAligh: 'center',
+                                        },
+                                        fontFamily: {
+                                            options: ['Poppins'],
+                                        },
+                                        colorPicker: {
+                                            colors: ['rgb(0, 73, 130)', 'rgb(26, 163, 219)', 'rgb(97,189,109)', 'rgb(26,188,156)',
+                                                'rgb(84,172,210)', 'rgb(44,130,201)', 'rgb(204,204,204)', 'rgb(65,168,95)',
+                                                'rgb(147,101,184)', 'rgb(71,85,119)', 'rgb(0,168,133)', 'rgb(61,142,185)',
+                                                'rgb(41,105,176)', 'rgb(85,57,130)', 'rgb(40,50,78)', 'rgb(0,0,0)',
+                                                'rgb(247,218,100)', 'rgb(251,160,38)', 'rgb(235,107,86)', 'rgb(226,80,65)',
+                                                'rgb(163,143,132)']
+                                        },
+                                        fontSize: {
+                                            options: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '32', '40', '52']
+                                        }
+                                    }}
+                                />
+                                <label>Nome</label>
+                                <input type='text' name='destaquesDisplayNome' value={this.state.destaquesDisplayNome} onChange={event => this.handleChange(event)} />
+                                <div>Fotografia 1</div>
+                                <label>Link</label>
+                                <input type='text' name='destaquesDisplayFotoLink1' value={this.state.destaquesDisplayFotoLink1} onChange={event => this.handleChange(event)} />
+                                <label>Descrição</label>
+                                <input type='text' name='destaquesDisplayFoto_alt1' value={this.state.destaquesDisplayFoto_alt1} onChange={event => this.handleChange(event)} />
+                                <div>Fotografia 2</div>
+                                <label>Link</label>
+                                <input type='text' name='destaquesDisplayFotoLink2' value={this.state.destaquesDisplayFotoLink2} onChange={event => this.handleChange(event)} />
+                                <label>Descrição</label>
+                                <input type='text' name='destaquesDisplayFoto_alt2' value={this.state.destaquesDisplayFoto_alt2} onChange={event => this.handleChange(event)} />
+                                <div>Fotografia 3</div>
+                                <label>Link</label>
+                                <input type='text' name='destaquesDisplayFotoLink3' value={this.state.destaquesDisplayFotoLink3} onChange={event => this.handleChange(event)} />
+                                <label>Descrição</label>
+                                <input type='text' name='destaquesDisplayFoto_alt3' value={this.state.destaquesDisplayFoto_alt3} onChange={event => this.handleChange(event)} />
+                                <div>Fotografia 4</div>
+                                <label>Link</label>
+                                <input type='text' name='destaquesDisplayFotoLink4' value={this.state.destaquesDisplayFotoLink4} onChange={event => this.handleChange(event)} />
+                                <label>Descrição</label>
+                                <input type='text' name='destaquesDisplayFoto_alt4' value={this.state.destaquesDisplayFoto_alt4} onChange={event => this.handleChange(event)} />
+                                <button type='submit' onClick={this.handleNewDestaque}>Inserir novo Destaque</button>
+                            </form>
+                        </div>
+                }
+            </div>
+
+        )
+    }
+}
+
+export default backofficeDestaques
+
