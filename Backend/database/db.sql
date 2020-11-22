@@ -14,7 +14,7 @@ INSERT INTO `patologias` (nome, link, sintomas, exames, tratamentos) VALUES
 
 
 CREATE TABLE destaques (
-    DestaquesID INTEGER NOT NULL AUTO_INCREMENT,
+    ID INTEGER NOT NULL AUTO_INCREMENT,
     nome VARCHAR(200),
     texto MEDIUMTEXT,
     fotoLink1 VARCHAR(200),
@@ -25,7 +25,7 @@ CREATE TABLE destaques (
     foto_alt3 VARCHAR(200),
     fotoLink4 VARCHAR(200),
     foto_alt4 VARCHAR(200),
-    PRIMARY KEY (`DestaquesID`)
+    PRIMARY KEY (`ID`)
 );
 
 INSERT INTO `destaques` (nome, texto, fotoLink1, foto_alt1, fotoLink2, foto_alt2, fotoLink3, foto_alt3, fotoLink4, foto_alt4) VALUES
@@ -58,9 +58,9 @@ INSERT INTO contactos (telefoneContacto, emailContacto, moradaContacto) VALUES
 
 
 CREATE TABLE sintomas (
-    sintomasID INTEGER NOT NULL AUTO_INCREMENT,
-    nomeSintomas VARCHAR (200),
-    descricaoSintomas MEDIUMTEXT,
+    ID INTEGER NOT NULL AUTO_INCREMENT,
+    nome VARCHAR (200),
+    texto MEDIUMTEXT,
     fotoLink1 VARCHAR(200),
     foto_alt1 VARCHAR(200),
     fotoLink2 VARCHAR(200),
@@ -69,10 +69,10 @@ CREATE TABLE sintomas (
     foto_alt3 VARCHAR(200),
     fotoLink4 VARCHAR(200),
     foto_alt4 VARCHAR(200), 
-    PRIMARY KEY (`sintomasID`)
+    PRIMARY KEY (`ID`)
 );
 
-INSERT INTO sintomas(nomeSintomas, descricaoSintomas, fotoLink1, foto_alt1, fotoLink2, foto_alt2, fotoLink3, foto_alt3, fotoLink4, foto_alt4) VALUES
+INSERT INTO sintomas(nome, texto, fotoLink1, foto_alt1, fotoLink2, foto_alt2, fotoLink3, foto_alt3, fotoLink4, foto_alt4) VALUES
 ('nomeSintoma1','descricaoSintoma1', 'foto 1 Sintoma 1','alt Foto 1 Sintoma 1', 'foto 2 Sintoma 1','alt Foto 2 Sintoma 1','','','',''),
 ('nomeSintoma2','descricaoSintoma2', 'foto 1 Sintoma 2','alt Foto 1 Sintoma 2', 'foto 2 Sintoma 2','alt Foto 2 Sintoma 2','','','','');
 

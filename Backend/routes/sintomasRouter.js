@@ -16,10 +16,11 @@ router.get('/', (req, res) => {
 })
 
 router.put('/sintomas/editSintomas', (req, res) => {
-    connection.query('UPDATE sintomas SET ? WHERE sintomasID=?',
-        [req.body, req.body.sintomasID],
+    connection.query('UPDATE sintomas SET ? WHERE ID=?',
+        [req.body, req.body.ID],
         (err, results) => {
             if (err) {
+                console.log(err)
                 res.status(400).json({ flash: 'Ocorreu um erro' })
             } else {
                 res.status(200).json({ flash: 'Alterado com sucesso' })
@@ -29,8 +30,8 @@ router.put('/sintomas/editSintomas', (req, res) => {
 })
 
 router.delete('/sintomas/deleteSintoma', (req, res) => {
-    connection.query('DELETE FROM sintomas WHERE sintomasID = ?',
-        [req.body.sintomasID],
+    connection.query('DELETE FROM sintomas WHERE ID = ?',
+        [req.body.ID],
         (err, results) => {
             if (err) {
                 res.status(400).json({ flash: 'Ocorreu um erro ao eliminar' })
