@@ -1,6 +1,5 @@
 import React from 'react';
-import BackOfficeDestaquesSintomasFormEdit from './backOfficeDestaquesSintomasFormEdit'
-import BackOfficeDestaquesSintomasFormNew from './BackofficeDestaquesSintomasFormNew'
+import BackOfficeDestaquesSintomasForm from './backOfficeDestaquesSintomasForm'
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { EditorState, ContentState, convertToRaw } from "draft-js";
@@ -30,6 +29,7 @@ class backofficeDestaquesSintomas extends React.Component {
             fotoLink3: '',
             fotoLink4: '',
             pathnameSintomas: '',
+            pathNew: '',
             seccao: '',
             flash: '',
             messageStatus: ''
@@ -48,6 +48,9 @@ class backofficeDestaquesSintomas extends React.Component {
                     this.setState({ destaques: results })
                 })
             this.setState({ pathnameSintomas: true, seccao: 'Sintoma' })
+            path.includes('/new') ?
+                this.setState({ pathNew: true }) : this.setState({ pathNew: false })
+
         } else {
             axios
                 .get('/destaques')
@@ -58,6 +61,9 @@ class backofficeDestaquesSintomas extends React.Component {
                     console.log(this.props.match.pathname)
                 })
             this.setState({ pathnameSintomas: false, seccao: 'Destaque' })
+            path.includes('/new') ?
+                this.setState({ pathNew: true }) : this.setState({ pathNew: false })
+
         }
     }
 
@@ -122,6 +128,7 @@ class backofficeDestaquesSintomas extends React.Component {
             editorState_texto,
             destaquesDisplay,
             pathnameSintomas,
+            pathNew,
             seccao,
             flash,
             messageStatus,
@@ -184,6 +191,7 @@ class backofficeDestaquesSintomas extends React.Component {
             editorState_texto,
             destaquesDisplay,
             pathnameSintomas,
+            pathNew,
             seccao,
             flash,
             messageStatus,
@@ -215,83 +223,54 @@ class backofficeDestaquesSintomas extends React.Component {
 
     render() {
 
-        let path = this.props.history.location.pathname
-
         return (
             <div>
                 {
-                    !path.includes('new') ?
+                    this.state.pathNew === false &&
+                    <div>
 
-                        <div>
-                            <h3>{`Edição da secção de ${this.state.seccao}s`}</h3>
-                            <select name='destaques' onChange={event => this.handleClick(event)}>
-                                <option selected="selected">{`Seleccione ${this.state.seccao}`}</option>
-                                {this.state.destaques.map((destaque) => {
-                                    return (
-                                        <option name={destaque.nome} value={destaque.nome} >{destaque.nome}</option>
-                                    )
-                                })}
-                            </select>
-                            {this.state.pathnameSintomas === false ?
-                                <Link Link to='/backoffice/destaques/new' > <button type='submit'>Novo Destaque</button></Link>
-                                :
-                                <Link Link to='/backoffice/sintomas/new' > <button type='submit'>Novo Sintoma</button></Link>
-                            }
+                        <h3>{`Edição da secção de ${this.state.seccao}s`}</h3>
+                        <select name='destaques' onChange={event => this.handleClick(event)}>
+                            <option selected="selected">{`Seleccione ${this.state.seccao}`}</option>
+                            {this.state.destaques.map((destaque) => {
+                                return (
+                                    <option name={destaque.nome} value={destaque.nome} >{destaque.nome}</option>
+                                )
+                            })}
+                        </select>
+                        {this.state.pathnameSintomas === false ?
+                            <Link Link to='/backoffice/destaques/new' > <button type='submit'>Novo Destaque</button></Link>
+                            :
+                            <Link Link to='/backoffice/sintomas/new' > <button type='submit'>Novo Sintoma</button></Link>
+                        }
 
-                            {
-                                this.state.destaquesDisplay.length !== 0 &&
-
-                                <BackOfficeDestaquesSintomasFormEdit
-                                    destaquesDisplay={this.state.destaquesDisplay}
-                                    ID={this.state.ID}
-                                    texto={this.state.texto}
-                                    editorState_texto={this.state.editorState_texto}
-                                    nome={this.state.nome}
-                                    foto_alt1={this.state.foto_alt1}
-                                    foto_alt2={this.state.foto_alt2}
-                                    foto_alt3={this.state.foto_alt3}
-                                    foto_alt4={this.state.foto_alt4}
-                                    fotoLink1={this.state.fotoLink1}
-                                    fotoLink2={this.state.fotoLink2}
-                                    fotoLink3={this.state.fotoLink3}
-                                    fotoLink4={this.state.fotoLink4}
-                                    editorState_texto={this.state.editorState_texto}
-                                    seccao={this.state.seccao}
-                                    flash={this.state.flash}
-                                    messageStatus={this.state.messageStatus}
-                                    handleChange={this.handleChange}
-                                    handleSubmit={this.handleSubmit}
-                                    handleDelete={this.handleDelete}
-                                    onEditorStateChange_texto={this.onEditorStateChange_texto}
-                                />
-                            }
-                        </div>
-                        :
-                        <div>
-                            <BackOfficeDestaquesSintomasFormNew
-                                destaquesDisplay={this.state.destaquesDisplay}
-                                ID={this.state.ID}
-                                texto={this.state.texto}
-                                editorState_texto={this.state.editorState_texto}
-                                nome={this.state.nome}
-                                foto_alt1={this.state.foto_alt1}
-                                foto_alt2={this.state.foto_alt2}
-                                foto_alt3={this.state.foto_alt3}
-                                foto_alt4={this.state.foto_alt4}
-                                fotoLink1={this.state.fotoLink1}
-                                fotoLink2={this.state.fotoLink2}
-                                fotoLink3={this.state.fotoLink3}
-                                fotoLink4={this.state.fotoLink4}
-                                editorState_texto={this.state.editorState_texto}
-                                seccao={this.state.seccao}
-                                flash={this.state.flash}
-                                messageStatus={this.state.messageStatus}
-                                handleChange={this.handleChange}
-                                handleNewDestaque={this.handleNewDestaque}
-                                onEditorStateChange_texto={this.onEditorStateChange_texto}
-                            />
-                        </div>
+                    </div>
                 }
+                <BackOfficeDestaquesSintomasForm
+                    destaquesDisplay={this.state.destaquesDisplay}
+                    ID={this.state.ID}
+                    texto={this.state.texto}
+                    editorState_texto={this.state.editorState_texto}
+                    nome={this.state.nome}
+                    foto_alt1={this.state.foto_alt1}
+                    foto_alt2={this.state.foto_alt2}
+                    foto_alt3={this.state.foto_alt3}
+                    foto_alt4={this.state.foto_alt4}
+                    fotoLink1={this.state.fotoLink1}
+                    fotoLink2={this.state.fotoLink2}
+                    fotoLink3={this.state.fotoLink3}
+                    fotoLink4={this.state.fotoLink4}
+                    editorState_texto={this.state.editorState_texto}
+                    pathNew={this.state.pathNew}
+                    seccao={this.state.seccao}
+                    flash={this.state.flash}
+                    messageStatus={this.state.messageStatus}
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                    handleDelete={this.handleDelete}
+                    handleNewDestaque={this.handleNewDestaque}
+                    onEditorStateChange_texto={this.onEditorStateChange_texto}
+                />
             </div>
         )
     }

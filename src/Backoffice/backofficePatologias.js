@@ -1,8 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom";
-import BackofficePatologiasDetalheEditDelete from './backofficePatologiasEditDelete'
-import BackofficePatologiasNew from './backOfficePatologiasNew'
+import { EditorState, ContentState, convertToRaw } from "draft-js";
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
+import 'rc-datepicker/lib/style.css';
+import BackofficePatologiasForm from './backofficePatologiasForm'
 
 class backofficePatologias extends React.Component {
     constructor(props) {
@@ -16,6 +20,10 @@ class backofficePatologias extends React.Component {
             sintomasPatologia: '',
             linkPatologia: '',
             idPatologia: '',
+            editorState_examesPatologia: EditorState.createEmpty(),
+            editorState_sintomasPatologia: EditorState.createEmpty(),
+            editorState_tratamentosPatologia: EditorState.createEmpty(),
+            pathNew: '',
             flash: '',
             messageStatus: ''
         }
@@ -28,7 +36,9 @@ class backofficePatologias extends React.Component {
                 const results = res.data
                 this.setState({ patologias: results })
             })
-
+        let path = this.props.history.location.pathname
+        path.includes('/new') ?
+            this.setState({ pathNew: true }) : this.setState({ pathNew: false })
     }
 
     componentDidMount = () => {
@@ -39,8 +49,27 @@ class backofficePatologias extends React.Component {
     handleClick = (event) => {
         event.preventDefault()
         this.state.patologias.map((patologia) => {
-            return (
-                patologia.nomePatologia === event.target.value &&
+            if (patologia.nomePatologia === event.target.value) {
+
+                const contentBlock_examesPatologia = htmlToDraft(patologia.examesPatologia);
+                const contentBlock_sintomasPatologia = htmlToDraft(patologia.sintomasPatologia);
+                const contentBlock_tratamentosPatologia = htmlToDraft(patologia.tratamentosPatologia);
+
+
+                const contentState_examesPatologia = ContentState.createFromBlockArray(
+                    contentBlock_examesPatologia.contentBlocks,
+                );
+                const contentState_sintomasPatologia = ContentState.createFromBlockArray(
+                    contentBlock_sintomasPatologia.contentBlocks,
+                );
+                const contentState_tratamentosPatologia = ContentState.createFromBlockArray(
+                    contentBlock_tratamentosPatologia.contentBlocks,
+                );
+
+                const formatContent_examesPatologia = EditorState.createWithContent(contentState_examesPatologia)
+                const formatContent_sintomasPatologia = EditorState.createWithContent(contentState_sintomasPatologia)
+                const formatContent_tratamentosPatologia = EditorState.createWithContent(contentState_tratamentosPatologia)
+
                 this.setState({
                     patologiaDisplay: patologia,
                     nomePatologia: patologia.nomePatologia,
@@ -48,9 +77,12 @@ class backofficePatologias extends React.Component {
                     examesPatologia: patologia.examesPatologia,
                     sintomasPatologia: patologia.sintomasPatologia,
                     linkPatologia: patologia.linkPatologia,
-                    idPatologia: patologia.idPatologia
+                    idPatologia: patologia.idPatologia,
+                    editorState_examesPatologia: formatContent_examesPatologia,
+                    editorState_sintomasPatologia: formatContent_sintomasPatologia,
+                    editorState_tratamentosPatologia: formatContent_tratamentosPatologia
                 })
-            )
+            }
         })
     }
 
@@ -61,13 +93,47 @@ class backofficePatologias extends React.Component {
         this.setState({ [name]: value })
     }
 
+    onEditorStateChange_examesPatologia = (editorState) => {
+        this.setState({ editorState_examesPatologia: editorState })
+        const rawContentState = convertToRaw(
+            this.state.editorState_examesPatologia.getCurrentContent(),
+        );
+        const HtmlContent = draftToHtml(rawContentState);
+        this.setState({ examesPatologia: HtmlContent });
+    }
+
+    onEditorStateChange_sintomasPatologia = (editorState) => {
+        this.setState({ editorState_sintomasPatologia: editorState })
+        const rawContentState = convertToRaw(
+            this.state.editorState_sintomasPatologia.getCurrentContent(),
+        );
+        const HtmlContent = draftToHtml(rawContentState);
+        this.setState({ sintomasPatologia: HtmlContent });
+    }
+
+    onEditorStateChange_tratamentosPatologia = (editorState) => {
+        this.setState({ editorState_tratamentosPatologia: editorState })
+        const rawContentState = convertToRaw(
+            this.state.editorState_tratamentosPatologia.getCurrentContent(),
+        );
+        const HtmlContent = draftToHtml(rawContentState);
+        this.setState({ tratamentosPatologia: HtmlContent });
+    }
+
+
+
+
     handleSubmit = (event) => {
         event.preventDefault()
 
         let { patologias,
             patologiaDisplay,
             flash,
+            editorState_examesPatologia,
+            editorState_sintomasPatologia,
+            editorState_tratamentosPatologia,
             messageStatus,
+            pathNew,
             ...patologiasPut
         } = this.state
 
@@ -104,8 +170,12 @@ class backofficePatologias extends React.Component {
         let {
             patologias,
             patologiaDisplay,
+            editorState_examesPatologia,
+            editorState_sintomasPatologia,
+            editorState_tratamentosPatologia,
             flash,
             messageStatus,
+            pathNew,
             ...patologiasPut
         } = this.state
 
@@ -118,56 +188,51 @@ class backofficePatologias extends React.Component {
                 this.setState({ flash: 'Erro ao Adicionar sintoma', messageStatus: 'Erro' })
             })
         this.props.history.push({ pathname: '/backoffice/patologias' })
-
     }
 
     render() {
-        let path = this.props.history.location.pathname
         return (
             <div>
-                <div>Edição Patologia</div>
-                <select name='patologias' onChange={(event => this.handleClick(event))}>
-                    <option selected="selected">Seleccione uma patologia</option>
-                    {this.state.patologias.map((patologia) => {
-                        return (
-                            <option name={patologia.nomePatologia} value={patologia.nomePatologia}>{patologia.nomePatologia}</option>
-                        )
-                    })}
-                </select>
-                <Link to='/backoffice/patologias/new'>
-                    <button>Nova Patologia</button>
-                </Link>
-
-                {!path.includes('/new') ?
+                {this.state.pathNew === false &&
                     <div>
-                        <BackofficePatologiasDetalheEditDelete
-                            patologiaDisplay={this.state.patologiaDisplay}
-                            nomePatologia={this.state.nomePatologia}
-                            sintomasPatologia={this.state.sintomasPatologia}
-                            examesPatologia={this.state.examesPatologia}
-                            tratamentosPatologia={this.state.tratamentosPatologia}
-                            linkPatologia={this.state.linkPatologia}
-                            idPatologia={this.state.idPatologia}
-                            handleChange={this.handleChange}
-                            handleSubmit={this.handleSubmit}
-                            handleDelete={this.handleDelete}
-                        />
-                    </div>
-                    :
-                    <div>
-                        <BackofficePatologiasNew
-                            patologiaDisplay={this.state.patologiaDisplay}
-                            nomePatologia={this.state.nomePatologia}
-                            sintomasPatologia={this.state.sintomasPatologia}
-                            examesPatologia={this.state.examesPatologia}
-                            tratamentosPatologia={this.state.tratamentosPatologia}
-                            linkPatologia={this.state.linkPatologia}
-                            idPatologia={this.state.idPatologia}
-                            handleChange={this.handleChange}
-                            HandleNewSintoma={this.HandleNewSintoma}
-                        />
+                        <div>Edição Patologia</div>
+                        <select name='patologias' onChange={(event => this.handleClick(event))}>
+                            <option selected="selected">Seleccione uma patologia</option>
+                            {this.state.patologias.map((patologia) => {
+                                return (
+                                    <option name={patologia.nomePatologia} value={patologia.nomePatologia}>{patologia.nomePatologia}</option>
+                                )
+                            })}
+                        </select>
+                        <Link to='/backoffice/patologias/new'>
+                            <button>Nova Patologia</button>
+                        </Link>
                     </div>
                 }
+                <div>
+                    <BackofficePatologiasForm
+                        patologiaDisplay={this.state.patologiaDisplay}
+                        pathNew={this.state.pathNew}
+                        nomePatologia={this.state.nomePatologia}
+                        sintomasPatologia={this.state.sintomasPatologia}
+                        examesPatologia={this.state.examesPatologia}
+                        tratamentosPatologia={this.state.tratamentosPatologia}
+                        editorState_examesPatologia={this.state.editorState_examesPatologia}
+                        editorState_sintomasPatologia={this.state.editorState_sintomasPatologia}
+                        editorState_tratamentosPatologia={this.state.editorState_tratamentosPatologia}
+                        linkPatologia={this.state.linkPatologia}
+                        idPatologia={this.state.idPatologia}
+                        flash={this.state.flash}
+                        messageStatus={this.state.messageStatus}
+                        handleChange={this.handleChange}
+                        handleSubmit={this.handleSubmit}
+                        handleDelete={this.handleDelete}
+                        HandleNewSintoma={this.HandleNewSintoma}
+                        onEditorStateChange_examesPatologia={this.onEditorStateChange_examesPatologia}
+                        onEditorStateChange_sintomasPatologia={this.onEditorStateChange_sintomasPatologia}
+                        onEditorStateChange_tratamentosPatologia={this.onEditorStateChange_tratamentosPatologia}
+                    />
+                </div>
             </div>
         )
     }
