@@ -1,19 +1,17 @@
 import React from 'react';
-import BackOfficeDestaquesForms from './backOfficeDestaquesForms'
-import BackOfficeDestaquesNew from './BackofficeDestaquesNew'
+import BackOfficeDestaquesSintomasFormEdit from './backOfficeDestaquesSintomasFormEdit'
+import BackOfficeDestaquesSintomasFormNew from './BackofficeDestaquesSintomasFormNew'
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { EditorState, ContentState, convertToRaw } from "draft-js";
-import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'rc-datepicker/lib/style.css';
-import PopUp from '../PopUp'
 
 
 
-class backofficeDestaques extends React.Component {
+class backofficeDestaquesSintomas extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -32,6 +30,7 @@ class backofficeDestaques extends React.Component {
             fotoLink3: '',
             fotoLink4: '',
             pathnameSintomas: '',
+            seccao: '',
             flash: '',
             messageStatus: ''
         }
@@ -41,14 +40,14 @@ class backofficeDestaques extends React.Component {
 
         let path = this.props.match.path
 
-        if (path === "/backoffice/sintomas") {
+        if (path.includes("/backoffice/sintomas")) {
             axios
                 .get('/sintomas')
                 .then((res) => {
                     const results = res.data
                     this.setState({ destaques: results })
                 })
-            this.setState({ pathnameSintomas: true })
+            this.setState({ pathnameSintomas: true, seccao: 'Sintoma' })
         } else {
             axios
                 .get('/destaques')
@@ -58,10 +57,8 @@ class backofficeDestaques extends React.Component {
                     this.setState({ destaques: results })
                     console.log(this.props.match.pathname)
                 })
-            this.setState({ pathnameSintomas: false })
-
+            this.setState({ pathnameSintomas: false, seccao: 'Destaque' })
         }
-
     }
 
     componentDidMount = () => {
@@ -125,12 +122,13 @@ class backofficeDestaques extends React.Component {
             editorState_texto,
             destaquesDisplay,
             pathnameSintomas,
+            seccao,
             flash,
             messageStatus,
             ...destaquesDisplayPut
         } = this.state
 
-        this.state.pathnameSintomas === false ?
+        if (this.state.pathnameSintomas === false) {
             axios
                 .put('/destaques/destaques/editDestaques', destaquesDisplayPut)
                 .then((res) => {
@@ -139,15 +137,24 @@ class backofficeDestaques extends React.Component {
                 .catch((err) => {
                     this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
                 })
-            :
+            this.props.history.push({ pathname: '/backoffice/destaques' })
+        } else {
             axios
-                .put('//sintomas/sintomas/editSintomas', destaquesDisplayPut)
+                .put('/sintomas/sintomas/editSintomas', destaquesDisplayPut)
                 .then((res) => {
+                    console.log(destaquesDisplayPut)
                     this.setState({ flash: 'Alterado com sucesso', messageStatus: 'Sucesso' })
                 })
                 .catch((err) => {
+                    console.log(destaquesDisplayPut)
                     this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
                 })
+            this.props.history.push({ pathname: '/backoffice/sintomas' })
+
+        }
+
+
+
     }
 
     handleDelete = () => {
@@ -159,12 +166,12 @@ class backofficeDestaques extends React.Component {
                 .then((res) => {
                     this.setState({ flash: 'Eliminado com sucesso', messageStatus: 'Sucesso' })
                     console.log(ID)
-                }) :
+                })
+            :
             axios
                 .delete('/sintomas/sintomas/deleteSintoma', { data: { ID } })
                 .then((res) => {
                     this.setState({ flash: 'Eliminado com sucesso', messageStatus: 'Sucesso' })
-                    console.log(ID)
                 })
         window.location.reload()
         this.getData()
@@ -177,12 +184,13 @@ class backofficeDestaques extends React.Component {
             editorState_texto,
             destaquesDisplay,
             pathnameSintomas,
+            seccao,
             flash,
             messageStatus,
             ...destaquesDisplayPost
         } = this.state
 
-        this.state.pathnameSintomas === false ?
+        if (this.state.pathnameSintomas === false) {
             axios
                 .post('/destaques/destaques/addDestaque', destaquesDisplayPost)
                 .then((res) => {
@@ -191,16 +199,18 @@ class backofficeDestaques extends React.Component {
                 .catch((err) => {
                     this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
                 })
-            :
+            this.props.history.push({ pathname: '/backoffice/destaques' })
+        } else {
             axios
-                .post('//sintomas/sintomas/addSintoma', destaquesDisplayPost)
+                .post('/sintomas/sintomas/addSintoma', destaquesDisplayPost)
                 .then((res) => {
                     this.setState({ flash: 'Adicionado com sucesso', messageStatus: 'Sucesso' })
                 })
                 .catch((err) => {
                     this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
                 })
-        this.props.history.push({ pathname: '/backoffice/destaques' })
+            this.props.history.push({ pathname: '/backoffice/sintomas' })
+        }
     }
 
     render() {
@@ -213,26 +223,25 @@ class backofficeDestaques extends React.Component {
                     !path.includes('new') ?
 
                         <div>
-                            <h3>Edição da secção de Destaques</h3>
+                            <h3>{`Edição da secção de ${this.state.seccao}s`}</h3>
                             <select name='destaques' onChange={event => this.handleClick(event)}>
-                                <option selected="selected">Seleccione uma opção</option>
+                                <option selected="selected">{`Seleccione ${this.state.seccao}`}</option>
                                 {this.state.destaques.map((destaque) => {
                                     return (
                                         <option name={destaque.nome} value={destaque.nome} >{destaque.nome}</option>
                                     )
                                 })}
                             </select>
-                            {this.props.match.pathname !== '/backoffice/sintomas' ?
+                            {this.state.pathnameSintomas === false ?
                                 <Link Link to='/backoffice/destaques/new' > <button type='submit'>Novo Destaque</button></Link>
                                 :
-                                <Link Link to='/backoffice/sintomas/new' > <button type='submit'>Novo Destaque</button></Link>
-
+                                <Link Link to='/backoffice/sintomas/new' > <button type='submit'>Novo Sintoma</button></Link>
                             }
 
                             {
                                 this.state.destaquesDisplay.length !== 0 &&
 
-                                <BackOfficeDestaquesForms
+                                <BackOfficeDestaquesSintomasFormEdit
                                     destaquesDisplay={this.state.destaquesDisplay}
                                     ID={this.state.ID}
                                     texto={this.state.texto}
@@ -247,7 +256,7 @@ class backofficeDestaques extends React.Component {
                                     fotoLink3={this.state.fotoLink3}
                                     fotoLink4={this.state.fotoLink4}
                                     editorState_texto={this.state.editorState_texto}
-                                    pathnameSintomas={this.state.pathnameSintomas}
+                                    seccao={this.state.seccao}
                                     flash={this.state.flash}
                                     messageStatus={this.state.messageStatus}
                                     handleChange={this.handleChange}
@@ -259,7 +268,7 @@ class backofficeDestaques extends React.Component {
                         </div>
                         :
                         <div>
-                            <BackOfficeDestaquesNew
+                            <BackOfficeDestaquesSintomasFormNew
                                 destaquesDisplay={this.state.destaquesDisplay}
                                 ID={this.state.ID}
                                 texto={this.state.texto}
@@ -274,7 +283,7 @@ class backofficeDestaques extends React.Component {
                                 fotoLink3={this.state.fotoLink3}
                                 fotoLink4={this.state.fotoLink4}
                                 editorState_texto={this.state.editorState_texto}
-                                pathnameSintomas={this.state.pathnameSintomas}
+                                seccao={this.state.seccao}
                                 flash={this.state.flash}
                                 messageStatus={this.state.messageStatus}
                                 handleChange={this.handleChange}
@@ -288,5 +297,5 @@ class backofficeDestaques extends React.Component {
     }
 }
 
-export default backofficeDestaques
+export default backofficeDestaquesSintomas
 

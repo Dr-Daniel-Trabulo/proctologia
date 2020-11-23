@@ -1,14 +1,14 @@
 CREATE TABLE patologias (
-  id INTEGER NOT NULL AUTO_INCREMENT,
-  nome VARCHAR(90) UNIQUE,
-  link VARCHAR(90),
-  sintomas MEDIUMTEXT,
-  exames MEDIUMTEXT,
-  tratamentos MEDIUMTEXT,
-  PRIMARY KEY(`id`)
+  idPatologia INTEGER NOT NULL AUTO_INCREMENT,
+  nomePatologia VARCHAR(90) UNIQUE,
+  linkPatologia VARCHAR(90),
+  sintomasPatologia MEDIUMTEXT,
+  examesPatologia MEDIUMTEXT,
+  tratamentosPatologia MEDIUMTEXT,
+  PRIMARY KEY(`idPatologia`)
 );
 
-INSERT INTO `patologias` (nome, link, sintomas, exames, tratamentos) VALUES 
+INSERT INTO `patologias` (nomePatologia, linkPatologia, sintomasPatologia, examesPatologia, tratamentosPatologia) VALUES 
 ('Patologia1', 'patologia1', 'sintomas1', 'exames1','tratamentos1'),
 ('Patologia2', 'patologia2', 'sintomas2', 'exames2','tratamentos2');
 

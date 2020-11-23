@@ -1,20 +1,15 @@
 import React from 'react'
-import axios from 'axios'
-import { Link } from "react-router-dom";
-import { EditorState, ContentState, convertToRaw } from "draft-js";
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
 import 'rc-datepicker/lib/style.css';
 import PopUp from '../PopUp'
 
 
-const backofficeDestaquesForms = (props) => {
+const BackOfficeDestaquesSintomasFormNew = (props) => {
 
-    // let editorState_texto = props.editorState_texto
     return (
         <div>
+            <h3>{`Novo ${props.seccao}`}</h3>
             <form onSubmit={props.handleSubmit}>
                 <Editor
                     editorState={props.editorState_texto}
@@ -82,8 +77,7 @@ const backofficeDestaquesForms = (props) => {
                 <input type='text' name='fotoLink4' value={props.fotoLink4} onChange={event => props.handleChange(event)} />
                 <label>Descrição</label>
                 <input type='text' name='foto_alt4' value={props.foto_alt4} onChange={event => props.handleChange(event)} />
-                <button type='submit'>GUARDAR</button>
-                <button type='submit' onClick={props.handleDelete}>Eliminar Destaque </button>
+                <button type='submit' onClick={props.handleNewDestaque}>{`Inserir ${props.seccao}`}</button>
             </form>
             <PopUp
                 flashInput={props.flash}
@@ -91,10 +85,9 @@ const backofficeDestaquesForms = (props) => {
             />
 
         </div>
-
     )
 
 }
 
-export default backofficeDestaquesForms
+export default BackOfficeDestaquesSintomasFormNew
 

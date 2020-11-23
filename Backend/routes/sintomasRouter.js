@@ -16,11 +16,14 @@ router.get('/', (req, res) => {
 })
 
 router.put('/sintomas/editSintomas', (req, res) => {
-    connection.query('UPDATE sintomas SET ? WHERE ID=?',
+    connection.query('UPDATE sintomas SET ? WHERE ID = ?',
+        console.log('qualquer coisa'),
+        console.log(req.body.ID)
         [req.body, req.body.ID],
         (err, results) => {
             if (err) {
                 console.log(err)
+                console.log(req.body)
                 res.status(400).json({ flash: 'Ocorreu um erro' })
             } else {
                 res.status(200).json({ flash: 'Alterado com sucesso' })

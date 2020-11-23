@@ -10,55 +10,34 @@ import Sintomas from './Sintomas'
 import Destaques from './Destaques'
 import BackofficeContactos from './Backoffice/backofficeContactos'
 import BackofficeHomePage from './Backoffice/backofficeHomepage'
+import BackofficeDestaquesSintomas from './Backoffice/backofficeDestaquesSintomas'
+import backofficePatologias from './Backoffice/backofficePatologias';
 import BackofficePatologias from './Backoffice/backofficePatologias'
-import BackofficeDestaques from './Backoffice/backofficeDestaques'
-import BackofficeSintomas from './Backoffice/backofficeSintomas'
-
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { patologias: [] }
-  }
-
-  loadData = () => {
-    axios
-      .get('/patologias')
-      .then((res) => {
-        const results = res.data
-        console.log(results)
-        this.setState({ patologias: results })
-      })
-
-  }
-
-  componentDidMount = () => {
-    window.scrollTo(0, 0)
-    this.loadData()
-  }
 
 
-  render() {
-    let currentPath = window.location.pathname
-    return (
-      <div>
-        <BrowserRouter>
-          {!currentPath.includes('backoffice') && <NavBar />}
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/sintomas_doenca_proctologica' component={Sintomas} />
-          <Route exact path='/patologias/:patologia' component={Patologias} />
-          <Route exact path='/destaques_doenca_proctologica' component={Destaques} />
-          <Route exact path='/contactos_dr_daniel_trabulo' component={Contactos} />
-          <Route exact path='/backoffice/contactos' component={BackofficeContactos} />
-          <Route exact path='/backoffice/homepage' component={BackofficeHomePage} />
-          <Route exact path='/backoffice/patologias' component={BackofficePatologias} />
-          <Route exact path='/backoffice/destaques' component={BackofficeDestaques} />
-          <Route exact path='/backoffice/destaques/new' component={BackofficeDestaques} />
-          <Route exact path='/backoffice/sintomas' component={BackofficeDestaques} />
-          <Route exact path='/backoffice/sintomas/new' component={BackofficeDestaques} />
-        </BrowserRouter>
-      </div>
-    )
-  }
+const App = () => {
+
+  let currentPath = window.location.pathname
+  return (
+    <div>
+      <BrowserRouter>
+        {!currentPath.includes('backoffice') && <NavBar />}
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/sintomas_doenca_proctologica' component={Sintomas} />
+        <Route exact path='/patologias/:patologia' component={Patologias} />
+        <Route exact path='/destaques_doenca_proctologica' component={Destaques} />
+        <Route exact path='/contactos_dr_daniel_trabulo' component={Contactos} />
+        <Route exact path='/backoffice/contactos' component={BackofficeContactos} />
+        <Route exact path='/backoffice/homepage' component={BackofficeHomePage} />
+        <Route exact path='/backoffice/patologias' component={BackofficePatologias} />
+        <Route exact path='/backoffice/patologias/new' component={backofficePatologias} />
+        <Route exact path='/backoffice/destaques' component={BackofficeDestaquesSintomas} />
+        <Route exact path='/backoffice/destaques/new' component={BackofficeDestaquesSintomas} />
+        <Route exact path='/backoffice/sintomas' component={BackofficeDestaquesSintomas} />
+        <Route exact path='/backoffice/sintomas/new' component={BackofficeDestaquesSintomas} />
+      </BrowserRouter>
+    </div>
+  )
 
 }
 

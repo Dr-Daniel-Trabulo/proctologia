@@ -1,23 +1,15 @@
 import React from 'react'
-import axios from 'axios'
-import { Link } from "react-router-dom";
-import { EditorState, ContentState, convertToRaw } from "draft-js";
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
 import 'rc-datepicker/lib/style.css';
 import PopUp from '../PopUp'
 
 
+const BackOfficeDestaquesSintomasFormEdit = (props) => {
 
-const backofficeDestaquesNew = (props) => {
-
-    // let editorState_texto = props.editorState_texto
     return (
         <div>
-            <h3>Novo Destaque</h3>
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={props.handleSubmit} >
                 <Editor
                     editorState={props.editorState_texto}
                     toolbarClassName="toolbarClassName"
@@ -84,7 +76,10 @@ const backofficeDestaquesNew = (props) => {
                 <input type='text' name='fotoLink4' value={props.fotoLink4} onChange={event => props.handleChange(event)} />
                 <label>Descrição</label>
                 <input type='text' name='foto_alt4' value={props.foto_alt4} onChange={event => props.handleChange(event)} />
-                <button type='submit' onClick={props.handleNewDestaque}>Inserir Novo Destaque</button>
+                <div>
+                    <button type='submit' >GUARDAR</button>
+                    <button type='submit' onClick={props.handleDelete}>{`Eliminar ${props.seccao}`} </button>
+                </div>
             </form>
             <PopUp
                 flashInput={props.flash}
@@ -92,9 +87,10 @@ const backofficeDestaquesNew = (props) => {
             />
 
         </div>
+
     )
 
 }
 
-export default backofficeDestaquesNew
+export default BackOfficeDestaquesSintomasFormEdit
 
