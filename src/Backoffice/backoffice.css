@@ -1,5 +1,12 @@
-.body{
-    margin-left:250px;
+
+
+.main{
+   margin-left:100px
+}
+
+  .ContatoInput{
+      margin-left: 300px;
+      width: 80%;
   }
   
   .NoticiaInput {
@@ -42,8 +49,9 @@
     flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
-    margin-left: 200px;
-    width: 60%;
+    margin-left: 00px;
+    width: 80%;
+    margin-left:120px
   }
   
   .input, .input-section-checkbox {

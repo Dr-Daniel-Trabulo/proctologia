@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Suspense, useEffect, useState, useContext } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import axios from 'axios'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Patologias from './Patologias'
 import NavBar from './NavBar'
+import BackofficeNavBar from './Backoffice/backofficeNavBar'
 import Contactos from './Contactos'
 import HomePage from './HomePage'
 import Sintomas from './Sintomas'
@@ -21,7 +21,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        {!currentPath.includes('backoffice') && <NavBar />}
+        {!currentPath.includes('backoffice') ? <NavBar/> : <BackofficeNavBar/>}
         <Route exact path='/' component={HomePage} />
         <Route exact path='/sintomas_doenca_proctologica' component={Sintomas} />
         <Route exact path='/patologias/:patologia' component={Patologias} />
@@ -40,5 +40,19 @@ const App = () => {
   )
 
 }
+
+// const ProtectedRoute = ({ component: Component, ...rest }) => {
+//   const { user, auth } = useContext(UserContext);
+//   console.log(auth)
+//   return (
+//     <Route
+//       {...rest}
+//       component={(props) =>
+//         auth ? <Component {...props} /> : <Redirect to='/backoffice' />
+//       }
+//     />
+//   );
+// };
+
 
 export default App;

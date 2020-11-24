@@ -7,10 +7,10 @@ import PopUp from '../PopUp'
 const backofficePatologiasForm = (props) => {
     return (
 
-        <div>
+        <div >
             {
                 props.patologiaDisplay.length !== 0 &&
-                <div className="ContatoInput">
+                <div>
                     <form className="NoticiaInput-section" onSubmit={props.handleSubmit}>
                         <div className='input'>
                             <label className="input-section-label">Nome Patologia</label>

@@ -12,7 +12,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
 
         <div>
             {props.destaquesDisplay.length !== 0 &&
-                <div className="ContatoInput">
+                <div className='main'>
                     <form onSubmit={props.handleSubmit} className="NoticiaInput-section" >
                         <div className='input'>
                             <label className="input-section-label">Texto</label>
@@ -125,7 +125,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
             {props.pathNew === true &&
                 <div>
                     <h3 className='NoticiaInput-title'>{`Novo ${props.seccao}`}</h3>
-                    <div className="ContatoInput">
+                    <div>
                         <form className="NoticiaInput-section" onSubmit={props.handleNewDestaque} >
                             <div className='input'>
                                 <label className="input-section-label">Texto</label>
