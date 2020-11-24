@@ -26,18 +26,25 @@ class Destaques extends React.Component {
         return (
             <div>
                 {this.state.destaques.map((destaque) => {
-                    return (<div>
-                        <div>{destaque.nome}</div>
-                        <div>{destaque.texto}</div>
-                        <img src={destaque.fotoLink1} alt={destaque.foto_alt1} />
-                        <img src={destaque.fotoLink2} alt={destaque.foto_alt2} />
-                        <img src={destaque.fotoLink3} alt={destaque.foto_alt3} />
-                        <img src={destaque.fotoLink4} alt={destaque.foto_alt4} />
-                    </div>)
+                    return (
+                        <div>{destaque.publish === 1 &&
+                            <div>
+                                <div>{destaque.nome}</div>
+                                <div>{destaque.texto}</div>
+                                <img src={destaque.fotoLink1} alt={destaque.foto_alt1} />
+                                <img src={destaque.fotoLink2} alt={destaque.foto_alt2} />
+                                <img src={destaque.fotoLink3} alt={destaque.foto_alt3} />
+                                <img src={destaque.fotoLink4} alt={destaque.foto_alt4} />
+                            </div>
+                        }
+                        </div>
+
+
+                    )
                 })
                 }
                 <Footer />
-            </div>
+            </div >
 
 
         )

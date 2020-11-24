@@ -19,15 +19,7 @@ class Sintomas extends React.Component {
             .get('/sintomas')
             .then((res) => {
                 const resultSintomas = res.data
-                console.log(resultSintomas)
                 this.setState({ sintomas: resultSintomas })
-            })
-        axios
-            .get('/fotoSintomas')
-            .then((res) => {
-                const resultsFotoSintomas = res.data
-                console.log(resultsFotoSintomas)
-                this.setState({ fotoSintomas: resultsFotoSintomas })
             })
     }
 
@@ -39,14 +31,19 @@ class Sintomas extends React.Component {
                 {this.state.sintomas.map((sintoma) => {
                     return (
                         <div>
-                            <div>{sintoma.nomeSintomas}</div>
-                            <div>{sintoma.descricaoSintomas}</div>
-                            {this.state.fotoSintomas.map((foto) => {
-                                return (
-                                    foto.sintomasID === sintoma.sintomasID &&
-                                    <img src={foto.fotoLink} alt={foto.alt} />)
-                            })}
-                        </div>)
+                            {sintoma.publish === 1 &&
+                                <div>
+                                    <div>{sintoma.nome}</div>
+                                    <div>{sintoma.texto}</div>
+                                    <img src={sintoma.fotoLink1} alt={sintoma.foto_alt1} />
+                                    <img src={sintoma.fotoLink2} alt={sintoma.foto_alt2} />
+                                    <img src={sintoma.fotoLink3} alt={sintoma.foto_alt3} />
+                                    <img src={sintoma.fotoLink4} alt={sintoma.foto_alt4} />
+                                </div>
+                            }
+
+                        </div>
+                    )
                 })}
                 <Footer />
             </div>

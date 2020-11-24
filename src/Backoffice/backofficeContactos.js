@@ -44,24 +44,26 @@ class backOfficeContactos extends React.Component {
     render() {
 
         return (
-            <div>
-                <div>Edição Contactos</div>
-                <form onSubmit={event => this.handleSubmit(event)}>
-                    <div>
-                        <div>Email Contacto</div>
+            <div className="ContatoInput">
+                <h3 className='NoticiaInput-title'>Edição Contactos</h3>
+                <form className="NoticiaInput-section" onSubmit={event => this.handleSubmit(event)}>
+                    <div className='input'>
+                        <label className="input-section-label">Email Contacto</label>
                         <input type='text' name='emailContacto' value={this.state.emailContacto} onChange={(event) => this.handleChange(event)} />
                     </div>
-                    <div>
-                        <div>Telefone Contacto</div>
+                    <div className='input'>
+                        <label className="input-section-label">Telefone Contacto</label>
                         <input type='text' name='telefoneContacto' value={this.state.telefoneContacto} onChange={(event) => this.handleChange(event)} />
                     </div>
-                    <div>
-                        <div>Morada Contacto</div>
+                    <div className='input'>
+                        <label className="input-section-label">Morada Contacto</label>
                         <input type='text' name='moradaContacto' value={this.state.moradaContacto} onChange={(event) => this.handleChange(event)} />
                     </div>
-                    <button type='submit'>
-                        GUARDAR
+                    <div className="NoticiaInput-section-button">
+                        <button className="login-button" type='submit'>
+                            GUARDAR
                     </button>
+                    </div>
                 </form>
                 <PopUp
                     flashInput={this.state.flash}

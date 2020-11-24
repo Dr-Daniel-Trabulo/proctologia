@@ -1,5 +1,6 @@
 CREATE TABLE patologias (
   idPatologia INTEGER NOT NULL AUTO_INCREMENT,
+  publish INTEGER NOT NULL,
   nomePatologia VARCHAR(90) UNIQUE,
   linkPatologia VARCHAR(90),
   sintomasPatologia MEDIUMTEXT,
@@ -8,13 +9,14 @@ CREATE TABLE patologias (
   PRIMARY KEY(`idPatologia`)
 );
 
-INSERT INTO `patologias` (nomePatologia, linkPatologia, sintomasPatologia, examesPatologia, tratamentosPatologia) VALUES 
-('Patologia1', 'patologia1', 'sintomas1', 'exames1','tratamentos1'),
-('Patologia2', 'patologia2', 'sintomas2', 'exames2','tratamentos2');
+INSERT INTO `patologias` (nomePatologia, publish, linkPatologia, sintomasPatologia, examesPatologia, tratamentosPatologia) VALUES 
+('Patologia1',1, 'patologia1', 'sintomas1', 'exames1','tratamentos1'),
+('Patologia2',1, 'patologia2', 'sintomas2', 'exames2','tratamentos2');
 
 
 CREATE TABLE destaques (
     ID INTEGER NOT NULL AUTO_INCREMENT,
+    publish INTEGER NOT NULL,
     nome VARCHAR(200),
     texto MEDIUMTEXT,
     fotoLink1 VARCHAR(200),
@@ -28,11 +30,11 @@ CREATE TABLE destaques (
     PRIMARY KEY (`ID`)
 );
 
-INSERT INTO `destaques` (nome, texto, fotoLink1, foto_alt1, fotoLink2, foto_alt2, fotoLink3, foto_alt3, fotoLink4, foto_alt4) VALUES
-('nome Destaque 1','texto Destaque 1', 'foto 1 Destaque 1','alt Foto 1 Destaque 1', '', '', '', '','',''),
-('nome Destaque 2','texto Destaque 2', 'foto 2 Destaque 1','alt Foto 2 Destaque 1', '', '', '', '','',''),
-('nome Destaque 3','texto Destaque 3', 'foto 3 Destaque 1','alt Foto 3 Destaque 1', '', '', '', '','',''),
-('nome Destaque 4','texto Destaque 4', 'foto 4 Destaque 1','alt Foto 4 Destaque 1', '', '', '', '','','');
+INSERT INTO `destaques` (nome, publish, texto, fotoLink1, foto_alt1, fotoLink2, foto_alt2, fotoLink3, foto_alt3, fotoLink4, foto_alt4) VALUES
+('nome Destaque 1',1,'texto Destaque 1', 'foto 1 Destaque 1','alt Foto 1 Destaque 1', '', '', '', '','',''),
+('nome Destaque 2',1,'texto Destaque 2', 'foto 2 Destaque 1','alt Foto 2 Destaque 1', '', '', '', '','',''),
+('nome Destaque 3',1,'texto Destaque 3', 'foto 3 Destaque 1','alt Foto 3 Destaque 1', '', '', '', '','',''),
+('nome Destaque 4',1,'texto Destaque 4', 'foto 4 Destaque 1','alt Foto 4 Destaque 1', '', '', '', '','','');
 
 
 
@@ -59,6 +61,7 @@ INSERT INTO contactos (telefoneContacto, emailContacto, moradaContacto) VALUES
 
 CREATE TABLE sintomas (
     ID INTEGER NOT NULL AUTO_INCREMENT,
+    publish INTEGER NOT NULL,
     nome VARCHAR (200),
     texto MEDIUMTEXT,
     fotoLink1 VARCHAR(200),
@@ -72,9 +75,9 @@ CREATE TABLE sintomas (
     PRIMARY KEY (`ID`)
 );
 
-INSERT INTO sintomas(nome, texto, fotoLink1, foto_alt1, fotoLink2, foto_alt2, fotoLink3, foto_alt3, fotoLink4, foto_alt4) VALUES
-('nomeSintoma1','descricaoSintoma1', 'foto 1 Sintoma 1','alt Foto 1 Sintoma 1', 'foto 2 Sintoma 1','alt Foto 2 Sintoma 1','','','',''),
-('nomeSintoma2','descricaoSintoma2', 'foto 1 Sintoma 2','alt Foto 1 Sintoma 2', 'foto 2 Sintoma 2','alt Foto 2 Sintoma 2','','','','');
+INSERT INTO sintomas(nome, publish, texto, fotoLink1, foto_alt1, fotoLink2, foto_alt2, fotoLink3, foto_alt3, fotoLink4, foto_alt4) VALUES
+('nomeSintoma1',1,'descricaoSintoma1', 'foto 1 Sintoma 1','alt Foto 1 Sintoma 1', 'foto 2 Sintoma 1','alt Foto 2 Sintoma 1','','','',''),
+('nomeSintoma2',1,'descricaoSintoma2', 'foto 1 Sintoma 2','alt Foto 1 Sintoma 2', 'foto 2 Sintoma 2','alt Foto 2 Sintoma 2','','','','');
 
 
 

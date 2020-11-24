@@ -7,8 +7,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'rc-datepicker/lib/style.css';
-
-
+import './backoffice.css'
 
 class backofficeDestaquesSintomas extends React.Component {
     constructor(props) {
@@ -16,6 +15,7 @@ class backofficeDestaquesSintomas extends React.Component {
         this.state = {
             destaques: [],
             destaquesDisplay: [],
+            publish: '',
             ID: '',
             texto: {},
             editorState_texto: EditorState.createEmpty(),
@@ -46,6 +46,8 @@ class backofficeDestaquesSintomas extends React.Component {
                 .then((res) => {
                     const results = res.data
                     this.setState({ destaques: results })
+                    results.publish === 0 ?
+                        this.setState({ publish: 0 }) : this.setState({ publish: 1 })
                 })
             this.setState({ pathnameSintomas: true, seccao: 'Sintoma' })
             path.includes('/new') ?
@@ -58,7 +60,9 @@ class backofficeDestaquesSintomas extends React.Component {
                 .then((res) => {
                     const results = res.data
                     this.setState({ destaques: results })
-                    console.log(this.props.match.pathname)
+                    results.publish === 0 ?
+                        this.setState({ publish: 0 }) : this.setState({ publish: 1 })
+
                 })
             this.setState({ pathnameSintomas: false, seccao: 'Destaque' })
             path.includes('/new') ?
@@ -157,11 +161,7 @@ class backofficeDestaquesSintomas extends React.Component {
                     this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
                 })
             this.props.history.push({ pathname: '/backoffice/sintomas' })
-
         }
-
-
-
     }
 
     handleDelete = () => {
@@ -221,33 +221,48 @@ class backofficeDestaquesSintomas extends React.Component {
         }
     }
 
-    render() {
+    handleChangeCheckBox = (event) => {
+        event.preventDefault()
+        this.state.publish === 0 ?
+            this.setState({ publish: 1 }) : this.setState({ publish: 0 })
+    }
 
+    render() {
         return (
-            <div>
+            <div className="ContatoInput">
                 {
                     this.state.pathNew === false &&
                     <div>
-
-                        <h3>{`Edição da secção de ${this.state.seccao}s`}</h3>
-                        <select name='destaques' onChange={event => this.handleClick(event)}>
-                            <option selected="selected">{`Seleccione ${this.state.seccao}`}</option>
-                            {this.state.destaques.map((destaque) => {
-                                return (
-                                    <option name={destaque.nome} value={destaque.nome} >{destaque.nome}</option>
-                                )
-                            })}
-                        </select>
+                        <h3 className='NoticiaInput-title'>{`Edição da secção de ${this.state.seccao}s`}</h3>
+                        <div  className="input-top-dropdown">
+                            <select className='input-section-label-top-dropdown' name='destaques' onChange={event => this.handleClick(event)}>
+                                <option className='input-section-label' selected="selected">{`Seleccione ${this.state.seccao}`}</option>
+                                {this.state.destaques.map((destaque) => {
+                                    return (
+                                        <option className='input-section-label' name={destaque.nome} value={destaque.nome} >{destaque.nome}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
                         {this.state.pathnameSintomas === false ?
-                            <Link Link to='/backoffice/destaques/new' > <button type='submit'>Novo Destaque</button></Link>
+                            <Link Link to='/backoffice/destaques/new' >
+                                <div className="NoticiaInput-section-button">
+                                    <button className="login-button" type='submit'>Novo Destaque</button>
+                                </div>
+                            </Link>
                             :
-                            <Link Link to='/backoffice/sintomas/new' > <button type='submit'>Novo Sintoma</button></Link>
+                            <Link Link to='/backoffice/sintomas/new' >
+                                <div className="NoticiaInput-section-button">
+                                    <button className="login-button" type='submit'>Novo Sintoma</button>
+                                </div>
+                            </Link>
                         }
 
                     </div>
                 }
                 <BackOfficeDestaquesSintomasForm
                     destaquesDisplay={this.state.destaquesDisplay}
+                    publish={this.state.publish}
                     ID={this.state.ID}
                     texto={this.state.texto}
                     editorState_texto={this.state.editorState_texto}
@@ -270,6 +285,7 @@ class backofficeDestaquesSintomas extends React.Component {
                     handleDelete={this.handleDelete}
                     handleNewDestaque={this.handleNewDestaque}
                     onEditorStateChange_texto={this.onEditorStateChange_texto}
+                    handleChangeCheckBox={this.handleChangeCheckBox}
                 />
             </div>
         )

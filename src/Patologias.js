@@ -18,7 +18,6 @@ class Patologias extends React.Component {
                 console.log(results)
                 this.setState({ patologias: results })
             })
-
     }
 
     componentDidMount = () => {
@@ -34,12 +33,16 @@ class Patologias extends React.Component {
                 {
                     this.state.patologias.map((patologia) => {
                         return (
-                            patologia.link === patologiaLink &&
                             <div>
-                                <div>{patologia.nome}</div>
-                                <div>{patologia.sintomas}</div>
-                                <div>{patologia.exames}</div>
-                                <div>{patologia.tratamentos}</div>
+                                {
+                                    patologia.linkPatologia === patologiaLink &&
+                                    <div>
+                                        <div>{patologia.nomePatologia}</div>
+                                        <div>{patologia.sintomasPatologia}</div>
+                                        <div>{patologia.examesPatologia}</div>
+                                        <div>{patologia.tratamentosPatologia}</div>
+                                    </div>
+                                }
                             </div>
                         )
                     })

@@ -42,13 +42,20 @@ class backofficeHomepage extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={event => this.handleSubmit(event)}>
-                    <div>Texto Apresentação</div>
-                    <input type='text' name='CV_text' value={this.state.CV_text} onChange={(event) => this.handleChange(event)} />
-                    <div>Fotografia Apresentação</div>
-                    <input type='text' name='CV_pic' value={this.state.CV_pic} onChange={(event) => this.handleChange(event)} />
-                    <button type='submit'>GUARDAR</button>
+            <div className="ContatoInput">
+                <h3 className='NoticiaInput-title'>Edição Homepage</h3>
+                <form className="NoticiaInput-section" onSubmit={event => this.handleSubmit(event)}>
+                    <div className='input'>
+                        <label className="input-section-label">Texto Apresentação</label>
+                        <textarea className='text-box' contenteditable name='CV_text' value={this.state.CV_text} onChange={(event) => this.handleChange(event)} />
+                    </div>
+                    <div className='input'>
+                        <label className="input-section-label">Fotografia Apresentação</label>
+                        <input type='text' name='CV_pic' value={this.state.CV_pic} onChange={(event) => this.handleChange(event)} />
+                    </div>
+                    <div className="NoticiaInput-section-button">
+                        <button className="login-button" type='submit'>GUARDAR</button>
+                    </div>
                 </form>
                 <PopUp
                     flashInput={this.state.flash}

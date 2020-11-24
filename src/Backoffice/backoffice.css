@@ -1,0 +1,213 @@
+.body{
+    margin-left:250px;
+  }
+  
+  .NoticiaInput {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #f6f6f6;
+    padding-left: 30px;
+  }
+  
+  .NoticiaInput-title {
+    text-align: center;
+    color: #013e5a;
+    font-weight: 500;
+    font-size: 30px;
+    margin: 30px 0px 20px 0px;
+  }
+  
+  .NoticiaInput-subtitle {
+    text-align: center;
+    color: #013e5a;
+    font-weight: 500;
+    font-size: 25px;
+    margin: 30px 0px 20px 0px;
+  }
+
+  .NoticiaInput-subtitle-foto {
+    text-align: center;
+    color: #013e5a;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0px 0px 0px 0px;
+  }
+  
+  .NoticiaInput-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 200px;
+    width: 60%;
+  }
+  
+  .input, .input-section-checkbox {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .input-legendas-datas {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .input-legendas-datas .input {
+    display: flex;
+  }
+  .input-legendas-datas .input input {
+    display: flex;
+    width: 60%;
+  }
+  
+  .input input {
+    font-size: 14px;
+    width: 100%;
+    color: grey;
+    padding: 3px 8px;
+    border: solid 1px rgb(198, 198, 198);
+    border-radius: 5px !important;
+  }
+  
+  .input input:valid {
+    color: black;
+  }
+  
+  .input-block {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .input-top-dropdown{
+    text-align: center;  
+}
+
+.input-section-label-top-dropdown {
+    color: #013e5a;
+    font-size: 16px;
+    width: 300px;
+    margin: 0px 0px 10px 0px;
+    font-weight: 500;
+    font-size: 17px;
+    text-align: center;
+  }
+
+  
+  .label-uppercase {
+    text-transform: uppercase;
+  }
+  
+  .input-section-label {
+    color: #013e5a;
+    font-size: 16px;
+    width: 200px;
+    margin: 5px 0px 5px 0px;
+    font-weight: 500;
+    
+  }
+
+  
+  .input-section-label-publish {
+    color: #013e5a;
+    font-size: 16px;
+    width: 150px;
+    margin: 10px 0px 10px 0px;
+    font-weight: 500;
+    text-align: center;
+    width:100%;
+    padding-top:15px;
+  }
+  
+  .input-section-label-edicao {
+    color: #013e5a;
+    font-size: 16px;
+    width: 150px;
+    margin: 10px 0px 10px 0px;
+    font-weight: 500;
+    text-align:center;
+  }
+  
+  
+  .input-section-checkbox {
+    align-items: baseline;
+  }
+  
+  .input-section-label-checkbox {
+    color: #013e5a;
+    font-size: 16px;
+    width: 100px;
+    margin: 10px 0px 0px 0px;
+    font-weight: 500;
+  }
+  
+  .input .input-checkbox {
+    width: auto;
+    margin-top: 50px;
+  }
+  .text-box{
+      height: 100px;
+      width:100%;
+  }
+  
+  .NoticiaInput-section-button {
+    display: flex;
+    justify-content: space-around;    
+    margin: 0px 0px 50px 0px;
+  }
+  
+  .NoticiaInput-editor {
+    background-color:#fff;
+    border: solid 1px rgb(198, 198, 198);
+    border-radius: 5px !important;
+    position:relative;
+    height: 250px;
+    width: 100%;
+  }
+  
+  .wrapperClassName {
+    font-size: 14px;
+  }
+  
+  .toolbarClassName {
+    border: solid 1px rgb(198, 198, 198);
+    width: 100%;
+  }
+  
+  .DraftEditor-editorContainer {
+    padding: 0px 10px;
+    width: 100%;
+  }
+
+  .associacao-button-section {
+    display: flex;
+    justify-content: center;
+    margin: 50px auto 20px auto;
+  }
+
+  .login-button {
+    padding: 7px 30px;
+    margin: 30px 20px 20px 20px;
+    border-radius: 5px;
+    color: white;
+    background-color: #013e5a;
+    outline: none;
+    border-style: none;
+    font-weight: 500;
+  }
+    
+
+  @media(max-width: 768px) {
+    .NoticiaInput {
+      padding-left: 0px;
+    }
+    .NoticiaInput-title {
+      margin: 60px 0px 20px 0px;
+    }
+  }

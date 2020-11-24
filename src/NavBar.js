@@ -44,9 +44,9 @@ class NavBar extends React.Component {
                             {
                                 this.state.patologias.map((patologia) => {
                                     return (
-                                        <NavDropdown.Item key={patologia.id} className="dropdown-item" href={patologia.nome}>
-                                            <Link to={`/patologias/${patologia.link}`}>
-                                                {patologia.nome}
+                                        <NavDropdown.Item key={patologia.idPatologia} className="dropdown-item" href={patologia.nomePatologia}>
+                                            <Link to={`/patologias/${patologia.linkPatologia}`}>
+                                                {patologia.nomePatologia}
                                             </Link>
                                         </NavDropdown.Item>
                                     )

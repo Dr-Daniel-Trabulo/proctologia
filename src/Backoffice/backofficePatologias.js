@@ -14,6 +14,7 @@ class backofficePatologias extends React.Component {
         this.state = {
             patologias: [],
             patologiaDisplay: '',
+            publish: '',
             nomePatologia: '',
             tratamentosPatologia: '',
             examesPatologia: '',
@@ -35,10 +36,16 @@ class backofficePatologias extends React.Component {
             .then((res) => {
                 const results = res.data
                 this.setState({ patologias: results })
+                results.publish === 0 ?
+                    this.setState({ publish: 0 }) : this.setState({ publish: 1 })
             })
+
+
+
         let path = this.props.history.location.pathname
         path.includes('/new') ?
             this.setState({ pathNew: true }) : this.setState({ pathNew: false })
+
     }
 
     componentDidMount = () => {
@@ -121,12 +128,11 @@ class backofficePatologias extends React.Component {
     }
 
 
-
-
     handleSubmit = (event) => {
         event.preventDefault()
 
-        let { patologias,
+        let {
+            patologias,
             patologiaDisplay,
             flash,
             editorState_examesPatologia,
@@ -190,28 +196,39 @@ class backofficePatologias extends React.Component {
         this.props.history.push({ pathname: '/backoffice/patologias' })
     }
 
+    handleChangeCheckBox = (event) => {
+        event.preventDefault()
+        this.state.publish === 0 ?
+            this.setState({ publish: 1 }) : this.setState({ publish: 0 })
+    }
+
     render() {
         return (
-            <div>
+            <div className="ContatoInput">
                 {this.state.pathNew === false &&
                     <div>
-                        <div>Edição Patologia</div>
-                        <select name='patologias' onChange={(event => this.handleClick(event))}>
-                            <option selected="selected">Seleccione uma patologia</option>
-                            {this.state.patologias.map((patologia) => {
-                                return (
-                                    <option name={patologia.nomePatologia} value={patologia.nomePatologia}>{patologia.nomePatologia}</option>
-                                )
-                            })}
-                        </select>
-                        <Link to='/backoffice/patologias/new'>
-                            <button>Nova Patologia</button>
-                        </Link>
+                        <h3 className='NoticiaInput-title'>Edição Patologia</h3>
+                        <div className="input-top-dropdown">
+                            <select className='input-section-label-top-dropdown' name='patologias' onChange={(event => this.handleClick(event))}>
+                                <option className='input-section-label' selected="selected">Seleccione uma patologia</option>
+                                {this.state.patologias.map((patologia) => {
+                                    return (
+                                        <option className='input-section-label' name={patologia.nomePatologia} value={patologia.nomePatologia}>{patologia.nomePatologia}</option>
+                                    )
+                                })}
+                            </select>
+                            <Link to='/backoffice/patologias/new'>
+                                <div className="NoticiaInput-section-button">
+                                    <button className="login-button">Nova Patologia</button>
+                                </div>
+                            </Link>
+                        </div>
                     </div>
                 }
                 <div>
                     <BackofficePatologiasForm
                         patologiaDisplay={this.state.patologiaDisplay}
+                        publish={this.state.publish}
                         pathNew={this.state.pathNew}
                         nomePatologia={this.state.nomePatologia}
                         sintomasPatologia={this.state.sintomasPatologia}
@@ -231,6 +248,7 @@ class backofficePatologias extends React.Component {
                         onEditorStateChange_examesPatologia={this.onEditorStateChange_examesPatologia}
                         onEditorStateChange_sintomasPatologia={this.onEditorStateChange_sintomasPatologia}
                         onEditorStateChange_tratamentosPatologia={this.onEditorStateChange_tratamentosPatologia}
+                        handleChangeCheckBox={this.handleChangeCheckBox}
                     />
                 </div>
             </div>
