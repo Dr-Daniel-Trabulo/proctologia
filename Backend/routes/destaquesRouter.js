@@ -2,6 +2,11 @@ const express = require('express')
 
 const router = express.Router()
 const connection = require('../config')
+const jwtMiddleware = require('../Services/jwtMiddleware');
+const passport = require('passport');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 
 
 router.get('/', (req, res) => {
@@ -15,7 +20,7 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/destaques/editDestaques', (req, res) => {
+router.put('/destaques/editDestaques', jwtMiddleware, (req, res) => {
     connection.query('UPDATE destaques SET ? WHERE ID=?',
         [req.body, req.body.ID],
         (err, results) => {
@@ -31,7 +36,7 @@ router.put('/destaques/editDestaques', (req, res) => {
     )
 })
 
-router.delete('/destaques/deleteDestaque', (req, res) => {
+router.delete('/destaques/deleteDestaque', jwtMiddleware, (req, res) => {
     connection.query('DELETE FROM destaques WHERE ID = ?',
         [req.body.ID],
         (err, results) => {
@@ -47,7 +52,7 @@ router.delete('/destaques/deleteDestaque', (req, res) => {
 }
 )
 
-router.post('/destaques/addDestaque', (req, res) => {
+router.post('/destaques/addDestaque', jwtMiddleware, (req, res) => {
     connection.query('INSERT INTO destaques SET ?',
         [req.body],
         (err, results) => {

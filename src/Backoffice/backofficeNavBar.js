@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import './backofficeNavBar.css';
 
 
-const BackSidebar = (props) => {
+const backofficeNavBar = (props) => {
 
     // const history = useHistory();
 
@@ -16,11 +16,11 @@ const BackSidebar = (props) => {
             </div>
             <div className="menu-bar">
                 <Nav fixed="left">
-                    <Link to="/backoffice/contactos">Contactos</Link>
-                    <Link to="/backoffice/homepage">Homepage</Link>
-                    <Link to="/backoffice/patologias">Patologias</Link>
-                    <Link to="/backoffice/destaques">Destaques</Link>
-                    <Link to="/backoffice/sintomas">Sintomas</Link>
+                    <Nav.Link><Link to="/backoffice/contactos">Contactos</Link></Nav.Link>
+                    <Nav.Link><Link to="/backoffice/homepage">Homepage</Link></Nav.Link>
+                    <Nav.Link><Link to="/backoffice/patologias">Patologias</Link></Nav.Link>
+                    <Nav.Link><Link to="/backoffice/destaques">Destaques</Link></Nav.Link>
+                    <Nav.Link><Link to="/backoffice/sintomas">Sintomas</Link></Nav.Link>
                 </Nav>
             </div>
             <button
@@ -36,4 +36,4 @@ const BackSidebar = (props) => {
     );
 };
 
-export default withRouter(BackSidebar);
+export default withRouter(backofficeNavBar);

@@ -55,7 +55,7 @@ CREATE TABLE contactos (
 );
 
 INSERT INTO contactos (telefoneContacto, emailContacto, moradaContacto) VALUES
-('+351000000000', 'xpto@xpto.pt','Avenida Columbano Bordalo Pinheiro');
+('+351000000000', 'clinicaxpto@clinicaxpto.pt','Avenida Columbano Bordalo Pinheiro');
 
 
 
@@ -79,7 +79,15 @@ INSERT INTO sintomas(nome, publish, texto, fotoLink1, foto_alt1, fotoLink2, foto
 ('nomeSintoma1',1,'descricaoSintoma1', 'foto 1 Sintoma 1','alt Foto 1 Sintoma 1', 'foto 2 Sintoma 1','alt Foto 2 Sintoma 1','','','',''),
 ('nomeSintoma2',1,'descricaoSintoma2', 'foto 1 Sintoma 2','alt Foto 1 Sintoma 2', 'foto 2 Sintoma 2','alt Foto 2 Sintoma 2','','','','');
 
+CREATE TABLE users (
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  email VARCHAR(90) UNIQUE,
+  password VARCHAR(90),
+  PRIMARY KEY(`id`)
+);
 
+INSERT INTO `users` (email, password) VALUES 
+('antoniobranco@sapo.pt', 'danieltrabulo1+');
 
 
 

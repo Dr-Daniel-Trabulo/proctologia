@@ -1,6 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const connection = require('../config')
+const jwtMiddleware = require('../Services/jwtMiddleware');
+const passport = require('passport');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 
 router.get('/', (req, res) => {
     connection.query('SELECT * FROM patologias',
@@ -14,7 +19,7 @@ router.get('/', (req, res) => {
     )
 })
 
-router.put('/patologias/editPatologias', (req, res) => {
+router.put('/patologias/editPatologias', jwtMiddleware, (req, res) => {
     connection.query('UPDATE patologias SET ? WHERE idPatologia = ?',
         [req.body, req.body.idPatologia],
         (err, results) => {
@@ -27,7 +32,7 @@ router.put('/patologias/editPatologias', (req, res) => {
     )
 })
 
-router.delete('/patologias/deletePatologia', (req, res) => {
+router.delete('/patologias/deletePatologia', jwtMiddleware, (req, res) => {
     connection.query('DELETE FROM patologias WHERE idPatologia = ?',
         [req.body.idPatologia],
         (err, results) => {
@@ -41,7 +46,7 @@ router.delete('/patologias/deletePatologia', (req, res) => {
 }
 )
 
-router.post('/sintomas/addPatologia', (req, res) => {
+router.post('/sintomas/addPatologia', jwtMiddleware, (req, res) => {
     connection.query('INSERT INTO patologias SET ?',
         [req.body],
         (err, results) => {

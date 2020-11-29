@@ -6,7 +6,7 @@
 
 .footer{
     width: 100%;
-    padding-left: 230px;
+    padding-left: 20px;
     position: fixed;
     bottom: 0;
     background-color: #00798a;
@@ -21,35 +21,52 @@
 
 .contactos{
     font-family: Aileron;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
     line-height: 1.5;
-    padding-right: 30px;
-    padding-left: 30px;
-    margin-bottom: 0px;
+    padding-right: 20px;
+    padding-left: 20px;
     color: white;
-    width:35%;
+    width:40%;
     text-align: justify;
     text-justify: inter-word;
 }
 
 .consulta{
     margin-bottom: 5px;
+    text-align: center;
 }
 
-.consulta_telefone{
+.consulta_telefone p{
     margin-bottom: 0;
     text-align: center;
-    font-weight: bold;
+    font-size: 15px;
+    padding-top: 15px;
+    
+}
+
+.telefoneEmail{
+    display: flex;
+    flex-direction: row;
+    align-items: center ;
+    justify-content: center;
+    padding-right: 40px;
+    margin-bottom: 0px;
+}
+
+.telefoneEmail li{
+    display: block;
+    align-items: center;
 }
 
 .contactoTelefone{
     text-align: center;
     line-height: 2.5;
     padding-left: 30px;
+    margin-top: 0;
     font-weight: bold;
     font-size: 20px;
-    margin-bottom: 7px;
+    color: white;
 }
 
 .numeroTelefone{
@@ -59,4 +76,9 @@
 
 .imagem_telefone{
     height: 30px;
+}
+
+.imagem_email{
+    height: 37px;
+    padding-right: 6px;
 }

@@ -45,7 +45,8 @@ class Sintomas extends React.Component {
                         </div>
                     )
                 })}
-                <Footer />
+                          <Footer/>
+
             </div>
         )
     }

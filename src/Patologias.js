@@ -48,6 +48,7 @@ class Patologias extends React.Component {
                     })
                 }
                 <Footer />
+
             </div>
         )
     }

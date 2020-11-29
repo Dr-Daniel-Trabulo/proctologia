@@ -43,7 +43,7 @@ class Destaques extends React.Component {
                     )
                 })
                 }
-                <Footer />
+          <Footer/>
             </div >
 
 

@@ -2,6 +2,11 @@ const express = require('express')
 
 const router = express.Router()
 const connection = require('../config')
+const jwtMiddleware = require('../Services/jwtMiddleware');
+const passport = require('passport');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 
 
 router.get('/', (req, res) => {
@@ -15,7 +20,7 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/homepage/editHomepage', (req, res) => { 
+router.put('/homepage/editHomepage', jwtMiddleware, (req, res) => {
     connection.query('UPDATE homepage SET ?',
         [req.body],
         (err, results) => {

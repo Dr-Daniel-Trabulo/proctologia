@@ -2,6 +2,11 @@ const express = require('express')
 
 const router = express.Router()
 const connection = require('../config')
+const jwtMiddleware = require('../Services/jwtMiddleware');
+const passport = require('passport');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 
 
 router.get('/', (req, res) => {
@@ -15,7 +20,7 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/sintomas/editSintomas', (req, res) => {
+router.put('/sintomas/editSintomas', jwtMiddleware, (req, res) => {
     connection.query('UPDATE sintomas SET ? WHERE ID = ?',
         console.log('qualquer coisa'),
         console.log(req.body.ID)
@@ -32,7 +37,7 @@ router.put('/sintomas/editSintomas', (req, res) => {
     )
 })
 
-router.delete('/sintomas/deleteSintoma', (req, res) => {
+router.delete('/sintomas/deleteSintoma', jwtMiddleware, (req, res) => {
     connection.query('DELETE FROM sintomas WHERE ID = ?',
         [req.body.ID],
         (err, results) => {
@@ -46,11 +51,12 @@ router.delete('/sintomas/deleteSintoma', (req, res) => {
 }
 )
 
-router.post('/sintomas/addSintoma', (req, res) => {
+router.post('/sintomas/addSintoma', jwtMiddleware, (req, res) => {
     connection.query('INSERT INTO sintomas SET ?',
         [req.body],
         (err, results) => {
             if (err) {
+                console.log(err)
                 res.status(400).json({ flash: 'Ocorreu um erro ao inserir' })
             } else {
                 res.status(200).json({ flash: 'Destaque criado com sucesso' })

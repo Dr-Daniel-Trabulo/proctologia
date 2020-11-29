@@ -1,0 +1,105 @@
+@font-face {
+    font-family: Aileron;
+    src: url(https://fontlibrary.org/face/aileron);
+  }
+
+.Contactos{
+    display: flex;
+    flex-direction: column;
+    margin-top:85px;
+    font-family: Aileron;
+    padding-top:15px;
+    padding-right: 40px;
+    background-color: rgb(248, 245, 245);
+    padding-bottom: 1000px;
+    width: 100%;
+}
+
+.formasContacto{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.emailTelefone{
+    display:flex;
+    flex-direction: column;
+    width: 40%;
+    text-align: center;
+}
+
+.li-contactos{
+    font-size: 23px;
+    display: block;
+    font-weight: bold;
+    padding-bottom: 30px;
+
+}
+
+.li-contactos a{
+    color:black !important;
+}
+
+.div-ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top:30px;
+}
+
+.imagem_email{
+    padding-right: 20px;
+}
+
+.imagem_telefone{
+    padding-right: 15px;
+}
+
+.formulario{
+    width: 60%;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.textoFormulario{
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.formularioComponente{
+    align-items: center;
+}
+
+.Geral{
+    width: 100%;
+    
+}
+
+.input-text{
+    height: 52px;
+}
+
+.googleMaps{
+    padding-top:20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    text-align: left;
+}
+
+.morada{
+    width: 100%;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.iframe{
+    width: 70%;
+    height: 380px;
+    border:none;
+}

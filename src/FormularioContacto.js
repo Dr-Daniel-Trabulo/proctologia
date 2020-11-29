@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React from 'react';
 import './FormularioContacto.css'
 import axios from 'axios'
 import Alert from 'react-bootstrap/Alert';
@@ -204,7 +203,7 @@ class FormularioContacto extends React.Component {
                         />
                     </span>
                     <div className='div-button'>
-                        <button className='button' type='submit'>Enviar</button>
+                        <button className='button' type='submit'>ENVIAR</button>
                     </div>
                     <div>
                         <Alert className="form-alert" show={this.state.showEmailAlert} variant={this.state.emailTypeAlert}>

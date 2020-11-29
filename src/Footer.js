@@ -2,6 +2,7 @@ import React from 'react'
 import FormularioContacto from './FormularioContacto'
 import './Footer.css'
 import telefone from './Assets/telefone.png'
+import email from './Assets/email.png'
 import axios from 'axios'
 
 
@@ -33,10 +34,12 @@ class Footer extends React.Component {
             <div className='footer'>
                 <FormularioContacto className='formulario' />
                 <div className='contactos'>
-                    <p className='consulta'>Caso pretenda agendar uma consulta pode fazê-lo através de mensagem. Os nossos serviços irão entrar em contacto consigo.</p>
-                    <p className='consulta_telefone'>Pode também agendar a sua consulta por telefone ou email:</p>
-                    <div className='contactoTelefone'> <img className='imagem_telefone' alt='Contacto Telefonico doenças anais' src={telefone} /><a className='numeroTelefone' href={this.state.contactos.telefoneContacto}>{this.state.contactos.telefoneContacto}</a></div>
-                    <div className='contactoTelefone'>{this.state.contactos.emailContacto}</div>
+                    <p className='consulta'>Pode solicitar o agendamento de consulta através do formulário.</p><p className='consulta'> Os nossos serviços irão entrar em contacto consigo.</p>
+                    <div className='consulta_telefone'><p>Agendamento de consulta por telefone ou email:</p></div>
+                    <ul className='telefoneEmail'>
+                        <li className='contactoTelefone'><img className='imagem_telefone' alt='Contacto Telefonico doenças anais' src={telefone} /><a className='numeroTelefone' href={this.state.contactos.telefoneContacto}>{this.state.contactos.telefoneContacto}</a></li>
+                        <li className='contactoTelefone'><img className='imagem_email' alt='Contacto Email doenças do anús' src={email} /><a className='numeroTelefone' href={`mailto:${this.state.contactos.emailContacto}`}>{this.state.contactos.emailContacto}</a></li>
+                    </ul>
                 </div>
             </div>
         )
