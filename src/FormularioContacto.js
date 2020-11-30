@@ -191,7 +191,7 @@ class FormularioContacto extends React.Component {
                         </div>
                     </div>
                     <span className='span-text'>
-                        <input
+                        <textarea
                             onChange={event => this.updateField(event)}
                             className="input-text"
                             type='text'

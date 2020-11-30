@@ -6,52 +6,43 @@
 
 .footer{
     width: 100%;
-    padding-left: 20px;
+    padding-left: 10px;
     position: fixed;
     bottom: 0;
     background-color: #00798a;
-    padding-top: 20px;
-    padding-bottom: 0px;
+    padding-top: 10px;
+    padding-bottom: 6px;
     display: flex;
     flex-direction: row;
 }
 .formulario{
-    width:65%;
+    width:75%;
 }
 
 .contactos{
     font-family: Aileron;
     font-size: 15px;
     font-weight: bold;
-    line-height: 1.5;
-    padding-right: 20px;
-    padding-left: 20px;
+    /* padding-right: 20px;
+    padding-left: 20px; */
     color: white;
-    width:40%;
-    text-align: justify;
-    text-justify: inter-word;
+    width:45%;
+    text-align: center;
+    align-items: center;}
+
+.mensagemAgendamento{
+    padding-left:40px
 }
 
-.consulta{
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-.consulta_telefone p{
-    margin-bottom: 0;
-    text-align: center;
-    font-size: 15px;
-    padding-top: 15px;
-    
+.mensagemAgendamento p{
+   height: 12px;
 }
 
 .telefoneEmail{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center ;
     justify-content: center;
-    padding-right: 40px;
-    margin-bottom: 0px;
 }
 
 .telefoneEmail li{
@@ -62,11 +53,11 @@
 .contactoTelefone{
     text-align: center;
     line-height: 2.5;
-    padding-left: 30px;
-    margin-top: 0;
+    padding-bottom: 8px;
     font-weight: bold;
     font-size: 20px;
     color: white;
+    height: 35px;
 }
 
 .numeroTelefone{
@@ -80,5 +71,4 @@
 
 .imagem_email{
     height: 37px;
-    padding-right: 6px;
 }

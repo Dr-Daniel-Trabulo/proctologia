@@ -78,11 +78,12 @@
 }
 
 .input-text{
-    height: 52px;
+    height: 35px;
 }
 
 .googleMaps{
     padding-top:20px;
+    margin-left:40px;
     display: flex;
     flex-direction: column;
     width: 100%;

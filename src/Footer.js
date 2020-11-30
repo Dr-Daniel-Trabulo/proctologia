@@ -32,10 +32,14 @@ class Footer extends React.Component {
     render() {
         return (
             <div className='footer'>
-                <FormularioContacto className='formulario' />
+                <div className='formulario' >
+                    <FormularioContacto />
+                </div>
                 <div className='contactos'>
-                    <p className='consulta'>Pode solicitar o agendamento de consulta através do formulário.</p><p className='consulta'> Os nossos serviços irão entrar em contacto consigo.</p>
-                    <div className='consulta_telefone'><p>Agendamento de consulta por telefone ou email:</p></div>
+                    <div className='mensagemAgendamento'>
+                        <p>Pode solicitar o agendamento de consulta através do formulário</p>
+                        <p>ou contactar-nos diretamente por telefone ou email:</p>
+                    </div>
                     <ul className='telefoneEmail'>
                         <li className='contactoTelefone'><img className='imagem_telefone' alt='Contacto Telefonico doenças anais' src={telefone} /><a className='numeroTelefone' href={this.state.contactos.telefoneContacto}>{this.state.contactos.telefoneContacto}</a></li>
                         <li className='contactoTelefone'><img className='imagem_email' alt='Contacto Email doenças do anús' src={email} /><a className='numeroTelefone' href={`mailto:${this.state.contactos.emailContacto}`}>{this.state.contactos.emailContacto}</a></li>
