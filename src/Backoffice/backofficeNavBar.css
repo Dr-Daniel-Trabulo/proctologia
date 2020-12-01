@@ -1,82 +1,94 @@
-.BackSidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: left;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background-color: white;
-    box-shadow: 5px 5px 9px 3px rgb(177, 177, 177);
-    font-weight: 500;
-    width: 300px;
-  }
+@font-face {
+  font-family: Aileron;
+  src: url(https://fontlibrary.org/face/aileron);
+}
 
-  .main-link{
-      font-weight: bold ;
-      font-size: 50px;
-  }
-  
-  .menu-bar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
+.BackSidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: white;
+  box-shadow: 5px 5px 9px 3px rgb(177, 177, 177);
+  font-weight: 500;
+  font-family: Aileron;
+}
+
+.menu-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-bar img{
+  width: 150px;
+  margin: 80px auto 30px auto;
+  text-align: center;
+  cursor: pointer;
+}
+
+.BackSidebar .nav {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+
+.BackSidebar .nav-link {
+  color: #013e5a !important;
+  text-align: start;
+  padding: 6px 15px 6px 30px;
+  margin: 0px;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  padding-bottom: 30px;
+  margin-left: 12px;
+
+}
+.BackSidebar .nav-link a {
+  color: #013e5a !important;
+
+}
+
+.BackSidebar .nav-link:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+.logout-button {
+  padding: 7px 20px;
+  margin: 0px 0px 30px 0px;
+  border-radius: 5px;
+  color: white;
+  background-color: #013e5a;
+  outline: none;
+  border-style: none;
+  font-weight: 500;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media(max-width: 768px) {
   .BackSidebar .nav {
-    display: flex;
-    flex-direction: column;
-    width: 210px;
+    width: 130px;
   }
-  
   .BackSidebar .nav-link {
-    color: #013e5a !important;
-    text-align: start;
-    padding: 6px 15px 6px 30px;
-    margin: 0px;
-    font-size: 14px;
-    letter-spacing: 0.06em;
+    padding-left: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 130px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
   }
-  .BackSidebar .nav-link a {
-    color: #013e5a !important;
+  .brasao-logo {
+    width: 80px;
+    height: 100px;
   }
-  
-  
-  .BackSidebar .nav-link:hover {
-    background-color: rgb(220, 220, 220);
-  }
-  
   .logout-button {
-    padding: 7px 20px;
-    margin: 0px 0px 30px 0px;
-    border-radius: 5px;
-    color: white;
-    background-color: #013e5a;
-    outline: none;
-    border-style: none;
-    font-weight: 500;
-    font-size: 13px;
+    padding: 5px 15px;
+    font-size: 12px;
   }
-  
-  @media(max-width: 768px) {
-    .BackSidebar .nav {
-      width: 130px;
-    }
-    .BackSidebar .nav-link {
-      padding-left: 20px;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      width: 130px;
-      font-size: 12px;
-      letter-spacing: 0.04em;
-    }
-    .brasao-logo {
-      width: 80px;
-      height: 100px;
-    }
-    .logout-button {
-      padding: 5px 15px;
-      font-size: 12px;
-    }
-  }
+}

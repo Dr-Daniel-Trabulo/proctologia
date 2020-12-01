@@ -3,6 +3,7 @@ import { Nav } from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './backofficeNavBar.css';
+import logoDT from '../Assets/LogoDT.png'
 
 
 const backofficeNavBar = (props) => {
@@ -11,18 +12,17 @@ const backofficeNavBar = (props) => {
 
     return (
         <div className="BackSidebar">
-            <div className='main-link'>
-                <Link to="/backoffice">BackOffice Dr Daniel Trabulo</Link>
+            <div className='menu-bar'>
+                <Link to="/backoffice"><img src={logoDT} alt='logo Dr Daniel Trabulo Doenças Anais Hemmorroidas' /></Link>
             </div>
-            <div className="menu-bar">
-                <Nav fixed="left">
-                    <Nav.Link><Link to="/backoffice/contactos">Contactos</Link></Nav.Link>
-                    <Nav.Link><Link to="/backoffice/homepage">Homepage</Link></Nav.Link>
-                    <Nav.Link><Link to="/backoffice/patologias">Patologias</Link></Nav.Link>
-                    <Nav.Link><Link to="/backoffice/destaques">Destaques</Link></Nav.Link>
-                    <Nav.Link><Link to="/backoffice/sintomas">Sintomas</Link></Nav.Link>
-                </Nav>
-            </div>
+            <Nav fixed="left">
+                <Nav.Link><Link to="/backoffice/contactos">Contactos</Link></Nav.Link>
+                <Nav.Link><Link to="/backoffice/homepage">Homepage</Link></Nav.Link>
+                <Nav.Link><Link to="/backoffice/patologias">Patologias</Link></Nav.Link>
+                <Nav.Link><Link to="/backoffice/destaques">Destaques</Link></Nav.Link>
+                <Nav.Link><Link to="/backoffice/sintomas">Sintomas</Link></Nav.Link>
+                <Nav.Link><Link to='/backoffice/proctologia'>O que é a proctologia?</Link></Nav.Link>
+            </Nav>
             <button
                 className="logout-button"
                 onClick={() => {

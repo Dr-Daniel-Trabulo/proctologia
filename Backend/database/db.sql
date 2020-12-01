@@ -89,6 +89,14 @@ CREATE TABLE users (
 INSERT INTO `users` (email, password) VALUES 
 ('antoniobranco@sapo.pt', 'danieltrabulo1+');
 
+CREATE TABLE proctologia (
+   texto MEDIUMTEXT
+);
+
+INSERT INTO proctologia (texto) VALUES
+('texto');
+
+
 
 
 

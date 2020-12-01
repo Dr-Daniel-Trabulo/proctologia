@@ -41,6 +41,7 @@ const destaquesRouter = require('./routes/destaquesRouter')
 const contactosRouter = require('./routes/contactosRouter')
 const sintomasRouter = require('./routes/sintomasRouter')
 const loginRouter = require('./routes/loginRouter')
+const proctologia = require('./routes/proctologiaRouter')
 app.use(express.json())
 
 
@@ -52,6 +53,7 @@ app.use('/patologias', patologiasRouter)
 app.use('/destaques', destaquesRouter)
 app.use('/contactos', contactosRouter)
 app.use('/sintomas', sintomasRouter)
+app.use('/proctologia', proctologia)
 
 //JWT
 passport.use(

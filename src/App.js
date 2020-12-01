@@ -13,7 +13,8 @@ import BackofficeDestaquesSintomas from './Backoffice/backofficeDestaquesSintoma
 import BackofficePatologias from './Backoffice/backofficePatologias'
 import Login from './Backoffice/Login'
 import ForgotPassword from './Backoffice/ForgotPassword'
-import Footer from './Footer'
+import Proctologia from './Proctologia'
+import BackofficeProctologia from './Backoffice/backofficeProctologia'
 import React, { Suspense, useContext } from 'react';
 import UserContext from './context/UserContext'
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route exact path='/patologias/:patologia' component={Patologias} />
           <Route exact path='/destaques_doenca_proctologica' component={Destaques} />
           <Route exact path='/contactos_dr_daniel_trabulo' component={Contactos} />
+          <Route exact path='/proctologia' component={Proctologia} />
 
           <Route exact path="/login" component={Login} />
           <Route exact path="/login-password" component={ForgotPassword} />
@@ -42,10 +44,11 @@ const App = () => {
           <Route exact path='/backoffice/destaques/new' component={BackofficeDestaquesSintomas} />
           <Route exact path='/backoffice/sintomas' component={BackofficeDestaquesSintomas} />
           <Route exact path='/backoffice/sintomas/new' component={BackofficeDestaquesSintomas} />
+          <Route exact path='/backoffice/proctologia' component={BackofficeProctologia} />
         </Switch>
 
         {!currentPath.includes('backoffice') && !currentPath.includes('login')
-          && 
+          &&
           (
             <div>
               <NavBar />

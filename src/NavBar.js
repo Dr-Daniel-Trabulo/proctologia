@@ -32,13 +32,14 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div className='main'>  
+            <div className='main'>
                 <div >
                     <Nav fixed="top">
                         <ul className='ul'>
                             <div className='mainLink'>
                                 <li className='li'><Link to="/">{<p className='mainLinkP1'>Dr. Daniel Trabulo</p>}{<p className='mainLinkP2'>Médico Proctologista</p>}</Link></li>
                             </div>
+                            <li className='li'><Link to='/proctologia'>O que é a Proctologia?</Link></li>
                             <li className='li'><Link to='/sintomas_doenca_proctologica'>Sintomas</Link></li>
                             <li className='li'><NavDropdown title='Patologias' id="basic-nav-dropdown" data-toggle="collapse">
                                 {
