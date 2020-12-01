@@ -1,4 +1,9 @@
 import React from 'react'
+import axios from 'axios'
+import ReactHtmlParser from "react-html-parser";
+import Footer from './Footer'
+import './Homepage.css'
+ 
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -9,18 +14,30 @@ class HomePage extends React.Component {
         }
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
         window.scrollTo(0, 0)
-        let CV_pic = 'CV pic'
-        let CV_text = 'CV text'
-        this.setState({ CV_text, CV_pic })
+        axios
+            .get('/homepage')
+            .then((res) => {
+                const results = res.data[0]
+                this.setState({ CV_text: results.CV_Text })
+                this.setState({ CV_pic: results.CV_Pic })
+            })
     }
 
     render() {
         return (
-            <div>
-                <div>{this.state.CV_pic}</div>
-                <div>{this.state.CV_text}</div>
+            <div className='Homepage'>
+                {/* <link rel="manifest" href='../public/manifest.json'></link> */}
+                <div className='CVPic'>
+                    <img src={this.state.CV_pic} alt='Dr Daniel Trabulo-doença anal' />
+                </div>
+                <div className='texto'>
+                    <div className='titulo'>O Dr. Daniel Trabulo</div>
+                    <div className='CVText'>{ReactHtmlParser(this.state.CV_text)}</div>
+                </div>
+                <Footer />
+
             </div>
         )
     }

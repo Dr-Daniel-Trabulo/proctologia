@@ -1,50 +1,59 @@
 import React from 'react'
-
-
-const Patologias = (props) => {
-
-    let patologias = [
-        { id: 1, name: 'Hemorroidas', link: 'hemorroidas', sintomas: 'sintomas1', exames: 'Exames1', tratamentos: 'tratamentos1' },
-        { id: 2, name: 'Eczema Anal', link: 'eczemaanal', sintomas: 'sintomas2', exames: 'Exames2', tratamentos: 'tratamentos2' }
-    ]
-
-    //let patologias = props.patologias
-    let patologiaLink = props.match.params.patologia
+import axios from 'axios'
+import Footer from './Footer'
+import './PatologiasDestaquesSintomas.css'
+import ReactHtmlParser from "react-html-parser";
 
 
 
-    return (
+class Patologias extends React.Component {
 
-        <div>
-            {
-                patologias.map((patologia) => {
-                    return (
-                        patologia.link === patologiaLink &&
-                        <div>
-                            <div>{patologia.name}</div>
-                            <div>{patologia.sintomas}</div>
-                            <div>{patologia.exames}</div>
-                            <div>{patologia.tratamentos}</div>
-                        </div>
+    constructor(props) {
+        super(props)
+        this.state = { patologias: [] }
+    }
 
+    loadData = () => {
+        axios
+            .get('/patologias')
+            .then((res) => {
+                const results = res.data
+                console.log(results)
+                this.setState({ patologias: results })
+            })
+    }
 
-                    )
+    componentDidMount = () => {
+        window.scrollTo(0, 0)
+        this.loadData()
+    }
 
+    render() {
+        let patologiaLink = this.props.match.params.patologia
 
-                })
-            }
-
-
-        </div>
-
-
-
-    )
-
-
-
-
+        return (
+            <div className='Main'>
+                {
+                    this.state.patologias.map((patologia) => {
+                        return (
+                            <div>
+                                {
+                                    patologia.linkPatologia === patologiaLink &&
+                                    <div className='estrutura'>
+                                        <div className='titulo'>{patologia.nomePatologia}</div>
+                                        <div>{ReactHtmlParser(patologia.sintomasPatologia)}</div>
+                                        <div>{ReactHtmlParser(patologia.examesPatologia)}</div>
+                                        <div>{ReactHtmlParser(patologia.tratamentosPatologia)}</div>
+                                    </div>
+                                }
+                            </div>
+                        )
+                    })
+                }
+                <Footer />
+            </div>
+        )
+    }
 }
-
 
 export default Patologias;

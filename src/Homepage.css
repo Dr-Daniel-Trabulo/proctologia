@@ -1,0 +1,47 @@
+@font-face {
+    font-family: Aileron;
+    src: url(https://fontlibrary.org/face/aileron);
+  }
+
+.Homepage{
+    margin-top: 85px;
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 170px;
+}
+
+.CVPic{
+    width: 45%;
+    padding-left: 50px;
+}
+
+.CVPic img{
+    height: 75%;
+    position: fixed;
+}
+
+.texto{
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    padding-right:110px;
+    padding-left: 80px;
+    color:rgb(115, 115, 115);
+    font-family: Aileron;
+}
+
+.titulo{
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.CVText{
+    
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 2;
+    font-size: 17px;
+}

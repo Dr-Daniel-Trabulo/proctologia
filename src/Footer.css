@@ -1,0 +1,74 @@
+@font-face {
+    font-family: Aileron;
+    src: url(https://fontlibrary.org/face/aileron);
+  }
+
+
+.footer{
+    width: 100%;
+    padding-left: 10px;
+    position: fixed;
+    bottom: 0;
+    background-color: #00798a;
+    padding-top: 10px;
+    padding-bottom: 6px;
+    display: flex;
+    flex-direction: row;
+}
+.formulario{
+    width:75%;
+}
+
+.contactos{
+    font-family: Aileron;
+    font-size: 15px;
+    font-weight: bold;
+    /* padding-right: 20px;
+    padding-left: 20px; */
+    color: white;
+    width:45%;
+    text-align: center;
+    align-items: center;}
+
+.mensagemAgendamento{
+    padding-left:40px
+}
+
+.mensagemAgendamento p{
+   height: 12px;
+}
+
+.telefoneEmail{
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    justify-content: center;
+}
+
+.telefoneEmail li{
+    display: block;
+    align-items: center;
+}
+
+.contactoTelefone{
+    text-align: center;
+    line-height: 2.5;
+    padding-bottom: 8px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    height: 35px;
+}
+
+.numeroTelefone{
+    color: white;
+    font-weight: bold;
+}
+
+.imagem_telefone{
+    height: 30px;
+}
+
+.imagem_email{
+    height: 37px;
+}

@@ -1,0 +1,20 @@
+@font-face {
+    font-family: Aileron;
+    src: url(https://fontlibrary.org/face/aileron);
+  }
+ 
+  .Geral{
+    font-family: Aileron !important; 
+   
+}
+
+.estrutura{
+    margin-left:150px;
+    margin-right: 150px;
+    text-align: justify;
+    
+}
+
+
+
+

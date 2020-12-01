@@ -1,0 +1,149 @@
+@font-face {
+    font-family: Aileron;
+    src: url(https://fontlibrary.org/face/aileron);
+  }
+
+.Geral {
+    margin-right: 20px;
+    font-family: Aileron;
+    width: 60%;
+    color: black;
+}
+
+
+.form {  
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.span-name{
+      width: 100%; 
+}
+
+.input-nome {
+    width: 100%; 
+    margin-bottom: 10px;
+    border-width: thin;
+    border-style: solid;
+    border-color: #00798a;
+}
+
+.div_number-email{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.span-number{
+    margin-right:15px;
+    width: 180px; 
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+  .input-number {
+    width: 100%; 
+    margin-bottom: 10px;
+    border-width: thin;
+    border-style: solid;
+    border-color: #00798a;
+}
+
+.span-email{
+    width: 180px; 
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.input-email {
+    width: 100%; 
+    margin-bottom: 10px;
+    border-width: thin;
+    border-style: solid;
+    border-color: #00798a;
+}
+
+.span-text{
+    width: 100%;
+}
+
+.input-text {
+    width: 100%;
+    border-width: thin;
+    border-style: solid;
+    border-color: #00798a;
+}
+
+
+.linksButton{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    height: 25px;
+}
+
+.linksButton li{
+    display: block;
+}
+
+.li_PoliticaDados{
+    width: 40%;
+    font-size: 10px;
+    height: 15px;
+    margin:auto;
+    margin-top:0px;
+    margin-bottom: 0;
+}
+
+.li_Web_Developer{
+    width: 40%;
+    font-size: 10px;
+    height: 15px;
+    margin:auto;
+    margin-top:0px;
+    margin-bottom: 0;
+} 
+
+.li_PoliticaDados a{
+   color:white !important;
+   font-weight: bold;
+   position: absolute;
+   bottom: 8px;
+}
+
+.li_Web_Developer a{
+    color:white !important;
+    font-weight: bold;
+    position: absolute;
+   bottom: 8px;
+   text-decoration: underline;
+}
+
+.li-button{
+    vertical-align: middle;
+    text-align: right;  
+    width: 20%;
+    opacity: 0.8;
+}
+
+.button{
+    margin-top:  10px;
+    border-width: 0;
+    color:white !important;
+    font-weight: bold;
+    background-color: black;
+    font-size: 16px;
+    width: 80px;
+    opacity: 0.6;
+    margin-top: 0px;
+}
+
+.button:hover{
+    font-weight: bold;
+}
+
+  

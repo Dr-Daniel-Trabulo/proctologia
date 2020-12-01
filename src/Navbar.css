@@ -1,0 +1,108 @@
+@font-face {
+  font-family: Aileron;
+  src: url(https://fontlibrary.org/face/aileron);
+}
+
+.mainLink{
+  display: row;
+  height: 65px;
+}
+
+.ul{
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top:0;
+  left:0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 100px;
+  color:white !important;
+  background-color: #00798a;
+  font-family: Aileron;
+  font-size: 30px;
+  vertical-align: text-top;
+  position: fixed;
+  top:0;
+  justify-content: space-around;
+}
+
+.li{
+  display: block;
+  height: 45px;
+}
+
+.li_dropDown{
+  display: block;
+  height: 25px;
+  width: 100%;
+  margin-top:0;
+}
+
+
+.li a{
+  color:white !important;
+  font-size: 23px;
+  align-items: center;
+  margin-top:0;
+}
+
+.li_dropDown a{
+  color:black !important;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: white;
+  text-align: center;
+  width: 158px;
+}
+
+.dropdown-item{
+  text-align: center;
+  margin-top:0;
+  margin-bottom: 5px;
+
+}
+
+.mainLink{
+  padding-top:10px
+}
+
+.mainLink p{
+  line-height: 50%;
+  
+}
+
+.mainLinkP1{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+.mainLinkP2{
+  font-size: 20px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.ul a:hover{
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+@media(max-width: 768px) {
+  .BackSidebar .nav {
+    width: 130px;
+  }
+  .BackSidebar .nav-link {
+    padding-left: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 130px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+}
