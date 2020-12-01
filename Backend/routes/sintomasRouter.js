@@ -20,15 +20,12 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/sintomas/editSintomas', jwtMiddleware, (req, res) => {
+router.put('/sintomas/editSintomas', (req, res) => {
     connection.query('UPDATE sintomas SET ? WHERE ID = ?',
-        console.log('qualquer coisa'),
-        console.log(req.body.ID)
-        [req.body, req.body.ID],
+        [req.body, req.body.id],
         (err, results) => {
             if (err) {
                 console.log(err)
-                console.log(req.body)
                 res.status(400).json({ flash: 'Ocorreu um erro' })
             } else {
                 res.status(200).json({ flash: 'Alterado com sucesso' })
@@ -37,7 +34,7 @@ router.put('/sintomas/editSintomas', jwtMiddleware, (req, res) => {
     )
 })
 
-router.delete('/sintomas/deleteSintoma', jwtMiddleware, (req, res) => {
+router.delete('/sintomas/deleteSintoma', (req, res) => {
     connection.query('DELETE FROM sintomas WHERE ID = ?',
         [req.body.ID],
         (err, results) => {
@@ -51,7 +48,7 @@ router.delete('/sintomas/deleteSintoma', jwtMiddleware, (req, res) => {
 }
 )
 
-router.post('/sintomas/addSintoma', jwtMiddleware, (req, res) => {
+router.post('/sintomas/addSintoma', (req, res) => {
     connection.query('INSERT INTO sintomas SET ?',
         [req.body],
         (err, results) => {

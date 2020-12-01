@@ -1,0 +1,22 @@
+@font-face {
+    font-family: Aileron;
+    src: url(https://fontlibrary.org/face/aileron);
+  }
+
+.Main{
+    margin-top: 85px;
+    font-family: Aileron !important;
+    margin-bottom: 170px;
+}
+
+.estrutura{
+    margin-left:100px;
+    margin-right: 100px;
+    text-align: justify;
+}
+
+.titulo{
+font-size: 22px;
+font-weight: bold;
+}
+

@@ -30,7 +30,7 @@ class Contactos extends React.Component {
                 <div className='formasContacto'>
                     <div className='emailTelefone'>
                         <ul className='div-ul'>
-                            <li className='li-contactos'><img className='imagem_email' alt='Email Telefonico doenças anais' src={email} /><a href={`mailto:${this.state.contactos.emailContacto}`}></a>{this.state.contactos.emailContacto}</li>
+                            <li className='li-contactos'><img className='imagem_email' alt='Email Telefonico doenças anais' src={email} /><a href={`mailto:${this.state.contactos.emailContacto}`}>{this.state.contactos.emailContacto}</a></li>
                             <li className='li-contactos'><img className='imagem_telefone' alt='Telefone doenças anais' src={telefone} /><a href={`tel:${this.state.contactos.telefoneContacto}`}>{this.state.contactos.telefoneContacto}</a></li>
                         </ul>
                     </div>

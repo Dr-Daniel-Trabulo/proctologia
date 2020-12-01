@@ -16,7 +16,7 @@ class backofficeDestaquesSintomas extends React.Component {
             destaques: [],
             destaquesDisplay: [],
             publish: '',
-            ID: '',
+            id: '',
             texto: {},
             editorState_texto: EditorState.createEmpty(),
             nome: '',
@@ -90,7 +90,7 @@ class backofficeDestaquesSintomas extends React.Component {
 
                 this.setState({
                     destaquesDisplay: destaque,
-                    ID: destaque.ID,
+                    id: destaque.ID,
                     texto: destaque.texto,
                     nome: destaque.nome,
                     foto_alt1: destaque.foto_alt1,
@@ -128,6 +128,7 @@ class backofficeDestaquesSintomas extends React.Component {
         event.preventDefault()
 
         let {
+            publish,
             destaques,
             editorState_texto,
             destaquesDisplay,
@@ -165,18 +166,18 @@ class backofficeDestaquesSintomas extends React.Component {
     }
 
     handleDelete = () => {
-        let ID = this.state.ID
+        let id = this.state.id
 
         this.state.pathnameSintomas === false ?
             axios
-                .delete('/destaques/destaques/deleteDestaque', { data: { ID } })
+                .delete('/destaques/destaques/deleteDestaque', { data: { id } })
                 .then((res) => {
                     this.setState({ flash: 'Eliminado com sucesso', messageStatus: 'Sucesso' })
-                    console.log(ID)
+                    console.log(id)
                 })
             :
             axios
-                .delete('/sintomas/sintomas/deleteSintoma', { data: { ID } })
+                .delete('/sintomas/sintomas/deleteSintoma', { data: { id } })
                 .then((res) => {
                     this.setState({ flash: 'Eliminado com sucesso', messageStatus: 'Sucesso' })
                 })
@@ -187,7 +188,7 @@ class backofficeDestaquesSintomas extends React.Component {
     handleNewDestaque = () => {
         let {
             destaques,
-            ID,
+            id,
             editorState_texto,
             destaquesDisplay,
             pathnameSintomas,
@@ -263,7 +264,7 @@ class backofficeDestaquesSintomas extends React.Component {
                 <BackOfficeDestaquesSintomasForm
                     destaquesDisplay={this.state.destaquesDisplay}
                     publish={this.state.publish}
-                    ID={this.state.ID}
+                    id={this.state.id}
                     texto={this.state.texto}
                     editorState_texto={this.state.editorState_texto}
                     nome={this.state.nome}

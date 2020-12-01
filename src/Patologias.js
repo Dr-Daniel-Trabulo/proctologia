@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import Footer from './Footer'
+import './PatologiasDestaquesSintomas.css'
+import ReactHtmlParser from "react-html-parser";
+
 
 
 class Patologias extends React.Component {
@@ -29,18 +32,18 @@ class Patologias extends React.Component {
         let patologiaLink = this.props.match.params.patologia
 
         return (
-            <div>
+            <div className='Main'>
                 {
                     this.state.patologias.map((patologia) => {
                         return (
                             <div>
                                 {
                                     patologia.linkPatologia === patologiaLink &&
-                                    <div>
-                                        <div>{patologia.nomePatologia}</div>
-                                        <div>{patologia.sintomasPatologia}</div>
-                                        <div>{patologia.examesPatologia}</div>
-                                        <div>{patologia.tratamentosPatologia}</div>
+                                    <div className='estrutura'>
+                                        <div className='titulo'>{patologia.nomePatologia}</div>
+                                        <div>{ReactHtmlParser(patologia.sintomasPatologia)}</div>
+                                        <div>{ReactHtmlParser(patologia.examesPatologia)}</div>
+                                        <div>{ReactHtmlParser(patologia.tratamentosPatologia)}</div>
                                     </div>
                                 }
                             </div>
@@ -48,7 +51,6 @@ class Patologias extends React.Component {
                     })
                 }
                 <Footer />
-
             </div>
         )
     }

@@ -19,11 +19,12 @@ router.get('/', (req, res) => {
     )
 })
 
-router.put('/patologias/editPatologias', jwtMiddleware, (req, res) => {
+router.put('/patologias/editPatologias', (req, res) => {
     connection.query('UPDATE patologias SET ? WHERE idPatologia = ?',
         [req.body, req.body.idPatologia],
         (err, results) => {
             if (err) {
+                console.log(err)
                 res.status(400).json({ flash: 'Ocorreu um erro' })
             } else {
                 res.status(200).json({ flash: 'Alterado com sucesso' })
@@ -32,7 +33,7 @@ router.put('/patologias/editPatologias', jwtMiddleware, (req, res) => {
     )
 })
 
-router.delete('/patologias/deletePatologia', jwtMiddleware, (req, res) => {
+router.delete('/patologias/deletePatologia', (req, res) => {
     connection.query('DELETE FROM patologias WHERE idPatologia = ?',
         [req.body.idPatologia],
         (err, results) => {
@@ -46,7 +47,7 @@ router.delete('/patologias/deletePatologia', jwtMiddleware, (req, res) => {
 }
 )
 
-router.post('/sintomas/addPatologia', jwtMiddleware, (req, res) => {
+router.post('/sintomas/addPatologia', (req, res) => {
     connection.query('INSERT INTO patologias SET ?',
         [req.body],
         (err, results) => {

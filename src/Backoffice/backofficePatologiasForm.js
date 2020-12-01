@@ -11,7 +11,7 @@ const backofficePatologiasForm = (props) => {
             {
                 props.patologiaDisplay.length !== 0 &&
                 <div>
-                    <form className="NoticiaInput-section" onSubmit={event=>props.handleSubmit(event)}>
+                    <form className="NoticiaInput-section" onSubmit={event => props.handleSubmit(event)}>
                         <div className='input'>
                             <label className="input-section-label">Nome Patologia</label>
                             <input type='text' name='nomePatologia' value={props.nomePatologia} onChange={(event) => props.handleChange(event)} />
@@ -238,7 +238,6 @@ const backofficePatologiasForm = (props) => {
                                         }
                                     }}
                                 />
-
                             </div>
                             <div className='input'>
                                 <label input-section-label>Sintomas</label>

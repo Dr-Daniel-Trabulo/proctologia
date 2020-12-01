@@ -4,6 +4,7 @@ import axios from 'axios'
 import Alert from 'react-bootstrap/Alert';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CopyrightYear from 'react-copyright-year';
 
 // const FormularioContacto = () => {
 //     const { register, handleSubmit, errors } = useForm();
@@ -146,9 +147,7 @@ class FormularioContacto extends React.Component {
     }
 
 
-
     render() {
-
         return (
             <div className='Geral'>
                 <form className='form' onSubmit={this.handleSubmit}>
@@ -202,15 +201,22 @@ class FormularioContacto extends React.Component {
                             required
                         />
                     </span>
-                    <div className='div-button'>
-                        <button className='button' type='submit'>ENVIAR</button>
-                    </div>
+                    <ul className='linksButton'>
+                        <li className='li_PoliticaDados'><a href='' target="_blank" download title='Politica Dados Pessoais Doenças rabo' rel="noopener noreferrer">Política Dados Pessoais</a></li>
+                        <li className='li_Web_Developer'><a href='https://www.linkedin.com/in/antoniobranco1/' target="_blank" title='Software Developer António Branco'>Software Development by António Branco <CopyrightYear /> </a></li>
+                        <li className='li-button'>
+                            <button className='button' type='submit'>ENVIAR</button>
+                        </li>
+                    </ul>
                     <div>
-                        <Alert className="form-alert" show={this.state.showEmailAlert} variant={this.state.emailTypeAlert}>
+                        {/* <Alert className="form-alert" show={this.state.showEmailAlert} variant={this.state.emailTypeAlert}>
                             <FontAwesomeIcon icon={this.state.messageIcon} className="message-icon" />
-                            {this.state.emailTypeAlert === 'success' ? 'Sucesso' : 'Erro'}
-                        </Alert>
-
+                            {this.state.emailTypeAlert === 'success' ?
+                                this.setState({ emailTypeAlert: 'Sucesso' })
+                                :
+                                this.setState({ emailTypeAlert: 'Erro' })
+                            }
+                        </Alert> */}
                     </div>
                 </form>
             </div>

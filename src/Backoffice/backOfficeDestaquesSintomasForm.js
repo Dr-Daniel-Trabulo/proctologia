@@ -15,6 +15,10 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                 <div className='main'>
                     <form onSubmit={props.handleSubmit} className="NoticiaInput-section" >
                         <div className='input'>
+                            <div className="input">
+                                <label className="input-section-label">Nome</label>
+                                <input type='text' name='nome' value={props.nome} onChange={event => props.handleChange(event)} />
+                            </div>
                             <label className="input-section-label">Texto</label>
                             <Editor
                                 editorState={props.editorState_texto}
@@ -61,10 +65,6 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                                 }}
                             />
 
-                        </div>
-                        <div className="input">
-                            <label className="input-section-label">Nome</label>
-                            <input type='text' name='nome' value={props.nome} onChange={event => props.handleChange(event)} />
                         </div>
                         <div className='NoticiaInput-subtitle-foto'>Fotografia 1</div>
                         <div className="input">
@@ -127,6 +127,10 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                     <h3 className='NoticiaInput-title'>{`Novo ${props.seccao}`}</h3>
                     <div>
                         <form className="NoticiaInput-section" onSubmit={props.handleNewDestaque} >
+                            <div className="input">
+                                <label className="input-section-label">Nome</label>
+                                <input type='text' name='nome' value={props.nome} onChange={event => props.handleChange(event)} />
+                            </div>
                             <div className='input'>
                                 <label className="input-section-label">Texto</label>
                                 <Editor
@@ -173,10 +177,6 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                                         }
                                     }}
                                 />
-                            </div>
-                            <div className="input">
-                                <label className="input-section-label">Nome</label>
-                                <input type='text' name='nome' value={props.nome} onChange={event => props.handleChange(event)} />
                             </div>
                             <div className='NoticiaInput-subtitle-foto'>Fotografia 1</div>
                             <div className="input">

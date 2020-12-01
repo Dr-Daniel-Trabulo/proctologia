@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/contactos/editContactos', jwtMiddleware,(req, res) => { 
+router.put('/contactos/editContactos',(req, res) => { 
     connection.query('UPDATE contactos SET ?',
         [req.body],
         (err, results) => {
