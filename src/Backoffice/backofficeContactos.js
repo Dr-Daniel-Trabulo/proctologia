@@ -31,13 +31,15 @@ class backOfficeContactos extends React.Component {
         this.setState({ [name]: value })
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault()
+    handleSubmit = () => {
         const { flash, messageStatus, ...contactos } = this.state
         axios
             .put('/contactos/contactos/editContactos', contactos)
             .then((res) => {
                 this.setState({ flash: 'Alterado com sucesso', messageStatus: 'Sucesso' })
+            })
+            .catch((err) => {
+                this.setState({ flash: 'Ocorreu um errp', messageStatus: 'Erro' })
             })
     }
 

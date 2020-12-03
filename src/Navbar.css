@@ -45,7 +45,8 @@
 
 .li a{
   color:white !important;
-  font-size: 23px;
+  font-size: 21px;
+  font-weight: normal;
   align-items: center;
   margin-top:0;
 }

@@ -2,13 +2,14 @@ import React from 'react'
 import axios from 'axios'
 import Footer from './Footer'
 import ReactHtmlParser from "react-html-parser";
+import './Proctologia.css';
 
 
 class Proctologia extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            texto: {}
+            texto: ''
         }
     }
     componentDidMount = () => {
@@ -16,16 +17,15 @@ class Proctologia extends React.Component {
         axios
             .get('/proctologia')
             .then((res) => {
-                const results = res.data
-                console.log(results)
-                this.setState({ texto: results })
+                const results = res.data[0]
+                this.setState({ texto: results.results })
             })
     }
 
     render() {
         return (
-            <div>
-                <div>{ReactHtmlParser(this.state.texto)}</div>
+            <div className='Main'>
+                <div>{this.state.texto}</div>
                 <Footer />
             </div>
         )
