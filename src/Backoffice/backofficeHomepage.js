@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import PopUp from '../PopUp'
-import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, ContentState, convertToRaw } from "draft-js";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
