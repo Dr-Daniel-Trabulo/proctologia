@@ -3,7 +3,6 @@
     src: url(https://fontlibrary.org/face/aileron);
   }
 
-
 .footer{
     width: 100%;
     padding-left: 10px;
@@ -14,21 +13,25 @@
     padding-bottom: 6px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
+
 .formulario{
-    width:75%;
+    width:100%;
+    display: flex;
+    flex-direction: row;
 }
+
 
 .contactos{
     font-family: Aileron;
     font-size: 15px;
     font-weight: bold;
-    /* padding-right: 20px;
-    padding-left: 20px; */
     color: white;
     width:45%;
     text-align: center;
-    align-items: center;}
+    align-items: center;
+}
 
 .mensagemAgendamento{
     padding-left:40px
@@ -72,3 +75,52 @@
 .imagem_email{
     height: 37px;
 }
+
+.botaoFormulario{
+    width: 50%;
+}
+
+
+@media(max-width:1000px){
+.footer{
+    height: 50px;
+    padding-bottom: 0;
+    padding-top:0;
+    padding-left: 0;
+    display: flex;
+    flex-direction: row;
+    }
+.contactos{
+    height: 100%;
+    width:30%;
+    }
+.telefoneEmail{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0;
+    padding-left: 0;
+    vertical-align: middle; 
+    }
+.contactoTelefone{
+    padding-bottom: 0;
+    vertical-align: middle;
+}    
+.numeroTelefone{
+    height: 100%;
+    vertical-align: middle;
+}
+.formulario{
+    width: 70%;
+}
+.button {
+    padding: 7px 30px;
+    border-radius: 5px;
+    color: #00798a;
+    background-color: white;
+    outline: none;
+    border-style: none;
+    font-weight: 500;
+    width: 100%;
+  }
+}  

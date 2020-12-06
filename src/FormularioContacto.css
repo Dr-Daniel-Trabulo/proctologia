@@ -81,9 +81,10 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content: space-between;
+    justify-content:left;
     margin-bottom: 0px;
     height: 25px;
+    padding-left: 0;
 }
 
 .linksButton li{
@@ -91,7 +92,7 @@
 }
 
 .li_PoliticaDados{
-    width: 40%;
+    width: 30%;
     font-size: 10px;
     height: 15px;
     margin:auto;
@@ -100,7 +101,7 @@
 }
 
 .li_Web_Developer{
-    width: 40%;
+    width: 50%;
     font-size: 10px;
     height: 15px;
     margin:auto;
