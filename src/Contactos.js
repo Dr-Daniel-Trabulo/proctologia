@@ -28,18 +28,16 @@ class Contactos extends React.Component {
         return (
             <div className='Contactos'>
                 <div className='formasContacto'>
-                    <div className='emailTelefone'>
-                        <ul className='div-ul'>
-                            <li className='li-contactos'><img className='imagem_email' alt='Email Telefonico doenças anais' src={email} /><a href={`mailto:${this.state.contactos.emailContacto}`}>{this.state.contactos.emailContacto}</a></li>
-                            <li className='li-contactos'><img className='imagem_telefone' alt='Telefone doenças anais' src={telefone} /><a href={`tel:${this.state.contactos.telefoneContacto}`}>{this.state.contactos.telefoneContacto}</a></li>
-                        </ul>
-                    </div>
                     <div className='formulario' >
-                        <p className='textoFormulario'>Solicite aqui o agendamento da sua consulta ou coloque-nos as suas questões.</p>
+                        <div className='textoFormulario'>Solicite aqui o agendamento da sua consulta ou coloque-nos as suas questões.</div>
                         <div className='formularioComponente'>
                             <FormularioContacto />
                         </div>
                     </div>
+                    <ul className='emailTelefone'>
+                        <li className='li-contactos'><img className='imagem_email' alt='Email Telefonico doenças anais' src={email} /><a href={`mailto:${this.state.contactos.emailContacto}`}>{this.state.contactos.emailContacto}</a></li>
+                        <li className='li-contactos'><img className='imagem_telefone' alt='Telefone doenças anais' src={telefone} /><a href={`tel:${this.state.contactos.telefoneContacto}`}>{this.state.contactos.telefoneContacto}</a></li>
+                    </ul>
                 </div>
                 <div className='googleMaps'>
                     <div className='morada'>
