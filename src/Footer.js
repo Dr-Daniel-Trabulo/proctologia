@@ -6,6 +6,8 @@ import email from './Assets/email.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { withWindowSizeListener } from 'react-window-size-listener';
+import CopyrightYear from 'react-copyright-year';
+
 
 
 class Footer extends React.Component {
@@ -67,23 +69,29 @@ class Footer extends React.Component {
                         </div >
                         :
                         <div className='footer' >
-                            <div className='contactos'>
-                                <ul className='telefoneEmail'>
-                                    <li className='contactoTelefone'>
-                                        <a className='numeroTelefone' href={this.state.contactos.telefoneContacto}>
-                                            <img className='imagem_telefone' alt='Contacto Telefonico doenças anais' src={telefone} />
-                                        </a>
-                                    </li>
-                                    <li className='contactoTelefone'>
-                                        <a className='numeroTelefone' href={`mailto:${this.state.contactos.emailContacto}`}>
-                                            <img className='imagem_email' alt='Contacto Email doenças do anús' src={email} />
-                                        </a>
-                                    </li>
-                                </ul>
+                            <div className='contactosMensagem'>
+                                <div className='contactos'>
+                                    <ul className='telefoneEmail'>
+                                        <li className='contactoTelefone'>
+                                            <a className='numeroTelefone' href={`tel:${this.state.contactos.telefoneContacto}`}>
+                                                <img className='imagem_telefone' alt='Contacto Telefonico doenças anais' src={telefone} />
+                                            </a>
+                                        </li>
+                                        <li className='contactoTelefone'>
+                                            <a className='numeroTelefone' href={`mailto:${this.state.contactos.emailContacto}`}>
+                                                <img className='imagem_email' alt='Contacto Email doenças do anús' src={email} />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className='linkMensagem' >
+                                    <Link to='./contactos_dr_daniel_trabulo'><button className='button'>Agende a sua consulta ou deixe-nos uma mensagem</button></Link>
+                                </div>
                             </div>
-                            <div className='formulario' >
-                                    <button className='button'><Link to='/formulario'>Deixe-nos a sua mensagem</Link></button>
-                            </div>
+                            <span className='linksButton'>
+                                <a className='li_PoliticaDados' href='' target="_blank" download title='Politica Dados Pessoais Doenças rabo' rel="noopener noreferrer">Política Dados Pessoais</a>
+                                <a className='li_Web_Developer' href='https://www.linkedin.com/in/antoniobranco1/' target="_blank" title='Software Developer António Branco'>Software Development by António Branco <CopyrightYear/> </a>
+                            </span>
                         </div >
 
                 }

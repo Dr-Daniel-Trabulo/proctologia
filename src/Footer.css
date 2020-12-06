@@ -76,23 +76,24 @@
     height: 37px;
 }
 
-.botaoFormulario{
-    width: 50%;
-}
-
 
 @media(max-width:1000px){
 .footer{
-    height: 50px;
+    height: 65px;
     padding-bottom: 0;
     padding-top:0;
     padding-left: 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     }
+.contactosMensagem{
+    display: flex;
+    flex-direction: row;
+}
 .contactos{
     height: 100%;
-    width:30%;
+    width:40%;
+    padding-left: 10px;
     }
 .telefoneEmail{
     height: 100%;
@@ -101,26 +102,76 @@
     margin-bottom: 0;
     padding-left: 0;
     vertical-align: middle; 
+    justify-content: space-around;
     }
 .contactoTelefone{
     padding-bottom: 0;
     vertical-align: middle;
+    height: 100%;
 }    
 .numeroTelefone{
     height: 100%;
     vertical-align: middle;
 }
-.formulario{
-    width: 70%;
+.linkMensagem{
+    height: 50px;
+    width: 55%;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top:6px;
+    padding-bottom: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 .button {
-    padding: 7px 30px;
-    border-radius: 5px;
-    color: #00798a;
-    background-color: white;
+    padding-left: 6px;
+    background-color: #00798a;
+    border-color: white;
+    color: white!important;
+    font-weight: bold;
+    opacity: 1;
     outline: none;
-    border-style: none;
+    border-width: 1px;
     font-weight: 500;
+    border-style: solid;
     width: 100%;
+    height: 100%;
+    font-size: 11px;
+    line-height: 1.5;
   }
-}  
+.button a{
+    height: 100%;
+    height: 100%;
+}
+.linksButton{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content:center;
+    margin-bottom: 0px;
+    height: 10px;
+    padding-left: 0;
+}
+.li_PoliticaDados{
+    width: 35%;
+    font-size: 8px;
+    height: 12px;
+    margin:auto;
+    margin-top:0px;
+    margin-bottom: 0;
+    color:white!important;
+    text-align: center;
+
+}
+.li_Web_Developer{
+    width: 60%;
+    font-size: 8px;
+    height: 12px;
+    margin:auto;
+    margin-top:0px;
+    margin-bottom: 0;
+    color:white!important;
+    text-align: center;
+} 
+}
