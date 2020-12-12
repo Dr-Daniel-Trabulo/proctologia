@@ -4,7 +4,6 @@ import axios from 'axios'
 import {
     Navbar, Nav, NavDropdown, Form, FormControl,
 } from 'react-bootstrap';
-//import './Navbar.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Navbar.css'
 
@@ -34,36 +33,40 @@ class NavBar extends React.Component {
         return (
             <div className='main'>
                 <div >
-                    <Nav fixed="top">
-                        <ul className='ul'>
-                            <div className='mainLink'>
-                                <li className='li'><Link to="/">{<p className='mainLinkP1'>Dr. Daniel Trabulo</p>}{<p className='mainLinkP2'>Médico Proctologista</p>}</Link></li>
-                            </div>
-                            <li className='li'><Link to='/proctologia'>O que é a Proctologia?</Link></li>
-                            <li className='li'><Link to='/sintomas_doenca_proctologica'>Sintomas</Link></li>
-                            <li className='li'><NavDropdown title='Patologias' id="basic-nav-dropdown" data-toggle="collapse">
-                                {
-                                    this.state.patologias.map((patologia) => {
-                                        return (
-                                            <NavDropdown.Item key={patologia.idPatologia} href={patologia.nomePatologia}>
-                                                <li className='li_dropDown'>
-                                                    <Link to={`/patologias/${patologia.linkPatologia}`}>
-                                                        {patologia.nomePatologia}
-                                                    </Link>
-                                                </li>
-                                            </NavDropdown.Item>
-                                        )
-                                    })
-                                }
-                            </NavDropdown></li>
-                            <li className='li'><Link to='destaques_doenca_proctologica'>Destaques</Link></li>
-                            <li className='li'><Link to='/contactos_dr_daniel_trabulo'>Contactos</Link></li>
-                        </ul>
-                    </Nav>
+                    <Navbar fixed="top" expand="lg" className="navbar" collapseOnSelect>
+                        <Link to="/">
+                            <Navbar.Brand>
+                                {<p className='mainLinkP1'>Dr. Daniel Trabulo</p>}{<p className='mainLinkP2'>Médico Proctologista</p>}
+                            </Navbar.Brand>
+                        </Link>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" className="header-toggler"/>
+                        {/* <Navbar.Collapse id='basic-navbar-nav'> */}
+                        <Navbar.Collapse id="basic-navbar-nav" className='navbar-collapse'>
+                            <Nav className="navbar-nav">
+                                <Nav.Link class='nav-link'><Link className='li' to='/proctologia'>O que é a Proctologia?</Link></Nav.Link>
+                                <Nav.Link><Link className='li' to='/sintomas_doenca_proctologica'>Sintomas</Link></Nav.Link>
+                                <div className='li'>
+                                    <NavDropdown title='Patologias' id="basic-nav-dropdown" className="nav-header">
+                                        {
+                                            this.state.patologias.map((patologia) => {
+                                                return (
+                                                    <NavDropdown.Item key={patologia.idPatologia} href={patologia.nomePatologia} className='dropdown-item'>
+                                                            <Link to={`/patologias/${patologia.linkPatologia}`}>
+                                                                {patologia.nomePatologia}
+                                                            </Link>
+                                                    </NavDropdown.Item>
+                                                )
+                                            })
+                                        }
+                                    </NavDropdown>
+                                </div>
+                                <Nav.Link><Link className='li' to='destaques_doenca_proctologica'>Destaques</Link></Nav.Link>
+                                <Nav.Link><Link className='li' to='/contactos_dr_daniel_trabulo'>Contactos</Link></Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Navbar>
                 </div>
-
             </div>
-
         )
     }
 }

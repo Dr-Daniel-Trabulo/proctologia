@@ -20,9 +20,11 @@ router.get('/', (req, res) => {
 
 router.put('/proctologia/editProctologia', (req, res) => {
     connection.query('UPDATE proctologia SET ?',
-        req.body,
+        [req.body],
         (err, results) => {
             if (err) {
+                console.log(err)
+                console.log(req.body)
                 res.status(400).json({ flash: 'Ocorreu um erro' })
             } else {
                 res.status(200).json({ flash: 'Alterado com sucesso' })
