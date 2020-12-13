@@ -19,15 +19,15 @@
 .formasContacto{
     display: flex;
     flex-direction: column;
-    width: 200%;
+    width: 100%;
     vertical-align: middle;
 }
 
 .formulario{
     display: flex;
     flex-direction: column;
-    width: 50%;
     padding-bottom: 15px;
+    width: 100%;
 }
 
 .emailTelefone{
@@ -38,6 +38,7 @@
     justify-content: space-around;
     margin-bottom: 0;
     padding-left: 0;
+    width: 100%;
 }
 
 .li-contactos{
@@ -144,17 +145,25 @@
         width: 100%;
         text-align: center;
         justify-content: space-around;
-        padding-top:15px;
+        padding-top: 0px;
         margin-bottom: 0;
         padding-left: 0;
+        height: 100px;
     }
     .li-contactos{
+        font-size: 23px;  
         width: 100%;
-        padding-bottom: 15px;
     }
+ 
     .morada{
-        padding-top:0px;
         padding-bottom: 10px;
+        padding-top:10px;
+    }
+    .morada p{
+        font-size: 17px;
+    }
+    .formulario{
+        padding-bottom: 0px;
     }
 }
 
@@ -173,6 +182,9 @@
 }
 
 @media(max-width:650px){
+    .emailTelefone{
+        height: 80px;
+    }
     .Contactos{
         padding-left: 10px;
         padding-right: 10px;
@@ -194,6 +206,9 @@
         height: 28px;
         padding-right: 5px;
     }
+    .formulario{
+        padding-bottom: 10px;
+    }
 }
 
 @media(max-width:400px){
@@ -204,9 +219,6 @@
     .textoFormulario{
         font-size: 15px;
     }
-    .li-contactos{
-        font-size: 18px;
-    }
     .imagem_email{
         height:21px;
         padding-right: 10px;
@@ -214,5 +226,16 @@
     .imagem_telefone{
         height: 21px;
         padding-right: 5px;
+    }
+    .morada p{
+        font-size: 13px;
+    }
+}
+@media(max-width:300px){
+    .textoFormulario{
+        font-size: 13px;
+    }
+      .li-contactos{
+        font-size: 18px;
     }
 }

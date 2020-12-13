@@ -63,7 +63,7 @@ class Footer extends React.Component {
                                     </li>
                                 </ul>
                             </div>
-                            <div className='formulario' >
+                            <div className='formularioFooter' >
                                 <div className='formularioContacto'><FormularioContacto /></div>
                             </div>
                         </div >

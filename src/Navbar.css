@@ -194,6 +194,7 @@
 @media(max-width:991px){
   .navbar{
     padding-left: 40px;
+    /* width: 100%; */
   }
   .navbar-nav{
     width: 400px;
@@ -218,6 +219,9 @@
     font-size: 16px;
     width: 390px;
   }
+  /* .navbar-toggler{
+    margin-right: 1000px;
+  } */
 }
 @media(max-width:750px){
   .navbar{
