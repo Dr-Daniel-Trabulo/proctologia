@@ -266,3 +266,12 @@
   }
 }
 
+@media(max-width:300px){
+.mainLinkP1{
+  font-size: 20px;
+}
+.mainLinkP2{
+  font-size: 20px;
+}
+}
+

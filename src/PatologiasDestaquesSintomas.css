@@ -20,3 +20,23 @@ font-size: 22px;
 font-weight: bold;
 }
 
+@media(max-width:1100px){
+    .estrutura{
+      margin-left:50px;
+      margin-right: 50px;  
+    }
+  }
+
+@media(max-width:650px){
+   .estrutura{
+     margin-left:30px;
+     margin-right:30px;  
+   }
+ } 
+  @media(max-width:400px){
+    .estrutura{
+      margin-left:25px;
+      margin-right:25px;  
+    }
+  }    
+
