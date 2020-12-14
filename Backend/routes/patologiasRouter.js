@@ -47,8 +47,8 @@ router.delete('/patologias/deletePatologia', (req, res) => {
 }
 )
 
-router.post('/sintomas/addPatologia', (req, res) => {
-    connection.query('INSERT INTO patologias SET ?',
+router.post('/patologias/addPatologia', (req, res) => {
+    connection.query('INSERT INTO patologias SET publish=1, ?',
         [req.body],
         (err, results) => {
             if (err) {

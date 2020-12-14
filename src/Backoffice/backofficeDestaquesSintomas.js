@@ -15,7 +15,7 @@ class backofficeDestaquesSintomas extends React.Component {
         this.state = {
             destaques: [],
             destaquesDisplay: [],
-            publish: '',
+            publish: 1,
             id: '',
             texto: {},
             editorState_texto: EditorState.createEmpty(),
@@ -46,8 +46,6 @@ class backofficeDestaquesSintomas extends React.Component {
                 .then((res) => {
                     const results = res.data
                     this.setState({ destaques: results })
-                    results.publish === 0 ?
-                        this.setState({ publish: 0 }) : this.setState({ publish: 1 })
                 })
             this.setState({ pathnameSintomas: true, seccao: 'Sintoma' })
             path.includes('/new') ?
@@ -60,8 +58,6 @@ class backofficeDestaquesSintomas extends React.Component {
                 .then((res) => {
                     const results = res.data
                     this.setState({ destaques: results })
-                    results.publish === 0 ?
-                        this.setState({ publish: 0 }) : this.setState({ publish: 1 })
 
                 })
             this.setState({ pathnameSintomas: false, seccao: 'Destaque' })
@@ -89,6 +85,7 @@ class backofficeDestaquesSintomas extends React.Component {
                 const formatContentPT = EditorState.createWithContent(contentStatePT);
 
                 this.setState({
+                    publish: destaque.publish,
                     destaquesDisplay: destaque,
                     id: destaque.ID,
                     texto: destaque.texto,
@@ -128,7 +125,6 @@ class backofficeDestaquesSintomas extends React.Component {
         event.preventDefault()
 
         let {
-            publish,
             destaques,
             editorState_texto,
             destaquesDisplay,
@@ -187,6 +183,7 @@ class backofficeDestaquesSintomas extends React.Component {
 
     handleNewDestaque = () => {
         let {
+            publish,
             destaques,
             id,
             editorState_texto,
@@ -235,7 +232,7 @@ class backofficeDestaquesSintomas extends React.Component {
                     this.state.pathNew === false &&
                     <div>
                         <h3 className='NoticiaInput-title'>{`Edição da secção de ${this.state.seccao}s`}</h3>
-                        <div  className="input-top-dropdown">
+                        <div className="input-top-dropdown">
                             <select className='input-section-label-top-dropdown' name='destaques' onChange={event => this.handleClick(event)}>
                                 <option className='input-section-label' selected="selected">{`Seleccione ${this.state.seccao}`}</option>
                                 {this.state.destaques.map((destaque) => {

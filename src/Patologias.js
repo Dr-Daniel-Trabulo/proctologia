@@ -36,6 +36,7 @@ class Patologias extends React.Component {
                 {
                     this.state.patologias.map((patologia) => {
                         return (
+                            patologia.publish === 1 &&
                             <div>
                                 {
                                     patologia.linkPatologia === patologiaLink &&
@@ -48,6 +49,7 @@ class Patologias extends React.Component {
                                 }
                             </div>
                         )
+
                     })
                 }
                 <Footer />

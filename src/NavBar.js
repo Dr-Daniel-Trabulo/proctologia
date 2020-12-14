@@ -39,7 +39,7 @@ class NavBar extends React.Component {
                                 {<p className='mainLinkP1'>Dr. Daniel Trabulo</p>}{<p className='mainLinkP2'>Médico Proctologista</p>}
                             </Navbar.Brand>
                         </Link>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" className="header-toggler"/>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" className="header-toggler" />
                         {/* <Navbar.Collapse id='basic-navbar-nav'> */}
                         <Navbar.Collapse id="basic-navbar-nav" className='navbar-collapse'>
                             <Nav className="navbar-nav">
@@ -50,10 +50,11 @@ class NavBar extends React.Component {
                                         {
                                             this.state.patologias.map((patologia) => {
                                                 return (
+                                                    patologia.publish === 1 &&
                                                     <NavDropdown.Item key={patologia.idPatologia} href={patologia.nomePatologia} className='dropdown-item'>
-                                                            <Link to={`/patologias/${patologia.linkPatologia}`}>
-                                                                {patologia.nomePatologia}
-                                                            </Link>
+                                                        <Link to={`/patologias/${patologia.linkPatologia}`}>
+                                                            {patologia.nomePatologia}
+                                                        </Link>
                                                     </NavDropdown.Item>
                                                 )
                                             })

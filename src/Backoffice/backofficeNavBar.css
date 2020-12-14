@@ -40,7 +40,7 @@
 .BackSidebar .nav {
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 300px;
 }
 
 .BackSidebar .nav-link {
@@ -53,11 +53,11 @@
   letter-spacing: 0.06em;
   padding-bottom: 30px;
   margin-left: 12px;
+  background-color: white;
 
 }
 .BackSidebar .nav-link a {
   color: #013e5a !important;
-
 }
 
 .BackSidebar .nav-link:hover {
@@ -88,6 +88,7 @@
     width: 130px;
     font-size: 12px;
     letter-spacing: 0.04em;
+    background-color: white!important;
   }
   .brasao-logo {
     width: 80px;

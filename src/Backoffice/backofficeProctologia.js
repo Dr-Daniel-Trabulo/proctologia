@@ -68,8 +68,6 @@ class backofficeProctologia extends React.Component {
             })
     }
 
-
-
     render() {
 
         return (

@@ -65,7 +65,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                         <div className="NoticiaInput-section-button">
                             <button className="login-button" type='submit' >GUARDAR</button>
                             <button className="login-button" type='submit' onClick={props.handleDelete}>{`Eliminar ${props.seccao}`} </button>
-                            <button className="login-button" type='checkbox' name='publish' value={props.publish} onClick={props.handleChangeCheckBox} checked>
+                            <button className="login-button" type='checkbox' name='publish' value={props.publish} onClick={props.handleChangeCheckBox}>
                                 <div>{
                                     props.publish === 0 ?
                                         <div>Publicar?</div>
@@ -138,7 +138,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                             </div>
                             <div className="NoticiaInput-section-button">
                                 <button className="login-button" type='submit'>{`Inserir ${props.seccao}`} </button>
-                                <button className="login-button" type='checkbox' name='publish' value={props.publish} onClick={props.handleChangeCheckBox} checked>
+                                {/* <button className="login-button" type='checkbox' name='publish' value={props.publish} onClick={props.handleChangeCheckBox} checked>
                                     <div>{
                                         props.publish === 0 ?
                                             <div>Publicar?</div>
@@ -146,7 +146,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                                             <div>Não Publicar?</div>
                                     }
                                     </div>
-                                </button>
+                                </button> */}
                             </div>
 
                         </form>

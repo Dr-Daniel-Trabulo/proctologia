@@ -36,8 +36,6 @@ class backofficePatologias extends React.Component {
             .then((res) => {
                 const results = res.data
                 this.setState({ patologias: results })
-                results.publish === 0 ?
-                    this.setState({ publish: 0 }) : this.setState({ publish: 1 })
             })
 
 
@@ -78,6 +76,7 @@ class backofficePatologias extends React.Component {
                 const formatContent_tratamentosPatologia = EditorState.createWithContent(contentState_tratamentosPatologia)
 
                 this.setState({
+                    publish: patologia.publish,
                     patologiaDisplay: patologia,
                     nomePatologia: patologia.nomePatologia,
                     tratamentosPatologia: patologia.tratamentosPatologia,
@@ -130,7 +129,6 @@ class backofficePatologias extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-
         let {
             patologias,
             patologiaDisplay,
@@ -172,7 +170,9 @@ class backofficePatologias extends React.Component {
         this.getData()
     }
 
-    HandleNewSintoma = () => {
+    handleNewSintoma = (event) => {
+        event.preventDefault()
+        console.log('HandleNewSintoma')
         let {
             patologias,
             patologiaDisplay,
@@ -182,6 +182,8 @@ class backofficePatologias extends React.Component {
             flash,
             messageStatus,
             pathNew,
+            publish,
+            idPatologia,
             ...patologiasPut
         } = this.state
 
@@ -244,7 +246,7 @@ class backofficePatologias extends React.Component {
                         handleChange={this.handleChange}
                         handleSubmit={this.handleSubmit}
                         handleDelete={this.handleDelete}
-                        HandleNewSintoma={this.HandleNewSintoma}
+                        handleNewSintoma={this.handleNewSintoma}
                         onEditorStateChange_examesPatologia={this.onEditorStateChange_examesPatologia}
                         onEditorStateChange_sintomasPatologia={this.onEditorStateChange_sintomasPatologia}
                         onEditorStateChange_tratamentosPatologia={this.onEditorStateChange_tratamentosPatologia}

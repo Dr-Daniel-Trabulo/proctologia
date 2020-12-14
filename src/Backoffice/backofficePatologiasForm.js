@@ -44,7 +44,7 @@ const backofficePatologiasForm = (props) => {
                             <input type='text' name='linkPatologia' value={props.linkPatologia} placeholder='Expressão sem espaços em branco' onChange={(event) => props.handleChange(event)} />
                         </div>
                         <div className="NoticiaInput-section-button">
-                            <button className="login-button" type='submit'>GUARDAR</button>
+                            <button className="login-button" type='submit' >GUARDAR</button>
                             <button className="login-button" type='submit' onClick={props.handleDelete}>Apagar Patologia</button>
                             <button className="login-button" type='checkbox' name='publish' value={props.publish} onClick={props.handleChangeCheckBox} checked>
                                 <div>{
@@ -68,7 +68,7 @@ const backofficePatologiasForm = (props) => {
                 <div>
                     <h3 className='NoticiaInput-title'>Nova Patologia</h3>
                     <div>
-                        <form className="NoticiaInput-section" onSubmit={props.handleNewSintoma}>
+                        <form className="NoticiaInput-section">
                             <div className='input'>
                                 <label className="input-section-label">Nome Patologia</label>
                                 <input type='text' name='nomePatologia' value={props.nomePatologia} onChange={(event) => props.handleChange(event)} />
@@ -99,8 +99,8 @@ const backofficePatologiasForm = (props) => {
                                 <input type='text' name='linkPatologia' value={props.linkPatologia} placeholder='Expressão sem espaços em branco' onChange={(event) => props.handleChange(event)} />
                             </div>
                             <div className="NoticiaInput-section-button">
-                                <button className="login-button" type='submit'>Criar Nova Patologia</button>
-                                <button className="login-button" type='checkbox' name='publish' value={props.publish} onClick={props.handleChangeCheckBox} checked>
+                                <button className="login-button" type='submit' onClick={event=>props.handleNewSintoma(event)}>Criar Nova Patologia</button>
+                                {/* <button className="login-button" type='submit' name='publish' value={props.publish} onClick={props.handleChangeCheckBox}>
                                     <div>{
                                         props.publish === 0 ?
                                             <div>Publicar?</div>
@@ -108,7 +108,7 @@ const backofficePatologiasForm = (props) => {
                                             <div>Não Publicar?</div>
                                     }
                                     </div>
-                                </button>
+                                </button> */}
                             </div>
                         </form>
                     </div>
