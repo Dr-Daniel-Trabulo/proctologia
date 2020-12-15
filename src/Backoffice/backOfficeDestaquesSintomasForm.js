@@ -26,6 +26,15 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                             editorState={props.editorState_texto}
                             onEditorStateChange={props.onEditorStateChange_texto}
                         />
+                        {/* <div className='NoticiaInput-subtitle-foto'>Fotografia 1</div>
+                        <div className="input">
+                            <label className="input-section-label">Link</label>
+                            <input type='text' name='fotoLink1' value={props.fotoLink1} onChange={event => props.handleChange(event)} />
+                        </div>
+                        <div className="input">
+                            <label className="input-section-label">Descrição</label>
+                            <input type='text' name='foto_alt1' value={props.foto_alt1} onChange={event => props.handleChange(event)} />
+                        </div> */}
                         <div className='NoticiaInput-subtitle-foto'>Fotografia 1</div>
                         <div className="input">
                             <label className="input-section-label">Link</label>
@@ -35,6 +44,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                             <label className="input-section-label">Descrição</label>
                             <input type='text' name='foto_alt1' value={props.foto_alt1} onChange={event => props.handleChange(event)} />
                         </div>
+
                         <div className='NoticiaInput-subtitle-foto'>Fotografia 2</div>
                         <div className="input">
                             <label className="input-section-label">Link</label>
@@ -105,7 +115,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                             </div>
                             <div className='input'>
                                 <label className="input-section-label">Descrição</label>
-                                <input type='text' na me='foto_alt1' value={props.foto_alt1} onChange={event => props.handleChange(event)} />
+                                <input type='text' name='foto_alt1' value={props.foto_alt1} onChange={event => props.handleChange(event)} />
                             </div>
                             <div className='NoticiaInput-subtitle-foto'>Fotografia 2</div>
                             <div className='input'>
