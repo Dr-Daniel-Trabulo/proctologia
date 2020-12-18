@@ -4,6 +4,10 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import 'rc-datepicker/lib/style.css';
 import PopUp from '../PopUp'
 import TextEditor from './TextEditor'
+import Alert from 'react-bootstrap/Alert';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const backofficePatologiasForm = (props) => {
     return (
@@ -43,9 +47,17 @@ const backofficePatologiasForm = (props) => {
                             <label className="input-section-label">Link</label>
                             <input type='text' name='linkPatologia' value={props.linkPatologia} placeholder='Expressão sem espaços em branco' onChange={(event) => props.handleChange(event)} />
                         </div>
+                        <Alert className="form-alert" show={props.showEmailAlert} variant={props.emailTypeAlert}>
+                            <FontAwesomeIcon icon={props.messageIcon} className="message-icon" />
+                            {props.emailTypeAlert === 'successDelete' && 'Patologia apagada com Sucesso'}
+                            {props.emailTypeAlert === 'dangerDelete' && 'Erro ao apagar Patologia. Tente de novo'}
+                            {props.emailTypeAlert === 'success' && 'Patologia alterada com Sucesso'}
+                            {props.emailTypeAlert === 'danger' && 'Erro ao editar Patologia. Tente de novo'}
+
+                        </Alert>
                         <div className="NoticiaInput-section-button">
                             <button className="login-button" type='submit' >GUARDAR</button>
-                            <button className="login-button" type='submit' onClick={props.handleDelete}>Apagar Patologia</button>
+                            <button className="login-button" type='submit' onClick={event => props.handleDelete(event)}>Apagar Patologia</button>
                             <button className="login-button" type='checkbox' name='publish' value={props.publish} onClick={props.handleChangeCheckBox} checked>
                                 <div>{
                                     props.publish === 0 ?
@@ -57,10 +69,8 @@ const backofficePatologiasForm = (props) => {
                             </button>
                         </div>
                     </form>
-                    <PopUp
-                        flashInput={props.flash}
-                        typeMessage={props.messageStatus}
-                    />
+
+
                 </div>
             }
             {
@@ -98,17 +108,13 @@ const backofficePatologiasForm = (props) => {
                                 <label input-section-label>Link</label>
                                 <input type='text' name='linkPatologia' value={props.linkPatologia} placeholder='Expressão sem espaços em branco' onChange={(event) => props.handleChange(event)} />
                             </div>
+                            <Alert className="form-alert" show={props.showEmailAlert} variant={props.emailTypeAlert}>
+                                <FontAwesomeIcon icon={props.messageIcon} className="message-icon" />
+                                {props.emailTypeAlert === 'successPost' && 'Patologia criada com Sucesso'}
+                                {props.emailTypeAlert === 'dangerPost' && 'Erro ao criar patologia. Tente de novo'}
+                            </Alert>
                             <div className="NoticiaInput-section-button">
-                                <button className="login-button" type='submit' onClick={event=>props.handleNewSintoma(event)}>Criar Nova Patologia</button>
-                                {/* <button className="login-button" type='submit' name='publish' value={props.publish} onClick={props.handleChangeCheckBox}>
-                                    <div>{
-                                        props.publish === 0 ?
-                                            <div>Publicar?</div>
-                                            :
-                                            <div>Não Publicar?</div>
-                                    }
-                                    </div>
-                                </button> */}
+                                <button className="login-button" type='submit' onClick={event => props.handleNewSintoma(event)}>Criar Nova Patologia</button>
                             </div>
                         </form>
                     </div>

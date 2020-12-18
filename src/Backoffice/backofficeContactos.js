@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios'
-import PopUp from '../PopUp'
+import Alert from 'react-bootstrap/Alert';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 class backOfficeContactos extends React.Component {
     constructor(props) {
@@ -9,8 +12,9 @@ class backOfficeContactos extends React.Component {
             emailContacto: '',
             telefoneContacto: '',
             moradaContacto: '',
-            flash: '',
-            messageStatus: ''
+            showEmailAlert: false,
+            emailTypeAlert: '',
+            messageIcon: faCheck
         }
     }
 
@@ -31,23 +35,39 @@ class backOfficeContactos extends React.Component {
         this.setState({ [name]: value })
     }
 
-    handleSubmit = () => {
-        const { flash, messageStatus, ...contactos } = this.state
+    handleSubmit = (event) => {
+        event.preventDefault()
+        const {
+            showEmailAlert,
+            emailTypeAlert,
+            messageIcon,
+            ...contactos } = this.state
         axios
             .put('/contactos/contactos/editContactos', contactos)
             .then((res) => {
-                this.setState({ flash: 'Alterado com sucesso', messageStatus: 'Sucesso' })
+                this.setState({ emailTypeAlert: 'success', showEmailAlert: true })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                    window.location.reload()
+                }, 5000);
+
             })
             .catch((err) => {
-                this.setState({ flash: 'Ocorreu um errp', messageStatus: 'Erro' })
+                this.setState({ emailTypeAlert: 'danger', showEmailAlert: true, messageIcon: faTimes })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                }, 5000);
             })
     }
-
     render() {
-
         return (
             <div className="ContatoInput">
                 <h3 className='NoticiaInput-title'>Edição Contactos</h3>
+                <Alert className="form-alert" show={this.state.showEmailAlert} variant={this.state.emailTypeAlert}>
+                    <FontAwesomeIcon icon={this.state.messageIcon} className="message-icon" />
+                    {this.state.emailTypeAlert === 'success' && 'Alteração efectuada com Sucesso'}
+                    {this.state.emailTypeAlert === 'danger' && 'Erro! Alteração não efectuada.Tente de novo'}
+                </Alert>
                 <form className="NoticiaInput-section" onSubmit={event => this.handleSubmit(event)}>
                     <div className='input'>
                         <label className="input-section-label">Email Contacto</label>
@@ -67,10 +87,6 @@ class backOfficeContactos extends React.Component {
                     </button>
                     </div>
                 </form>
-                <PopUp
-                    flashInput={this.state.flash}
-                    typeMessage={this.state.messageStatus}
-                />
             </div>
         )
     }

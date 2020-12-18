@@ -6,6 +6,9 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'rc-datepicker/lib/style.css';
+import Alert from 'react-bootstrap/Alert';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BackofficePatologiasForm from './backofficePatologiasForm'
 
 class backofficePatologias extends React.Component {
@@ -25,8 +28,9 @@ class backofficePatologias extends React.Component {
             editorState_sintomasPatologia: EditorState.createEmpty(),
             editorState_tratamentosPatologia: EditorState.createEmpty(),
             pathNew: '',
-            flash: '',
-            messageStatus: ''
+            showEmailAlert: false,
+            emailTypeAlert: '',
+            messageIcon: faCheck
         }
     }
 
@@ -37,8 +41,6 @@ class backofficePatologias extends React.Component {
                 const results = res.data
                 this.setState({ patologias: results })
             })
-
-
 
         let path = this.props.history.location.pathname
         path.includes('/new') ?
@@ -132,42 +134,55 @@ class backofficePatologias extends React.Component {
         let {
             patologias,
             patologiaDisplay,
-            flash,
             editorState_examesPatologia,
             editorState_sintomasPatologia,
             editorState_tratamentosPatologia,
-            messageStatus,
             pathNew,
+            showEmailAlert,
+            emailTypeAlert,
+            messageIcon,
             ...patologiasPut
         } = this.state
 
         axios
             .put('/patologias/patologias/editPatologias', patologiasPut)
             .then((res) => {
-                console.log(patologiasPut)
-                this.setState({ flash: 'Alterado com Sucesso', messageStatus: 'Sucesso' })
+                this.setState({ emailTypeAlert: 'success', showEmailAlert: true })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                    window.location.reload()
+                }, 5000);
             })
             .catch((err) => {
-                console.log(patologiasPut)
-                this.setState({ flash: 'Ocorreu um erro', messageStatus: 'Erro' })
+                this.setState({ emailTypeAlert: 'danger', showEmailAlert: true, messageIcon: faTimes })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                }, 5000);
+
             })
-        this.props.history.push({ pathname: '/backoffice/patologias' })
 
     }
 
-    handleDelete = () => {
+    handleDelete = (event) => {
+        event.preventDefault()
         let idPatologia = this.state.idPatologia
 
         axios
-            .delete('/patologias/patologias/deletePatologia', { data: { idPatologia } })
-            .then((res) => {
-                this.setState({ flash: 'Apagado com sucesso', messageStatus: 'Sucesso' })
-            })
-            .catch((res) => {
-                this.setState({ flash: 'Ocorreu um erro', messageStatus: 'Erro' })
-            })
-        window.location.reload()
-        this.getData()
+        .delete('/patologias/patologias/deletePatologia', { data: { idPatologia } })
+        .then((res) => {
+            this.setState({ emailTypeAlert: 'successDelete', showEmailAlert: true })
+            window.setTimeout(() => {
+                this.setState({ showEmailAlert: false })
+                window.location.reload()
+                this.getData()
+            }, 5000);
+        })
+        .catch((res) => {
+            this.setState({ emailTypeAlert: 'dangerDelete', showEmailAlert: true, messageIcon: faTimes })
+            window.setTimeout(() => {
+                this.setState({ showEmailAlert: false })
+            }, 5000);
+        })
     }
 
     handleNewSintoma = (event) => {
@@ -179,35 +194,44 @@ class backofficePatologias extends React.Component {
             editorState_examesPatologia,
             editorState_sintomasPatologia,
             editorState_tratamentosPatologia,
-            flash,
-            messageStatus,
             pathNew,
             publish,
             idPatologia,
+            showEmailAlert,
+            emailTypeAlert,
+            messageIcon,
             ...patologiasPut
         } = this.state
 
         axios
             .post('/patologias/patologias/addPatologia', patologiasPut)
             .then((res) => {
-                this.setState({ flash: 'Sintoma adicionado com sucesso', messageStatus: 'Sucesso' })
+                this.setState({ emailTypeAlert: 'successPost', showEmailAlert: true })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                    // window.location.reload()
+                    this.getData()
+                }, 5000);
             })
             .catch((err) => {
-                this.setState({ flash: 'Erro ao Adicionar sintoma', messageStatus: 'Erro' })
+                this.setState({ emailTypeAlert: 'dangerPost', showEmailAlert: true, messageIcon: faTimes })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                }, 5000);
             })
-        this.props.history.push({ pathname: '/backoffice/patologias' })
     }
-
     handleChangeCheckBox = (event) => {
         event.preventDefault()
         this.state.publish === 0 ?
             this.setState({ publish: 1 }) : this.setState({ publish: 0 })
     }
 
+
     render() {
         return (
-            <div className="ContatoInput">
-                {this.state.pathNew === false &&
+            <div className="ContatoInput" >
+                {
+                    this.state.pathNew === false &&
                     <div>
                         <h3 className='NoticiaInput-title'>Edição Patologia</h3>
                         <div className="input-top-dropdown">
@@ -227,7 +251,7 @@ class backofficePatologias extends React.Component {
                         </div>
                     </div>
                 }
-                <div>
+                < div >
                     <BackofficePatologiasForm
                         patologiaDisplay={this.state.patologiaDisplay}
                         publish={this.state.publish}
@@ -241,8 +265,9 @@ class backofficePatologias extends React.Component {
                         editorState_tratamentosPatologia={this.state.editorState_tratamentosPatologia}
                         linkPatologia={this.state.linkPatologia}
                         idPatologia={this.state.idPatologia}
-                        flash={this.state.flash}
-                        messageStatus={this.state.messageStatus}
+                        showEmailAlert={this.state.showEmailAlert}
+                        emailTypeAlert={this.state.emailTypeAlert}
+                        messageIcon={this.state.messageIcon}
                         handleChange={this.handleChange}
                         handleSubmit={this.handleSubmit}
                         handleDelete={this.handleDelete}
@@ -253,7 +278,7 @@ class backofficePatologias extends React.Component {
                         handleChangeCheckBox={this.handleChangeCheckBox}
                     />
                 </div>
-            </div>
+            </div >
         )
     }
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import PopUp from '../PopUp'
 import './backoffice.css'
 import TextEditor from './TextEditor'
 import { EditorState, ContentState, convertToRaw } from "draft-js";
@@ -8,6 +7,10 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'rc-datepicker/lib/style.css';
+import Alert from 'react-bootstrap/Alert';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 
 class backofficeProctologia extends React.Component {
@@ -16,8 +19,9 @@ class backofficeProctologia extends React.Component {
         this.state = {
             texto: {},
             editorState_texto: EditorState.createEmpty(),
-            flash: '',
-            messageStatus: ''
+            showEmailAlert: false,
+            emailTypeAlert: '',
+            messageIcon: faCheck
         }
     }
 
@@ -36,7 +40,7 @@ class backofficeProctologia extends React.Component {
 
                 const formatContent_texto = EditorState.createWithContent(contentState_texto)
 
-                this.setState({ texto: formatContent_texto })
+                this.setState({ editorState_texto: formatContent_texto })
             })
     }
 
@@ -52,19 +56,28 @@ class backofficeProctologia extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         let {
-            flash,
-            messageStatus,
             editorState_texto,
+            showEmailAlert,
+            emailTypeAlert,
+            messageIcon,
             ...texto
         } = this.state
         axios
-            .put('/proctologia/proctologia/editProctologia', texto)
+            .put('/proctologia/proctologia/editProctologia!', texto)
             .then((res) => {
-                console.log(texto)
-                this.setState({ flash: 'Alterado com Sucesso', messageStatus: 'Sucesso' })
+                this.setState({ emailTypeAlert: 'success', showEmailAlert: true })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                    window.location.reload()
+                }, 5000);
+
             })
             .catch((err) => {
-                this.setState({ flash: 'Ocorreu um erro', messageStatus: 'Erro' })
+                this.setState({ emailTypeAlert: 'danger', showEmailAlert: true, messageIcon: faTimes })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                }, 5000);
+
             })
     }
 
@@ -85,10 +98,11 @@ class backofficeProctologia extends React.Component {
                         <button className="login-button" type='submit'>GUARDAR</button>
                     </div>
                 </form>
-                <PopUp
-                    flashInput={this.state.flash}
-                    typeMessage={this.state.messageStatus}
-                />
+                <Alert className="form-alert" show={this.state.showEmailAlert} variant={this.state.emailTypeAlert}>
+                    <FontAwesomeIcon icon={this.state.messageIcon} className="message-icon" />
+                    {this.state.emailTypeAlert === 'success' && 'Alterado com Sucesso'}
+                    {this.state.emailTypeAlert === 'danger' && 'Erro ao alterar. Tente de novo'}
+                </Alert>
             </div>
         )
     }

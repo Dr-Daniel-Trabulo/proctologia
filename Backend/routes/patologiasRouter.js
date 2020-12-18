@@ -24,10 +24,13 @@ router.put('/patologias/editPatologias', (req, res) => {
         [req.body, req.body.idPatologia],
         (err, results) => {
             if (err) {
-                console.log(err)
-                res.status(400).json({ flash: 'Ocorreu um erro' })
+                res.json({
+                    code: 500,
+                })
             } else {
-                res.status(200).json({ flash: 'Alterado com sucesso' })
+                res.json({
+                    code: 200,
+                })
             }
         }
     )
@@ -36,16 +39,27 @@ router.put('/patologias/editPatologias', (req, res) => {
 router.delete('/patologias/deletePatologia', (req, res) => {
     connection.query('DELETE FROM patologias WHERE idPatologia = ?',
         [req.body.idPatologia],
+        //     (err, results) => {
+        //         if (err) {
+        //             res.status(400).json({ flash: 'Ocorreu um erro ao eliminar' })
+        //         } else {
+        //             res.status(200).json({ flash: 'Eliminado com sucesso' })
+        //         }
+        //     }
+        // )
         (err, results) => {
             if (err) {
-                res.status(400).json({ flash: 'Ocorreu um erro ao eliminar' })
+                res.json({
+                    code: 500,
+                })
             } else {
-                res.status(200).json({ flash: 'Eliminado com sucesso' })
+                res.json({
+                    code: 200,
+                })
             }
         }
     )
-}
-)
+})
 
 router.post('/patologias/addPatologia', (req, res) => {
     connection.query('INSERT INTO patologias SET publish=1, ?',

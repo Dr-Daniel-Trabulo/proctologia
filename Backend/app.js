@@ -128,6 +128,7 @@ app.post('/email', (req, res) => {
         }
         smtpTransporter.close();
     });
+    
     if (req.successMessage) {
         res.json({
             code: 200,

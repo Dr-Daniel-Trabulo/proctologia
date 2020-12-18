@@ -7,6 +7,9 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'rc-datepicker/lib/style.css';
+import Alert from 'react-bootstrap/Alert';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './backoffice.css'
 
 class backofficeDestaquesSintomas extends React.Component {
@@ -32,7 +35,10 @@ class backofficeDestaquesSintomas extends React.Component {
             pathNew: '',
             seccao: '',
             flash: '',
-            messageStatus: ''
+            messageStatus: '',
+            showEmailAlert: false,
+            emailTypeAlert: '',
+            messageIcon: faCheck
         }
     }
 
@@ -133,6 +139,9 @@ class backofficeDestaquesSintomas extends React.Component {
             seccao,
             flash,
             messageStatus,
+            showEmailAlert,
+            emailTypeAlert,
+            messageIcon,
             ...destaquesDisplayPut
         } = this.state
 
@@ -140,48 +149,80 @@ class backofficeDestaquesSintomas extends React.Component {
             axios
                 .put('/destaques/destaques/editDestaques', destaquesDisplayPut)
                 .then((res) => {
-                    this.setState({ flash: 'Alterado com sucesso', messageStatus: 'Sucesso' })
+                    this.setState({ emailTypeAlert: 'success', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
                 })
                 .catch((err) => {
-                    this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
+                    this.setState({ emailTypeAlert: 'danger', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
                 })
-            this.props.history.push({ pathname: '/backoffice/destaques' })
         } else {
             axios
-                .put('/sintomas/sintomas/editSintomas', destaquesDisplayPut)
-                .then((res) => {
-                    console.log(destaquesDisplayPut)
-                    this.setState({ flash: 'Alterado com sucesso', messageStatus: 'Sucesso' })
+                .put('/sintomas/sintomas/editSintomas!', destaquesDisplayPut)
+                .then((results) => {
+                    this.setState({ emailTypeAlert: 'success', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
                 })
                 .catch((err) => {
-                    console.log(destaquesDisplayPut)
-                    this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
+                    this.setState({ emailTypeAlert: 'danger', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
                 })
-            this.props.history.push({ pathname: '/backoffice/sintomas' })
         }
     }
 
-    handleDelete = () => {
+    handleDelete = (event) => {
+        event.preventDefault()
         let id = this.state.id
 
         this.state.pathnameSintomas === false ?
             axios
                 .delete('/destaques/destaques/deleteDestaque', { data: { id } })
-                .then((res) => {
-                    this.setState({ flash: 'Eliminado com sucesso', messageStatus: 'Sucesso' })
-                    console.log(id)
+                .then((response) => {
+                    this.setState({ emailTypeAlert: 'successDelete', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
+                })
+                .catch((err) => {
+                    console.log('err')
+                    this.setState({ emailTypeAlert: 'dangerDelete', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                    }, 5000);
                 })
             :
             axios
                 .delete('/sintomas/sintomas/deleteSintoma', { data: { id } })
-                .then((res) => {
-                    this.setState({ flash: 'Eliminado com sucesso', messageStatus: 'Sucesso' })
+                .then((results) => {
+                    this.setState({ emailTypeAlert: 'successDelete', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
                 })
-        window.location.reload()
-        this.getData()
+                .catch((err) => {
+                    this.setState({ emailTypeAlert: 'dangerDelete', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                    }, 5000);
+                })
     }
 
-    handleNewDestaque = () => {
+    handleNewDestaque = (event) => {
+        event.preventDefault()
         let {
             publish,
             destaques,
@@ -193,6 +234,9 @@ class backofficeDestaquesSintomas extends React.Component {
             seccao,
             flash,
             messageStatus,
+            showEmailAlert,
+            emailTypeAlert,
+            messageIcon,
             ...destaquesDisplayPost
         } = this.state
 
@@ -200,22 +244,34 @@ class backofficeDestaquesSintomas extends React.Component {
             axios
                 .post('/destaques/destaques/addDestaque', destaquesDisplayPost)
                 .then((res) => {
-                    this.setState({ flash: 'Adicionado com sucesso', messageStatus: 'Sucesso' })
+                    this.setState({ emailTypeAlert: 'successPost', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        this.props.history.push({ pathname: '/backoffice/destaques' })
+                    }, 5000);
                 })
                 .catch((err) => {
-                    this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
+                    this.setState({ emailTypeAlert: 'dangerPost', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                    }, 5000);
                 })
-            this.props.history.push({ pathname: '/backoffice/destaques' })
         } else {
             axios
                 .post('/sintomas/sintomas/addSintoma', destaquesDisplayPost)
                 .then((res) => {
-                    this.setState({ flash: 'Adicionado com sucesso', messageStatus: 'Sucesso' })
+                    this.setState({ emailTypeAlert: 'successPost', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        this.props.history.push({ pathname: '/backoffice/sintomas' })
+                    }, 5000);
                 })
                 .catch((err) => {
-                    this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
+                    this.setState({ emailTypeAlert: 'dangerPost', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                    }, 5000);
                 })
-            this.props.history.push({ pathname: '/backoffice/sintomas' })
         }
     }
 
@@ -278,6 +334,9 @@ class backofficeDestaquesSintomas extends React.Component {
                     seccao={this.state.seccao}
                     flash={this.state.flash}
                     messageStatus={this.state.messageStatus}
+                    showEmailAlert={this.state.showEmailAlert}
+                    emailTypeAlert={this.state.emailTypeAlert}
+                    messageIcon={this.state.messageIcon}
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                     handleDelete={this.handleDelete}

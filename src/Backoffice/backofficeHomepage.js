@@ -1,13 +1,14 @@
 import React from 'react'
 import axios from 'axios'
-import PopUp from '../PopUp'
 import { EditorState, ContentState, convertToRaw } from "draft-js";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'rc-datepicker/lib/style.css';
 import TextEditor from './TextEditor'
-
+import Alert from 'react-bootstrap/Alert';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class backofficeHomepage extends React.Component {
 
@@ -17,8 +18,9 @@ class backofficeHomepage extends React.Component {
             CV_text: {},
             editor_State_CV_text: EditorState.createEmpty(),
             CV_pic: '',
-            flash: '',
-            messageStatus: ''
+            showEmailAlert: false,
+            emailTypeAlert: '',
+            messageIcon: faCheck
         }
     }
 
@@ -61,18 +63,37 @@ class backofficeHomepage extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const { editor_State_CV_text, flash, messageStatus, ...homepage } = this.state
+        const {
+            editor_State_CV_text,
+            showEmailAlert,
+            emailTypeAlert,
+            messageIcon,
+            ...homepage } = this.state
         axios
             .put('/homepage/homepage/editHomepage', homepage)
             .then((res) => {
-                this.setState({ flash: 'Alterado com Sucesso', messageStatus: 'Sucesso' })
+                this.setState({ emailTypeAlert: 'success', showEmailAlert: true })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                    window.location.reload()
+                }, 5000);
+            })
+            .catch((err) => {
+                this.setState({ emailTypeAlert: 'danger', showEmailAlert: true, messageIcon: faTimes })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                }, 5000);
             })
     }
-
     render() {
         return (
             <div className="ContatoInput">
                 <h3 className='NoticiaInput-title'>Edição Homepage</h3>
+                <Alert className="form-alert" show={this.state.showEmailAlert} variant={this.state.emailTypeAlert}>
+                    <FontAwesomeIcon icon={this.state.messageIcon} className="message-icon" />
+                    {this.state.emailTypeAlert === 'success' && 'Alteração efectuada com Sucesso'}
+                    {this.state.emailTypeAlert === 'danger' && 'Erro! Alteração não efectuada.Tente de novo'}
+                </Alert>
                 <form className="NoticiaInput-section" onSubmit={event => this.handleSubmit(event)}>
                     <div className='input'>
                         <label className="input-section-label">Texto Apresentação</label>
@@ -89,10 +110,6 @@ class backofficeHomepage extends React.Component {
                         <button className="login-button" type='submit'>GUARDAR</button>
                     </div>
                 </form>
-                <PopUp
-                    flashInput={this.state.flash}
-                    typeMessage={this.state.messageStatus}
-                />
             </div>
         )
     }
