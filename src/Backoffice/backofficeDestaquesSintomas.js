@@ -1,7 +1,8 @@
 import React from 'react';
 import BackOfficeDestaquesSintomasForm from './backOfficeDestaquesSintomasForm'
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import  Link  from "react-router-dom/Link";
+// import  {Link}  from "react-router-dom";
 import { EditorState, ContentState, convertToRaw } from "draft-js";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
@@ -247,7 +248,7 @@ class backofficeDestaquesSintomas extends React.Component {
                     this.setState({ emailTypeAlert: 'successPost', showEmailAlert: true })
                     window.setTimeout(() => {
                         this.setState({ showEmailAlert: false })
-                        this.props.history.push({ pathname: '/backoffice/destaques' })
+                        window.location.href="/backoffice/destaques"
                     }, 5000);
                 })
                 .catch((err) => {
@@ -263,7 +264,7 @@ class backofficeDestaquesSintomas extends React.Component {
                     this.setState({ emailTypeAlert: 'successPost', showEmailAlert: true })
                     window.setTimeout(() => {
                         this.setState({ showEmailAlert: false })
-                        this.props.history.push({ pathname: '/backoffice/sintomas' })
+                        window.location.href="/backoffice/sintomas"
                     }, 5000);
                 })
                 .catch((err) => {
@@ -299,13 +300,13 @@ class backofficeDestaquesSintomas extends React.Component {
                             </select>
                         </div>
                         {this.state.pathnameSintomas === false ?
-                            <Link Link to='/backoffice/destaques/new' >
+                            <Link Link to='/backoffice/destaques/new' onClick={() => {window.location.href="/backoffice/destaques/new"}}>
                                 <div className="NoticiaInput-section-button">
                                     <button className="login-button" type='submit'>Novo Destaque</button>
                                 </div>
                             </Link>
                             :
-                            <Link Link to='/backoffice/sintomas/new' >
+                            <Link Link to='/backoffice/sintomas/new' onClick={() => {window.location.href="/backoffice/sintomas/new"}}>
                                 <div className="NoticiaInput-section-button">
                                     <button className="login-button" type='submit'>Novo Sintoma</button>
                                 </div>

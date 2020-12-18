@@ -63,7 +63,7 @@ class backofficeProctologia extends React.Component {
             ...texto
         } = this.state
         axios
-            .put('/proctologia/proctologia/editProctologia!', texto)
+            .put('/proctologia/proctologia/editProctologia', texto)
             .then((res) => {
                 this.setState({ emailTypeAlert: 'success', showEmailAlert: true })
                 window.setTimeout(() => {

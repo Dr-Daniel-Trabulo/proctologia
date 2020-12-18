@@ -168,21 +168,21 @@ class backofficePatologias extends React.Component {
         let idPatologia = this.state.idPatologia
 
         axios
-        .delete('/patologias/patologias/deletePatologia', { data: { idPatologia } })
-        .then((res) => {
-            this.setState({ emailTypeAlert: 'successDelete', showEmailAlert: true })
-            window.setTimeout(() => {
-                this.setState({ showEmailAlert: false })
-                window.location.reload()
-                this.getData()
-            }, 5000);
-        })
-        .catch((res) => {
-            this.setState({ emailTypeAlert: 'dangerDelete', showEmailAlert: true, messageIcon: faTimes })
-            window.setTimeout(() => {
-                this.setState({ showEmailAlert: false })
-            }, 5000);
-        })
+            .delete('/patologias/patologias/deletePatologia', { data: { idPatologia } })
+            .then((res) => {
+                this.setState({ emailTypeAlert: 'successDelete', showEmailAlert: true })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                    window.location.reload()
+                    this.getData()
+                }, 5000);
+            })
+            .catch((res) => {
+                this.setState({ emailTypeAlert: 'dangerDelete', showEmailAlert: true, messageIcon: faTimes })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                }, 5000);
+            })
     }
 
     handleNewSintoma = (event) => {
@@ -209,7 +209,7 @@ class backofficePatologias extends React.Component {
                 this.setState({ emailTypeAlert: 'successPost', showEmailAlert: true })
                 window.setTimeout(() => {
                     this.setState({ showEmailAlert: false })
-                    // window.location.reload()
+                    window.location.href="/backoffice/patologias"
                     this.getData()
                 }, 5000);
             })
@@ -243,7 +243,7 @@ class backofficePatologias extends React.Component {
                                     )
                                 })}
                             </select>
-                            <Link to='/backoffice/patologias/new'>
+                            <Link to='/backoffice/patologias/new' onClick={() => {window.location.href="/backoffice/patologias/new"}}>
                                 <div className="NoticiaInput-section-button">
                                     <button className="login-button">Nova Patologia</button>
                                 </div>
