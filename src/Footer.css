@@ -1,7 +1,14 @@
 @font-face {
-    font-family: Aileron;
-    src: url(https://fontlibrary.org/face/aileron);
-  }
+    font-family: 'Aileron';
+    src: url('./Fonts/Aileron-Thin-webfont.eot');
+    src: url('./Fonts/Aileron-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./Fonts/Aileron-Thin-webfont.woff') format('woff'),
+         url('./Fonts/Aileron-Thin-webfont.ttf') format('truetype'),
+         url('./Fonts/Aileron-Thin-webfont.svg#aileronthin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 .footer{
     width: 100%;
@@ -14,12 +21,14 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    height: 150px;
 }
 
-.formulario{
-    width:100%;
+.formularioFooter{
+    width:50%;
     display: flex;
     flex-direction: row;
+    padding-bottom: 0;
 }
 
 
@@ -31,11 +40,9 @@
     width:45%;
     text-align: center;
     align-items: center;
+    height: 140px;
 }
 
-.mensagemAgendamento{
-    padding-left:40px
-}
 
 .mensagemAgendamento p{
    height: 12px;
@@ -46,6 +53,9 @@
     flex-direction: column;
     align-items: center ;
     justify-content: center;
+    text-align: center;
+    padding-left: 0;
+    margin-bottom: 0;
 }
 
 .telefoneEmail li{
@@ -56,7 +66,6 @@
 .contactoTelefone{
     text-align: center;
     line-height: 2.5;
-    padding-bottom: 8px;
     font-weight: bold;
     font-size: 20px;
     color: white;
@@ -79,7 +88,7 @@
 
 @media(max-width:1000px){
 .footer{
-    height: 65px;
+    height: 55px;
     padding-bottom: 0;
     padding-top:0;
     padding-left: 0;
@@ -89,11 +98,14 @@
 .contactosMensagem{
     display: flex;
     flex-direction: row;
+    width: 100%;
+    height: 30px;
+    vertical-align: middle;
+
 }
 .contactos{
     height: 100%;
-    width:40%;
-    padding-left: 10px;
+    width:30%;
     }
 .telefoneEmail{
     height: 100%;
@@ -104,26 +116,41 @@
     vertical-align: middle; 
     justify-content: space-around;
     }
-.contactoTelefone{
+.contactoTelefone img{
+    display:grid;
+    height: 30px;
     padding-bottom: 0;
-    vertical-align: middle;
+    /* position: relative; */
+}  
+
+.contactoTelefone a{
     height: 100%;
-}    
-.numeroTelefone{
-    height: 100%;
-    vertical-align: middle;
+    padding-top: 8px;
 }
+
+.numeroTelefone{
+    display:table-cell;
+    height: 30px;
+    vertical-align: top;
+    /* position: absolute; */
+}
+
+.numeroTelefone img{
+    height: 30px;
+}
+
 .linkMensagem{
-    height: 50px;
-    width: 55%;
+    height: 25px;
+    width: 70%;
     padding-left: 0;
     padding-right: 0;
-    padding-top:6px;
-    padding-bottom: 6px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 10px;
 }
+
 .button {
     padding-left: 6px;
     background-color: #00798a;
@@ -136,7 +163,7 @@
     font-weight: 500;
     border-style: solid;
     width: 100%;
-    height: 100%;
+    height: 25px;
     font-size: 11px;
     line-height: 1.5;
   }
@@ -148,30 +175,111 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content:center;
+    justify-content:space-between;
     margin-bottom: 0px;
-    height: 10px;
     padding-left: 0;
+    height: 25px;
+    padding-top:8px;
+    vertical-align: middle;
 }
+/* .linksButton a{
+    text-align: left;
+} */
 .li_PoliticaDados{
-    width: 35%;
+    width: 30%;
     font-size: 8px;
     height: 12px;
     margin:auto;
     margin-top:0px;
     margin-bottom: 0;
     color:white!important;
-    text-align: center;
+    text-align: left;
+    padding-left: 100px;
+}
 
+.li_Web_Developer{
+    width: 70%;
+    font-size: 8px;
+    height: 12px;
+    margin:auto;
+    margin-top:0px;
+    margin-bottom: 0;
+    color:white!important;
+    text-align: right;
+    padding-right: 100px;
+} 
+}
+@media(max-width:680px){
+.li_PoliticaDados{
+    padding-left: 50px;
 }
 .li_Web_Developer{
-    width: 60%;
-    font-size: 8px;
-    height: 12px;
-    margin:auto;
-    margin-top:0px;
-    margin-bottom: 0;
-    color:white!important;
-    text-align: center;
-} 
+    padding-right: 50px;
+}
+
+}
+
+@media(max-width:500px){
+    .li_PoliticaDados{
+        padding-left: 20px;
+    }
+    .li_Web_Developer{
+        padding-right: 20px;
+    }
+    .button{
+        height: 25px;
+        line-height: 1.3;
+        padding-bottom: 2px;
+    }
+    .imagem_telefone{
+        padding-left:20px;
+    }
+    .imagem_email{
+        padding-left:20px;
+    }
+}
+
+@media(max-width:400px){
+    .li_PoliticaDados{
+            padding-left: 10px;
+        }
+    .li_Web_Developer{
+            padding-right: 10px;
+        }
+        .imagem_telefone{
+            padding-left:15px;
+        }
+        .imagem_email{
+            padding-left:15px;
+        }
+    }
+
+@media(max-width:350px){
+        .li_PoliticaDados{
+                padding-left: 0px;
+                text-align: center;
+                width: 35%;
+            }
+        .li_Web_Developer{
+                padding-right: 0px;
+                text-align: center;
+                width: 65%;
+            }
+        }    
+
+@media(max-widtg:320px){
+    .imagem_telefone{
+        padding-left:10px;
+    }
+    .imagem_email{
+        padding-left:10px;
+    }
+}
+@media(max-width:305px){
+    .li_Web_Developer{
+        font-size: 7px;
+    }
+    .li_PoliticaDados{
+        font-size: 7px;
+    }
 }

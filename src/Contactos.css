@@ -1,7 +1,15 @@
+
 @font-face {
-    font-family: Aileron;
-    src: url(https://fontlibrary.org/face/aileron);
-  }
+    font-family: 'Aileron';
+    src: url('./Fonts/Aileron-Thin-webfont.eot');
+    src: url('./Fonts/Aileron-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./Fonts/Aileron-Thin-webfont.woff') format('woff'),
+         url('./Fonts/Aileron-Thin-webfont.ttf') format('truetype'),
+         url('./Fonts/Aileron-Thin-webfont.svg#aileronthin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 .Contactos{
     display: flex;
@@ -23,14 +31,22 @@
     vertical-align: middle;
 }
 
+.formulario{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+    width: 100%;
+}
+
 .emailTelefone{
     display:flex;
     flex-direction: row;
-    width: 100%;
+    width: 50%;
     text-align: center;
     justify-content: space-around;
     margin-bottom: 0;
     padding-left: 0;
+    width: 100%;
 }
 
 .li-contactos{
@@ -54,13 +70,6 @@
 
 .imagem_telefone{
     padding-right: 15px;
-}
-
-.formulario{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding-bottom: 15px;
 }
 
 .textoFormulario{
@@ -144,17 +153,25 @@
         width: 100%;
         text-align: center;
         justify-content: space-around;
-        padding-top:15px;
+        padding-top: 0px;
         margin-bottom: 0;
         padding-left: 0;
+        height: 100px;
     }
     .li-contactos{
+        font-size: 23px;  
         width: 100%;
-        padding-bottom: 15px;
     }
+ 
     .morada{
-        padding-top:0px;
         padding-bottom: 10px;
+        padding-top:10px;
+    }
+    .morada p{
+        font-size: 17px;
+    }
+    .formulario{
+        padding-bottom: 0px;
     }
 }
 
@@ -173,6 +190,9 @@
 }
 
 @media(max-width:650px){
+    .emailTelefone{
+        height: 80px;
+    }
     .Contactos{
         padding-left: 10px;
         padding-right: 10px;
@@ -194,6 +214,9 @@
         height: 28px;
         padding-right: 5px;
     }
+    .formulario{
+        padding-bottom: 10px;
+    }
 }
 
 @media(max-width:400px){
@@ -204,9 +227,6 @@
     .textoFormulario{
         font-size: 15px;
     }
-    .li-contactos{
-        font-size: 18px;
-    }
     .imagem_email{
         height:21px;
         padding-right: 10px;
@@ -214,5 +234,16 @@
     .imagem_telefone{
         height: 21px;
         padding-right: 5px;
+    }
+    .morada p{
+        font-size: 13px;
+    }
+}
+@media(max-width:300px){
+    .textoFormulario{
+        font-size: 13px;
+    }
+      .li-contactos{
+        font-size: 18px;
     }
 }

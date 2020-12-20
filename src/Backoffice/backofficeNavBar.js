@@ -16,12 +16,12 @@ const backofficeNavBar = (props) => {
                 <Link to="/backoffice"><img src={logoDT} alt='logo Dr Daniel Trabulo Doenças Anais Hemmorroidas' /></Link>
             </div>
             <Nav fixed="left">
-                <Nav.Link><Link to="/backoffice/contactos">Contactos</Link></Nav.Link>
-                <Nav.Link><Link to="/backoffice/homepage">Homepage</Link></Nav.Link>
-                <Nav.Link><Link to="/backoffice/patologias">Patologias</Link></Nav.Link>
-                <Nav.Link><Link to="/backoffice/destaques">Destaques</Link></Nav.Link>
-                <Nav.Link><Link to="/backoffice/sintomas">Sintomas</Link></Nav.Link>
-                <Nav.Link><Link to='/backoffice/proctologia'>O que é a proctologia?</Link></Nav.Link>
+                <Nav.Link><Link to="/backoffice/contactos" onClick={() => {window.location.href="/backoffice/contactos"}}>Contactos</Link></Nav.Link>
+                <Nav.Link><Link to="/backoffice/homepage" onClick={() => {window.location.href="/backoffice/homepage"}}>Homepage</Link></Nav.Link>
+                <Nav.Link><Link to="/backoffice/patologias" onClick={() => {window.location.href="/backoffice/patologias"}}>Patologias</Link></Nav.Link>
+                <Nav.Link><Link to="/backoffice/destaques" onClick={() => {window.location.href="/backoffice/destaques"}}>Destaques</Link></Nav.Link>
+                <Nav.Link><Link to="/backoffice/sintomas" onClick={() => {window.location.href="/backoffice/sintomas"}}>Sintomas</Link></Nav.Link>
+                <Nav.Link><Link to='/backoffice/proctologia' onClick={() => {window.location.href="/backoffice/proctologia"}}>O que é a proctologia?</Link></Nav.Link>
             </Nav>
             <button
                 className="logout-button"

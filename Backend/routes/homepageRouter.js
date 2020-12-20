@@ -20,16 +20,18 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/homepage/editHomepage', (req, res) => {
+router.put('/homepage/editHomepage', jwtMiddleware, (req, res) => {
     connection.query('UPDATE homepage SET ?',
         [req.body],
         (err, results) => {
-            console.log('router')
             if (err) {
-                console.log(err)
-                res.status(400).json({ flash: 'Ocorreu um erro' })
+                res.json({
+                    code: 500,
+                })
             } else {
-                res.status(200).json({ flash: 'Alterado com sucesso' })
+                res.json({
+                    code: 200,
+                })
             }
         }
     )

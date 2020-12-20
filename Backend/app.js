@@ -14,7 +14,7 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 const cors = require('cors');
 const morgan = require('morgan');
 const jwtMiddleware = require('./Services/jwtMiddleware');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
 
 
@@ -128,6 +128,7 @@ app.post('/email', (req, res) => {
         }
         smtpTransporter.close();
     });
+    
     if (req.successMessage) {
         res.json({
             code: 200,

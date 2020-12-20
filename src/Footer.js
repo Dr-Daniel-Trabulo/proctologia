@@ -33,8 +33,6 @@ class Footer extends React.Component {
     }
 
 
-
-
     render() {
         return (
             <div>
@@ -63,7 +61,7 @@ class Footer extends React.Component {
                                     </li>
                                 </ul>
                             </div>
-                            <div className='formulario' >
+                            <div className='formularioFooter' >
                                 <div className='formularioContacto'><FormularioContacto /></div>
                             </div>
                         </div >
@@ -84,9 +82,7 @@ class Footer extends React.Component {
                                         </li>
                                     </ul>
                                 </div>
-                                <div className='linkMensagem' >
-                                    <Link to='./contactos_dr_daniel_trabulo'><button className='button'>Agende a sua consulta ou deixe-nos uma mensagem</button></Link>
-                                </div>
+                                    <Link className='linkMensagem' to='./contactos_dr_daniel_trabulo'><button className='button'>Agende a sua consulta ou deixe-nos uma mensagem</button></Link>
                             </div>
                             <span className='linksButton'>
                                 <a className='li_PoliticaDados' href='' target="_blank" download title='Politica Dados Pessoais Doenças rabo' rel="noopener noreferrer">Política Dados Pessoais</a>

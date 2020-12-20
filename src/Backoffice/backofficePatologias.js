@@ -6,6 +6,9 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'rc-datepicker/lib/style.css';
+import Alert from 'react-bootstrap/Alert';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BackofficePatologiasForm from './backofficePatologiasForm'
 
 class backofficePatologias extends React.Component {
@@ -25,8 +28,9 @@ class backofficePatologias extends React.Component {
             editorState_sintomasPatologia: EditorState.createEmpty(),
             editorState_tratamentosPatologia: EditorState.createEmpty(),
             pathNew: '',
-            flash: '',
-            messageStatus: ''
+            showEmailAlert: false,
+            emailTypeAlert: '',
+            messageIcon: faCheck
         }
     }
 
@@ -36,11 +40,7 @@ class backofficePatologias extends React.Component {
             .then((res) => {
                 const results = res.data
                 this.setState({ patologias: results })
-                results.publish === 0 ?
-                    this.setState({ publish: 0 }) : this.setState({ publish: 1 })
             })
-
-
 
         let path = this.props.history.location.pathname
         path.includes('/new') ?
@@ -78,6 +78,7 @@ class backofficePatologias extends React.Component {
                 const formatContent_tratamentosPatologia = EditorState.createWithContent(contentState_tratamentosPatologia)
 
                 this.setState({
+                    publish: patologia.publish,
                     patologiaDisplay: patologia,
                     nomePatologia: patologia.nomePatologia,
                     tratamentosPatologia: patologia.tratamentosPatologia,
@@ -130,82 +131,107 @@ class backofficePatologias extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-
         let {
             patologias,
             patologiaDisplay,
-            flash,
             editorState_examesPatologia,
             editorState_sintomasPatologia,
             editorState_tratamentosPatologia,
-            messageStatus,
             pathNew,
+            showEmailAlert,
+            emailTypeAlert,
+            messageIcon,
             ...patologiasPut
         } = this.state
 
         axios
             .put('/patologias/patologias/editPatologias', patologiasPut)
             .then((res) => {
-                console.log(patologiasPut)
-                this.setState({ flash: 'Alterado com Sucesso', messageStatus: 'Sucesso' })
+                this.setState({ emailTypeAlert: 'success', showEmailAlert: true })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                    window.location.reload()
+                }, 5000);
             })
             .catch((err) => {
-                console.log(patologiasPut)
-                this.setState({ flash: 'Ocorreu um erro', messageStatus: 'Erro' })
+                this.setState({ emailTypeAlert: 'danger', showEmailAlert: true, messageIcon: faTimes })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                }, 5000);
+
             })
-        this.props.history.push({ pathname: '/backoffice/patologias' })
 
     }
 
-    handleDelete = () => {
+    handleDelete = (event) => {
+        event.preventDefault()
         let idPatologia = this.state.idPatologia
 
         axios
             .delete('/patologias/patologias/deletePatologia', { data: { idPatologia } })
             .then((res) => {
-                this.setState({ flash: 'Apagado com sucesso', messageStatus: 'Sucesso' })
+                this.setState({ emailTypeAlert: 'successDelete', showEmailAlert: true })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                    window.location.reload()
+                    this.getData()
+                }, 5000);
             })
             .catch((res) => {
-                this.setState({ flash: 'Ocorreu um erro', messageStatus: 'Erro' })
+                this.setState({ emailTypeAlert: 'dangerDelete', showEmailAlert: true, messageIcon: faTimes })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                }, 5000);
             })
-        window.location.reload()
-        this.getData()
     }
 
-    HandleNewSintoma = () => {
+    handleNewSintoma = (event) => {
+        event.preventDefault()
+        console.log('HandleNewSintoma')
         let {
             patologias,
             patologiaDisplay,
             editorState_examesPatologia,
             editorState_sintomasPatologia,
             editorState_tratamentosPatologia,
-            flash,
-            messageStatus,
             pathNew,
+            publish,
+            idPatologia,
+            showEmailAlert,
+            emailTypeAlert,
+            messageIcon,
             ...patologiasPut
         } = this.state
 
         axios
             .post('/patologias/patologias/addPatologia', patologiasPut)
             .then((res) => {
-                this.setState({ flash: 'Sintoma adicionado com sucesso', messageStatus: 'Sucesso' })
+                this.setState({ emailTypeAlert: 'successPost', showEmailAlert: true })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                    window.location.href="/backoffice/patologias"
+                    this.getData()
+                }, 5000);
             })
             .catch((err) => {
-                this.setState({ flash: 'Erro ao Adicionar sintoma', messageStatus: 'Erro' })
+                this.setState({ emailTypeAlert: 'dangerPost', showEmailAlert: true, messageIcon: faTimes })
+                window.setTimeout(() => {
+                    this.setState({ showEmailAlert: false })
+                }, 5000);
             })
-        this.props.history.push({ pathname: '/backoffice/patologias' })
     }
-
     handleChangeCheckBox = (event) => {
         event.preventDefault()
         this.state.publish === 0 ?
             this.setState({ publish: 1 }) : this.setState({ publish: 0 })
     }
 
+
     render() {
         return (
-            <div className="ContatoInput">
-                {this.state.pathNew === false &&
+            <div className="ContatoInput" >
+                {
+                    this.state.pathNew === false &&
                     <div>
                         <h3 className='NoticiaInput-title'>Edição Patologia</h3>
                         <div className="input-top-dropdown">
@@ -217,7 +243,7 @@ class backofficePatologias extends React.Component {
                                     )
                                 })}
                             </select>
-                            <Link to='/backoffice/patologias/new'>
+                            <Link to='/backoffice/patologias/new' onClick={() => {window.location.href="/backoffice/patologias/new"}}>
                                 <div className="NoticiaInput-section-button">
                                     <button className="login-button">Nova Patologia</button>
                                 </div>
@@ -225,7 +251,7 @@ class backofficePatologias extends React.Component {
                         </div>
                     </div>
                 }
-                <div>
+                < div >
                     <BackofficePatologiasForm
                         patologiaDisplay={this.state.patologiaDisplay}
                         publish={this.state.publish}
@@ -239,19 +265,20 @@ class backofficePatologias extends React.Component {
                         editorState_tratamentosPatologia={this.state.editorState_tratamentosPatologia}
                         linkPatologia={this.state.linkPatologia}
                         idPatologia={this.state.idPatologia}
-                        flash={this.state.flash}
-                        messageStatus={this.state.messageStatus}
+                        showEmailAlert={this.state.showEmailAlert}
+                        emailTypeAlert={this.state.emailTypeAlert}
+                        messageIcon={this.state.messageIcon}
                         handleChange={this.handleChange}
                         handleSubmit={this.handleSubmit}
                         handleDelete={this.handleDelete}
-                        HandleNewSintoma={this.HandleNewSintoma}
+                        handleNewSintoma={this.handleNewSintoma}
                         onEditorStateChange_examesPatologia={this.onEditorStateChange_examesPatologia}
                         onEditorStateChange_sintomasPatologia={this.onEditorStateChange_sintomasPatologia}
                         onEditorStateChange_tratamentosPatologia={this.onEditorStateChange_tratamentosPatologia}
                         handleChangeCheckBox={this.handleChangeCheckBox}
                     />
                 </div>
-            </div>
+            </div >
         )
     }
 }

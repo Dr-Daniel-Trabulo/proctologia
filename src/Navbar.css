@@ -1,6 +1,12 @@
 @font-face {
-  font-family: Aileron;
-  src: url(https://fontlibrary.org/face/aileron);
+  font-family: 'Aileron';
+  src: url('./Fonts/Aileron-Thin-webfont.eot');
+  src: url('./Fonts/Aileron-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+       url('./Fonts/Aileron-Thin-webfont.woff') format('woff'),
+       url('./Fonts/Aileron-Thin-webfont.ttf') format('truetype'),
+       url('./Fonts/Aileron-Thin-webfont.svg#aileronthin') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 
@@ -24,6 +30,7 @@
   margin-bottom: 0;
   margin-top: 0;
   background-color: #00798a;
+
 }
 
 
@@ -73,6 +80,7 @@
   padding-left: 15px;
   padding-right: 15px;
   background-color: #00798a;
+
 }
 
 .nav-link{
@@ -87,14 +95,18 @@
   align-items: center;
   margin-top:0;
   background-color: #00798a;
+  /* background-color: #015d69; */
 }
 
 .dropdown-menu{
   padding-top:0;
   padding-bottom: 0;
   height: 28px;
+  /* border-top-color: #015d69;
+  border-bottom-color: #015d69; */
   border-top-color: #00798a;
   border-bottom-color: #00798a;
+
 }
 
 .dropdown-item{
@@ -117,6 +129,7 @@
 
 .dropdown-item.active:active {
   background-color:#00798a !important;
+
 }
 
 .dropdown-item a:hover {
@@ -126,6 +139,7 @@
 
 .dropdown-item:hover{
   background-color: #00798a;
+
 }
 
 .li:hover{
@@ -186,21 +200,26 @@
     padding-right: 0px;
   }
   .li{
-    padding-left: 5px;
-    padding-right: 5px;
+    /* padding-left: 5px;
+    padding-right: 5px; */
+      padding-left: 0px;
+      padding-right: 0px;
+
   }
 }
 
 @media(max-width:991px){
   .navbar{
     padding-left: 40px;
+    /* width: 130%; */
   }
   .navbar-nav{
     width: 400px;
     margin-left: -40px;
-    padding-left: 60px;
+    /* padding-left: 60px; */
     background-color: #00798a;
-    opacity: 0.8;
+    /* opacity: 0.8; */
+    opacity: 1;
   }
   .li{
     font-size: 18px;
@@ -218,6 +237,9 @@
     font-size: 16px;
     width: 390px;
   }
+  /* .navbar-toggler{
+    margin-right: 1000px;
+  } */
 }
 @media(max-width:750px){
   .navbar{
@@ -225,8 +247,9 @@
   }
   .navbar-nav{
     margin-left: -20px;
-    padding-left: 40px;
+    /* padding-left: 40px; */
     background-color: #00798a;
+
   }
   .navbar-nav{
     width: 300px;
@@ -235,7 +258,7 @@
 @media(max-width:600px){
   .navbar-nav{
     width: 200px;
-    padding-left: 30px;
+    /* padding-left: 30px; */
     background-color: #00798a;
   }
   .dropdown-item a{
@@ -245,8 +268,9 @@
 @media(max-width:500px){
   .navbar-nav{
     width: 220px;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     background-color: #00798a;
+
   }
   .mainLinkP1{
     font-size: 22px;
@@ -262,7 +286,16 @@
 
 @media(max-width:400px){
   .navbar{
-    padding-left: 10;
+    /* padding-left: 10; */
   }
+}
+
+@media(max-width:300px){
+.mainLinkP1{
+  font-size: 20px;
+}
+.mainLinkP2{
+  font-size: 20px;
+}
 }
 

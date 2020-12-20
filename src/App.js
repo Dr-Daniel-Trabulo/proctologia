@@ -15,8 +15,8 @@ import Login from './Backoffice/Login'
 import ForgotPassword from './Backoffice/ForgotPassword'
 import Proctologia from './Proctologia'
 import BackofficeProctologia from './Backoffice/backofficeProctologia'
-import React, { Suspense, useContext } from 'react';
-import UserContext from './context/UserContext'
+import React, { useContext } from 'react';
+import { UserContext } from './context/UserContext'
 
 const App = () => {
 
@@ -36,15 +36,16 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/login-password" component={ForgotPassword} />
 
-          <Route exact path='/backoffice/contactos' component={BackofficeContactos} />
-          <Route exact path='/backoffice/homepage' component={BackofficeHomePage} />
-          <Route exact path='/backoffice/patologias' component={BackofficePatologias} />
-          <Route exact path='/backoffice/patologias/new' component={BackofficePatologias} />
-          <Route exact path='/backoffice/destaques' component={BackofficeDestaquesSintomas} />
-          <Route exact path='/backoffice/destaques/new' component={BackofficeDestaquesSintomas} />
-          <Route exact path='/backoffice/sintomas' component={BackofficeDestaquesSintomas} />
-          <Route exact path='/backoffice/sintomas/new' component={BackofficeDestaquesSintomas} />
-          <Route exact path='/backoffice/proctologia' component={BackofficeProctologia} />
+          <ProtectedRoute exact path='/backoffice' component={BackofficeNavBar} />
+          <ProtectedRoute exact path='/backoffice/contactos' component={BackofficeContactos} />
+          <ProtectedRoute exact path='/backoffice/homepage' component={BackofficeHomePage} />
+          <ProtectedRoute exact path='/backoffice/patologias' component={BackofficePatologias} />
+          <ProtectedRoute exact path='/backoffice/patologias/new' component={BackofficePatologias} />
+          <ProtectedRoute exact path='/backoffice/destaques' component={BackofficeDestaquesSintomas} />
+          <ProtectedRoute exact path='/backoffice/destaques/new' component={BackofficeDestaquesSintomas} />
+          <ProtectedRoute exact path='/backoffice/sintomas' component={BackofficeDestaquesSintomas} />
+          <ProtectedRoute exact path='/backoffice/sintomas/new' component={BackofficeDestaquesSintomas} />
+          <ProtectedRoute exact path='/backoffice/proctologia' component={BackofficeProctologia} />
         </Switch>
 
         {!currentPath.includes('backoffice') && !currentPath.includes('login')
@@ -68,12 +69,14 @@ const App = () => {
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { user, auth } = useContext(UserContext);
+  // const user=useContext(UserContext)
+  // const auth=useContext(UserContext)
   console.log(auth)
   return (
     <Route
       {...rest}
       component={(props) =>
-        auth ? <Component {...props} /> : <Redirect to='/backoffice' />
+        auth ? <Component {...props} /> : <Redirect to='/login' />
       }
     />
   );

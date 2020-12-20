@@ -17,6 +17,7 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.3",
     "cors": "^2.8.5",
+    "create-use-context": "^1.0.1",
     "dotenv": "^8.2.0",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
@@ -46,6 +47,7 @@
     "react-hook-form": "^6.11.5",
     "react-hooks-lib": "^0.3.0",
     "react-html-parser": "^2.0.2",
+    "react-popup": "^0.10.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-select": "^3.1.0",
@@ -54,6 +56,7 @@
     "react-snackbar-alert": "^2.1.0",
     "react-window-size-listener": "^1.5.4",
     "reactstrap": "^8.7.1",
+    "require": "^2.4.20",
     "router": "^1.3.5",
     "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"

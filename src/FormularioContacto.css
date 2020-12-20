@@ -1,10 +1,17 @@
+
 @font-face {
-    font-family: Aileron;
-    src: url(https://fontlibrary.org/face/aileron);
-  }
+    font-family: 'Aileron';
+    src: url('./Fonts/Aileron-Thin-webfont.eot');
+    src: url('./Fonts/Aileron-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./Fonts/Aileron-Thin-webfont.woff') format('woff'),
+         url('./Fonts/Aileron-Thin-webfont.ttf') format('truetype'),
+         url('./Fonts/Aileron-Thin-webfont.svg#aileronthin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .Geral {
-    margin-right: 20px;
+    /* margin-right: 20px; */
     font-family: Aileron;
     width: 60%;
     color: black;
@@ -81,7 +88,6 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content:left;
     margin-bottom: 0px;
     height: 25px;
     padding-left: 0;
@@ -113,14 +119,13 @@
    color:white !important;
    font-weight: bold;
    position: absolute;
-   bottom: 8px;
+  
 }
 
 .li_Web_Developer a{
     color:white !important;
     font-weight: bold;
     position: absolute;
-   bottom: 8px;
    text-decoration: underline;
 }
 
@@ -129,10 +134,12 @@
     text-align: right;  
     width: 20%;
     opacity: 0.8;
+    margin-bottom: 5px;
+    justify-content: flex-end;
+    /* text-align: left; */
 }
 
 .button{
-    margin-top:  10px;
     border-width: 0;
     color:white !important;
     font-weight: bold;
@@ -140,11 +147,49 @@
     font-size: 16px;
     width: 80px;
     opacity: 0.6;
-    margin-top: 0px;
+    height: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0;
 }
 
 .button:hover{
     font-weight: bold;
 }
+
+.alert-section {
+    display: flex;
+  }
+
+.form-alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 15px;
+    margin: 0 auto;
+    font-size: 12px;
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .message-icon {
+    margin-right: 5px;
+  }
+
+  .form-alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 15px;
+    margin: 0 auto;
+    font-size: 12px;
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   

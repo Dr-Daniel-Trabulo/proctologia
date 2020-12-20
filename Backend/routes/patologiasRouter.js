@@ -19,36 +19,50 @@ router.get('/', (req, res) => {
     )
 })
 
-router.put('/patologias/editPatologias', (req, res) => {
+router.put('/patologias/editPatologias', jwtMiddleware, (req, res) => {
     connection.query('UPDATE patologias SET ? WHERE idPatologia = ?',
         [req.body, req.body.idPatologia],
         (err, results) => {
             if (err) {
-                console.log(err)
-                res.status(400).json({ flash: 'Ocorreu um erro' })
+                res.json({
+                    code: 500,
+                })
             } else {
-                res.status(200).json({ flash: 'Alterado com sucesso' })
+                res.json({
+                    code: 200,
+                })
             }
         }
     )
 })
 
-router.delete('/patologias/deletePatologia', (req, res) => {
+router.delete('/patologias/deletePatologia', jwtMiddleware, (req, res) => {
     connection.query('DELETE FROM patologias WHERE idPatologia = ?',
         [req.body.idPatologia],
+        //     (err, results) => {
+        //         if (err) {
+        //             res.status(400).json({ flash: 'Ocorreu um erro ao eliminar' })
+        //         } else {
+        //             res.status(200).json({ flash: 'Eliminado com sucesso' })
+        //         }
+        //     }
+        // )
         (err, results) => {
             if (err) {
-                res.status(400).json({ flash: 'Ocorreu um erro ao eliminar' })
+                res.json({
+                    code: 500,
+                })
             } else {
-                res.status(200).json({ flash: 'Eliminado com sucesso' })
+                res.json({
+                    code: 200,
+                })
             }
         }
     )
-}
-)
+})
 
-router.post('/sintomas/addPatologia', (req, res) => {
-    connection.query('INSERT INTO patologias SET ?',
+router.post('/patologias/addPatologia', jwtMiddleware, (req, res) => {
+    connection.query('INSERT INTO patologias SET publish=1, ?',
         [req.body],
         (err, results) => {
             if (err) {

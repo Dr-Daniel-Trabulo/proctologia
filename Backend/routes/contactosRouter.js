@@ -20,15 +20,18 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/contactos/editContactos',(req, res) => { 
+router.put('/contactos/editContactos', jwtMiddleware, (req, res) => {
     connection.query('UPDATE contactos SET ?',
         [req.body],
         (err, results) => {
-            console.log('router')
             if (err) {
-                res.status(400).json({ flash: 'Ocorreu um erro' })
+                res.json({
+                    code: 500,
+                })
             } else {
-                res.status(200).json({ flash: 'Alterado com sucesso' })
+                res.json({
+                    code: 200,
+                })
             }
         }
     )

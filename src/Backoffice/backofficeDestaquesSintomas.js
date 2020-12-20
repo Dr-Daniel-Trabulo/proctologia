@@ -1,12 +1,16 @@
 import React from 'react';
 import BackOfficeDestaquesSintomasForm from './backOfficeDestaquesSintomasForm'
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import  Link  from "react-router-dom/Link";
+// import  {Link}  from "react-router-dom";
 import { EditorState, ContentState, convertToRaw } from "draft-js";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'rc-datepicker/lib/style.css';
+import Alert from 'react-bootstrap/Alert';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './backoffice.css'
 
 class backofficeDestaquesSintomas extends React.Component {
@@ -15,7 +19,7 @@ class backofficeDestaquesSintomas extends React.Component {
         this.state = {
             destaques: [],
             destaquesDisplay: [],
-            publish: '',
+            publish: 1,
             id: '',
             texto: {},
             editorState_texto: EditorState.createEmpty(),
@@ -32,7 +36,10 @@ class backofficeDestaquesSintomas extends React.Component {
             pathNew: '',
             seccao: '',
             flash: '',
-            messageStatus: ''
+            messageStatus: '',
+            showEmailAlert: false,
+            emailTypeAlert: '',
+            messageIcon: faCheck
         }
     }
 
@@ -46,8 +53,6 @@ class backofficeDestaquesSintomas extends React.Component {
                 .then((res) => {
                     const results = res.data
                     this.setState({ destaques: results })
-                    results.publish === 0 ?
-                        this.setState({ publish: 0 }) : this.setState({ publish: 1 })
                 })
             this.setState({ pathnameSintomas: true, seccao: 'Sintoma' })
             path.includes('/new') ?
@@ -60,8 +65,6 @@ class backofficeDestaquesSintomas extends React.Component {
                 .then((res) => {
                     const results = res.data
                     this.setState({ destaques: results })
-                    results.publish === 0 ?
-                        this.setState({ publish: 0 }) : this.setState({ publish: 1 })
 
                 })
             this.setState({ pathnameSintomas: false, seccao: 'Destaque' })
@@ -89,6 +92,7 @@ class backofficeDestaquesSintomas extends React.Component {
                 const formatContentPT = EditorState.createWithContent(contentStatePT);
 
                 this.setState({
+                    publish: destaque.publish,
                     destaquesDisplay: destaque,
                     id: destaque.ID,
                     texto: destaque.texto,
@@ -128,7 +132,6 @@ class backofficeDestaquesSintomas extends React.Component {
         event.preventDefault()
 
         let {
-            publish,
             destaques,
             editorState_texto,
             destaquesDisplay,
@@ -137,6 +140,9 @@ class backofficeDestaquesSintomas extends React.Component {
             seccao,
             flash,
             messageStatus,
+            showEmailAlert,
+            emailTypeAlert,
+            messageIcon,
             ...destaquesDisplayPut
         } = this.state
 
@@ -144,49 +150,82 @@ class backofficeDestaquesSintomas extends React.Component {
             axios
                 .put('/destaques/destaques/editDestaques', destaquesDisplayPut)
                 .then((res) => {
-                    this.setState({ flash: 'Alterado com sucesso', messageStatus: 'Sucesso' })
+                    this.setState({ emailTypeAlert: 'success', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
                 })
                 .catch((err) => {
-                    this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
+                    this.setState({ emailTypeAlert: 'danger', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
                 })
-            this.props.history.push({ pathname: '/backoffice/destaques' })
         } else {
             axios
                 .put('/sintomas/sintomas/editSintomas', destaquesDisplayPut)
-                .then((res) => {
-                    console.log(destaquesDisplayPut)
-                    this.setState({ flash: 'Alterado com sucesso', messageStatus: 'Sucesso' })
+                .then((results) => {
+                    this.setState({ emailTypeAlert: 'success', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
                 })
                 .catch((err) => {
-                    console.log(destaquesDisplayPut)
-                    this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
+                    this.setState({ emailTypeAlert: 'danger', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
                 })
-            this.props.history.push({ pathname: '/backoffice/sintomas' })
         }
     }
 
-    handleDelete = () => {
+    handleDelete = (event) => {
+        event.preventDefault()
         let id = this.state.id
 
         this.state.pathnameSintomas === false ?
             axios
                 .delete('/destaques/destaques/deleteDestaque', { data: { id } })
-                .then((res) => {
-                    this.setState({ flash: 'Eliminado com sucesso', messageStatus: 'Sucesso' })
-                    console.log(id)
+                .then((response) => {
+                    this.setState({ emailTypeAlert: 'successDelete', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
+                })
+                .catch((err) => {
+                    console.log('err')
+                    this.setState({ emailTypeAlert: 'dangerDelete', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                    }, 5000);
                 })
             :
             axios
                 .delete('/sintomas/sintomas/deleteSintoma', { data: { id } })
-                .then((res) => {
-                    this.setState({ flash: 'Eliminado com sucesso', messageStatus: 'Sucesso' })
+                .then((results) => {
+                    this.setState({ emailTypeAlert: 'successDelete', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.reload()
+                    }, 5000);
                 })
-        window.location.reload()
-        this.getData()
+                .catch((err) => {
+                    this.setState({ emailTypeAlert: 'dangerDelete', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                    }, 5000);
+                })
     }
 
-    handleNewDestaque = () => {
+    handleNewDestaque = (event) => {
+        event.preventDefault()
         let {
+            publish,
             destaques,
             id,
             editorState_texto,
@@ -196,6 +235,9 @@ class backofficeDestaquesSintomas extends React.Component {
             seccao,
             flash,
             messageStatus,
+            showEmailAlert,
+            emailTypeAlert,
+            messageIcon,
             ...destaquesDisplayPost
         } = this.state
 
@@ -203,22 +245,34 @@ class backofficeDestaquesSintomas extends React.Component {
             axios
                 .post('/destaques/destaques/addDestaque', destaquesDisplayPost)
                 .then((res) => {
-                    this.setState({ flash: 'Adicionado com sucesso', messageStatus: 'Sucesso' })
+                    this.setState({ emailTypeAlert: 'successPost', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.href="/backoffice/destaques"
+                    }, 5000);
                 })
                 .catch((err) => {
-                    this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
+                    this.setState({ emailTypeAlert: 'dangerPost', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                    }, 5000);
                 })
-            this.props.history.push({ pathname: '/backoffice/destaques' })
         } else {
             axios
                 .post('/sintomas/sintomas/addSintoma', destaquesDisplayPost)
                 .then((res) => {
-                    this.setState({ flash: 'Adicionado com sucesso', messageStatus: 'Sucesso' })
+                    this.setState({ emailTypeAlert: 'successPost', showEmailAlert: true })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                        window.location.href="/backoffice/sintomas"
+                    }, 5000);
                 })
                 .catch((err) => {
-                    this.setState({ flash: 'Ocorreu um erro, por favor tente outra vez.', messageStatus: 'error' })
+                    this.setState({ emailTypeAlert: 'dangerPost', showEmailAlert: true, messageIcon: faTimes })
+                    window.setTimeout(() => {
+                        this.setState({ showEmailAlert: false })
+                    }, 5000);
                 })
-            this.props.history.push({ pathname: '/backoffice/sintomas' })
         }
     }
 
@@ -235,7 +289,7 @@ class backofficeDestaquesSintomas extends React.Component {
                     this.state.pathNew === false &&
                     <div>
                         <h3 className='NoticiaInput-title'>{`Edição da secção de ${this.state.seccao}s`}</h3>
-                        <div  className="input-top-dropdown">
+                        <div className="input-top-dropdown">
                             <select className='input-section-label-top-dropdown' name='destaques' onChange={event => this.handleClick(event)}>
                                 <option className='input-section-label' selected="selected">{`Seleccione ${this.state.seccao}`}</option>
                                 {this.state.destaques.map((destaque) => {
@@ -246,13 +300,13 @@ class backofficeDestaquesSintomas extends React.Component {
                             </select>
                         </div>
                         {this.state.pathnameSintomas === false ?
-                            <Link Link to='/backoffice/destaques/new' >
+                            <Link Link to='/backoffice/destaques/new' onClick={() => {window.location.href="/backoffice/destaques/new"}}>
                                 <div className="NoticiaInput-section-button">
                                     <button className="login-button" type='submit'>Novo Destaque</button>
                                 </div>
                             </Link>
                             :
-                            <Link Link to='/backoffice/sintomas/new' >
+                            <Link Link to='/backoffice/sintomas/new' onClick={() => {window.location.href="/backoffice/sintomas/new"}}>
                                 <div className="NoticiaInput-section-button">
                                     <button className="login-button" type='submit'>Novo Sintoma</button>
                                 </div>
@@ -281,6 +335,9 @@ class backofficeDestaquesSintomas extends React.Component {
                     seccao={this.state.seccao}
                     flash={this.state.flash}
                     messageStatus={this.state.messageStatus}
+                    showEmailAlert={this.state.showEmailAlert}
+                    emailTypeAlert={this.state.emailTypeAlert}
+                    messageIcon={this.state.messageIcon}
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                     handleDelete={this.handleDelete}

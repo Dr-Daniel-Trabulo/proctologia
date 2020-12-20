@@ -18,16 +18,18 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/proctologia/editProctologia', (req, res) => {
+router.put('/proctologia/editProctologia',jwtMiddleware, (req, res) => {
     connection.query('UPDATE proctologia SET ?',
         [req.body],
         (err, results) => {
             if (err) {
-                console.log(err)
-                console.log(req.body)
-                res.status(400).json({ flash: 'Ocorreu um erro' })
+                res.json({
+                    code: 500,
+                })
             } else {
-                res.status(200).json({ flash: 'Alterado com sucesso' })
+                res.json({
+                    code: 200,
+                })
             }
         }
     )

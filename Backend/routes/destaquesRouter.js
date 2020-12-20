@@ -20,8 +20,8 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/destaques/editDestaques', (req, res) => {
-    connection.query('UPDATE destaques SET ? WHERE ID=?',
+router.put('/destaques/editDestaques', jwtMiddleware, (req, res) => {
+    connection.query('UPDATE destaques SET ? WHERE id=?',
         [req.body, req.body.id],
         (err, results) => {
             if (err) {
@@ -35,15 +35,13 @@ router.put('/destaques/editDestaques', (req, res) => {
     )
 })
 
-router.delete('/destaques/deleteDestaque', (req, res) => {
-    connection.query('DELETE FROM destaques WHERE ID = ?',
-        [req.body.ID],
+router.delete('/destaques/deleteDestaque', jwtMiddleware, (req, res) => {
+    connection.query('DELETE FROM destaques WHERE id = ?',
+        [req.body.id],
         (err, results) => {
             if (err) {
-                console.log('destaquesDeleteErr')
                 res.status(400).json({ flash: 'Ocorreu um erro ao eliminar' })
             } else {
-                console.log('destaquesDeleteOK')
                 res.status(200).json({ flash: 'Eliminado com sucesso' })
             }
         }
@@ -51,15 +49,13 @@ router.delete('/destaques/deleteDestaque', (req, res) => {
 }
 )
 
-router.post('/destaques/addDestaque', (req, res) => {
-    connection.query('INSERT INTO destaques SET ?',
+router.post('/destaques/addDestaque', jwtMiddleware, (req, res) => {
+    connection.query('INSERT INTO destaques SET publish=1, ?',
         [req.body],
         (err, results) => {
             if (err) {
-                console.log('destaquesPostErr')
                 res.status(400).json({ flash: 'Ocorreu um erro ao inserir' })
             } else {
-                console.log('destaquesPostOK')
                 res.status(200).json({ flash: 'Destaque criado com sucesso' })
             }
 
