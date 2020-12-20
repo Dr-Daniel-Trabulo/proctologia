@@ -3,41 +3,57 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import PopUp from '../PopUp';
 import './backoffice.css';
+import './login.css'
 import passwordIcon from '../Assets/password.png';
 import userIcon from '../Assets/user.png';
+import Alert from 'react-bootstrap/Alert';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { UserContext } from '../context/UserContext';
 import Cookies from 'js-cookie';
 
 const Login = (props) => {
     const { register, handleSubmit, errors } = useForm();
-    const setAuth = useContext(UserContext);
-    const setUser = useContext(UserContext);
+    const { setAuth } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
 
-
-    const [flash, setFlash] = useState('');
-    const [messageStatus, setMessageStatus] = useState('');
+    const [showEmailAlert, setShowEmailAlert] = useState('');
+    const [emailTypeAlert, setEmailTypeAlert] = useState('');
+    const [messageIcon, setMessageIcon] = useState('');
 
     const onSubmit = (data) => {
         axios.post('/login/signin', data)
             .then((res) => {
+                console.log('qualquer coisa2')
                 Cookies.set("token", res.data.token)
                 setUser({ user: res.data.user });
                 setAuth(true);
-                setFlash(res.data.message);
-                setMessageStatus('success');
-                window.setTimeout(() => (props.history.push({ pathname: '/backoffice' })), 1500);
+                setEmailTypeAlert('success')
+                setShowEmailAlert(true)
+                window.setTimeout(() => {
+                    setShowEmailAlert(false)
+                    props.history.push({ pathname: '/backoffice' })
+                }, 2000)
             })
             .catch((err) => {
-                setMessageStatus('error');
-                setFlash('Invalid Email or Password, please try again.');
+                setEmailTypeAlert('danger')
+                setShowEmailAlert(true)
+                setMessageIcon(faTimes)
+                window.setTimeout(() => {
+                    setShowEmailAlert(false)
+                }, 2000)
             });
     };
 
     return (
         <div className="Login">
+            <Alert className="form-alert" show={showEmailAlert} variant={emailTypeAlert}>
+                <FontAwesomeIcon icon={messageIcon} className="message-icon" />
+                {emailTypeAlert === 'success' && 'Login efetuado com sucesso'}
+                {emailTypeAlert === 'danger' && 'Nome de usuário ou password incorretos '}
+            </Alert>
             <div className="login-page">
                 <div className="login-card">
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -77,7 +93,6 @@ const Login = (props) => {
                     </div>
                 </div>
             </div>
-            <PopUp flashInput={flash} typeMessage={messageStatus} />
         </div>
     );
 };

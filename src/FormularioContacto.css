@@ -179,4 +179,17 @@
     margin-right: 5px;
   }
 
+  .form-alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 15px;
+    margin: 0 auto;
+    font-size: 12px;
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   

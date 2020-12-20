@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/sintomas/editSintomas', (req, res) => {
+router.put('/sintomas/editSintomas', jwtMiddleware, (req, res) => {
     connection.query('UPDATE sintomas SET ? WHERE id = ?',
         [req.body, req.body.id],
         (err, results) => {
@@ -34,7 +34,7 @@ router.put('/sintomas/editSintomas', (req, res) => {
     )
 })
 
-router.delete('/sintomas/deleteSintoma', (req, res) => {
+router.delete('/sintomas/deleteSintoma', jwtMiddleware, (req, res) => {
     connection.query('DELETE FROM sintomas WHERE id = ?',
         [req.body.id],
         (err, results) => {
@@ -48,7 +48,7 @@ router.delete('/sintomas/deleteSintoma', (req, res) => {
 }
 )
 
-router.post('/sintomas/addSintoma', (req, res) => {
+router.post('/sintomas/addSintoma', jwtMiddleware, (req, res) => {
     connection.query('INSERT INTO sintomas SET publish=1,?',
         [req.body],
         (err, results) => {

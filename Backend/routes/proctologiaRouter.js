@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/proctologia/editProctologia', (req, res) => {
+router.put('/proctologia/editProctologia',jwtMiddleware, (req, res) => {
     connection.query('UPDATE proctologia SET ?',
         [req.body],
         (err, results) => {

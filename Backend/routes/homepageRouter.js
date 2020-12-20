@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/homepage/editHomepage', (req, res) => {
+router.put('/homepage/editHomepage', jwtMiddleware, (req, res) => {
     connection.query('UPDATE homepage SET ?',
         [req.body],
         (err, results) => {

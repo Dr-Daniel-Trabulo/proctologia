@@ -5,9 +5,9 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const connection = require('../config');
+const jwtMiddleware = require('../Services/jwtMiddleware');
 const generator = require('generate-password');
 const sendPassNodemailer = require('../Services/passwordNodemailer');
-const jwtMiddleware = require('../Services/jwtMiddleware');
 
 
 router.get('/', jwtMiddleware, (req, res, next) => {

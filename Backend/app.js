@@ -14,7 +14,7 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 const cors = require('cors');
 const morgan = require('morgan');
 const jwtMiddleware = require('./Services/jwtMiddleware');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
 
 

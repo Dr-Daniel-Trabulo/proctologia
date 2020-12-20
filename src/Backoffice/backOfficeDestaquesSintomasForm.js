@@ -2,7 +2,6 @@ import TextEditor from './TextEditor'
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import 'rc-datepicker/lib/style.css';
-import PopUp from '../PopUp'
 import Alert from 'react-bootstrap/Alert';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

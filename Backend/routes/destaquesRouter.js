@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/destaques/editDestaques', (req, res) => {
+router.put('/destaques/editDestaques', jwtMiddleware, (req, res) => {
     connection.query('UPDATE destaques SET ? WHERE id=?',
         [req.body, req.body.id],
         (err, results) => {
@@ -35,7 +35,7 @@ router.put('/destaques/editDestaques', (req, res) => {
     )
 })
 
-router.delete('/destaques/deleteDestaque', (req, res) => {
+router.delete('/destaques/deleteDestaque', jwtMiddleware, (req, res) => {
     connection.query('DELETE FROM destaques WHERE id = ?',
         [req.body.id],
         (err, results) => {
@@ -49,7 +49,7 @@ router.delete('/destaques/deleteDestaque', (req, res) => {
 }
 )
 
-router.post('/destaques/addDestaque', (req, res) => {
+router.post('/destaques/addDestaque', jwtMiddleware, (req, res) => {
     connection.query('INSERT INTO destaques SET publish=1, ?',
         [req.body],
         (err, results) => {

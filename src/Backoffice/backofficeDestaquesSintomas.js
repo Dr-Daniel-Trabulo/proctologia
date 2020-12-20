@@ -165,7 +165,7 @@ class backofficeDestaquesSintomas extends React.Component {
                 })
         } else {
             axios
-                .put('/sintomas/sintomas/editSintomas!', destaquesDisplayPut)
+                .put('/sintomas/sintomas/editSintomas', destaquesDisplayPut)
                 .then((results) => {
                     this.setState({ emailTypeAlert: 'success', showEmailAlert: true })
                     window.setTimeout(() => {
