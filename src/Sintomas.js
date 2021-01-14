@@ -28,24 +28,39 @@ class Sintomas extends React.Component {
     render() {
         return (
             <div className='Main'>
-                {/* <h1>Sintomas de doença proctológica</h1> */}
-                {this.state.sintomas.map((sintoma) => {
-                    return (
-                        <div className='estrutura'>
-                            {sintoma.publish === 1 &&
-                                <div>
+                <div className='menuPatologias'>
+                    <div className='submenuNome'>Sintomas</div>
+                    <ul className='menuPatologias_ul'>
+                        {
+                            this.state.sintomas.map((sintoma) => {
+                                return (
+                                    <li className='menuPatologias_ul'>
+                                        <a href={`#${sintoma.nome}`}>{sintoma.nome}</a>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+                <div className='estrutura'>
+                    <div className='sintomas'>Sintomas</div>
+                    <ul>
+                        {this.state.sintomas.map((sintoma) => {
+                            return (
+                                sintoma.publish === 1 &&
+                                <li id={sintoma.nome}>
                                     <div className='titulo'>{ReactHtmlParser(sintoma.nome)}</div>
-                                    <div>{ReactHtmlParser(sintoma.texto)}</div>
-                                    {sintoma.fotoLink1 && <img src={sintoma.fotoLink1} alt={sintoma.foto_alt1} />}
-                                    {sintoma.fotoLink2 && <img src={sintoma.fotoLink2} alt={sintoma.foto_alt2} />}
-                                    {sintoma.fotoLink3 && <img src={sintoma.fotoLink3} alt={sintoma.foto_alt3} />}
-                                    {sintoma.fotoLink4 && <img src={sintoma.fotoLink4} alt={sintoma.foto_alt4} />}
-                                </div>
-                            }
-
-                        </div>
-                    )
-                })}
+                                    <div className='conteudo'>{ReactHtmlParser(sintoma.texto)}
+                                        {sintoma.fotoLink1 && <img src={sintoma.fotoLink1} alt={sintoma.foto_alt1} />}
+                                        {sintoma.fotoLink2 && <img src={sintoma.fotoLink2} alt={sintoma.foto_alt2} />}
+                                        {sintoma.fotoLink3 && <img src={sintoma.fotoLink3} alt={sintoma.foto_alt3} />}
+                                        {sintoma.fotoLink4 && <img src={sintoma.fotoLink4} alt={sintoma.foto_alt4} />}
+                                    </div>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
                 <Footer />
 
             </div>

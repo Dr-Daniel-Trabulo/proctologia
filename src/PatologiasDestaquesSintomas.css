@@ -10,26 +10,107 @@
 }
 
 .Main{
-    margin-top: 85px;
+    margin-top: 95px;
     font-family: Aileron !important;
     margin-bottom: 170px;
 }
 
 .estrutura{
-    margin-left:100px;
+    margin-left:225px;
     margin-right: 100px;
+    margin-top: -25px;
     text-align: justify;
 }
 
 .titulo{
-font-size: 22px;
+font-size: 25px;
 font-weight: bold;
+position:fixed;
+top:60px;
+width: 100%;
+background-color:white;
+padding-bottom: 5px !important;
+}
+
+.conteudo{
+  margin-top:120px;
+  display: flex;
+flex-direction: row;
+}
+
+.sintomas{
+  font-family: Aileron;
+  font-size: 27px;
+  font-weight: bold;
+  margin-top: -20px;
+  margin-left:-15px;
+  position: fixed;
+  top:80px;
+  background-color: white;
+  width: 100%;
+}
+
+.menuPatologias{
+  background-color: rgb(245, 244, 244);
+  margin-top: -35px;
+  display: flex;
+  flex-direction: column;
+  height: 23px;
+  position:fixed;
+  top:95px;
+  height: 100%;
+  width: 175px;
+}
+
+.submenuNome{
+  font-weight: bold;
+  font-size: 17px;
+  padding-left: 8px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.menuPatologias_ul{
+  padding-left:20px;
+}
+
+.menuPatologias_li{
+  display: inline;
+  text-align: left;
+  padding-left: 15px;
+}
+
+.menuPatologias_li a:hover{
+font-weight: bold;
+text-decoration: none;
+color:rgb(72,72,72);
+}
+
+.linkPatologia{
+  color: rgb(72, 72, 72);
+  margin-left: -15px;
+  text-align: left;
+}
+
+.fotos{
+  width: 300px;
+  margin-right: 25px;
+}
+
+.fotosSeccao{
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 25px;
 }
 
 @media(max-width:1100px){
     .estrutura{
       margin-left:50px;
       margin-right: 50px;  
+    }
+    .conteudo{
+      margin-top:0px;
     }
   }
 

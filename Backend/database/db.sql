@@ -6,12 +6,20 @@ CREATE TABLE patologias (
   sintomasPatologia MEDIUMTEXT,
   examesPatologia MEDIUMTEXT,
   tratamentosPatologia MEDIUMTEXT,
+  fotoLink1 VARCHAR(200),
+  foto_alt1 VARCHAR(200),
+  fotoLink2 VARCHAR(200),
+  foto_alt2 VARCHAR(200),
+  fotoLink3 VARCHAR(200),
+  foto_alt3 VARCHAR(200),
+  fotoLink4 VARCHAR(200),
+  foto_alt4 VARCHAR(200),
   PRIMARY KEY(`idPatologia`)
 );
 
-INSERT INTO `patologias` (nomePatologia, publish, linkPatologia, sintomasPatologia, examesPatologia, tratamentosPatologia) VALUES 
-('Patologia1',1, 'patologia1', 'sintomas1', 'exames1','tratamentos1'),
-('Patologia2',1, 'patologia2', 'sintomas2', 'exames2','tratamentos2');
+INSERT INTO `patologias` (nomePatologia, publish, linkPatologia, sintomasPatologia, examesPatologia, tratamentosPatologia, fotoLink1, foto_alt1, fotoLink2, foto_alt2, fotoLink3, foto_alt3, fotoLink4, foto_alt4) VALUES 
+('Patologia1',1, 'patologia1', 'sintomas1', 'exames1','tratamentos1','fotoLink1', 'foto_alt1', 'fotoLink2', 'foto_alt2', 'fotoLink3', 'foto_alt3', 'fotoLink4', 'foto_alt4'),
+('Patologia2',1, 'patologia2', 'sintomas2', 'exames2','tratamentos2','fotoLink1', 'foto_alt1', 'fotoLink2', 'foto_alt2', 'fotoLink3', 'foto_alt3', 'fotoLink4', 'foto_alt4');
 
 
 CREATE TABLE destaques (

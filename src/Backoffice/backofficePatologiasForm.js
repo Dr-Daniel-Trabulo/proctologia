@@ -27,20 +27,57 @@ const backofficePatologiasForm = (props) => {
                                 onEditorStateChange={props.onEditorStateChange_examesPatologia}
                             />
                         </div>
+                        <div className='NoticiaInput-subtitle-foto'>Fotografia 1</div>
+                        <div className="input">
+                            <label className="input-section-label">Link</label>
+                            <input type='text' name='fotoLink1' value={props.fotoLink1} onChange={event => props.handleChange(event)} />
+                        </div>
+                        <div className="input">
+                            <label className="input-section-label">Descrição</label>
+                            <input type='text' name='foto_alt1' value={props.foto_alt1} onChange={event => props.handleChange(event)} />
+                        </div>
+
+                        <div className='NoticiaInput-subtitle-foto'>Fotografia 2</div>
+                        <div className="input">
+                            <label className="input-section-label">Link</label>
+                            <input type='text' name='fotoLink2' value={props.fotoLink2} onChange={event => props.handleChange(event)} />
+                        </div>
+                        <div className="input">
+                            <label className="input-section-label">Descrição</label>
+                            <input type='text' name='foto_alt2' value={props.foto_alt2} onChange={event => props.handleChange(event)} />
+                        </div>
                         <div className='input'>
                             <label className="input-section-label">Sintomas</label>
                             <TextEditor
                                 editorState={props.editorState_sintomasPatologia}
                                 onEditorStateChange={props.onEditorStateChange_sintomasPatologia}
                             />
-
                         </div>
+                        <div className='NoticiaInput-subtitle-foto'>Fotografia 3</div>
+                        <div className="input">
+                            <label className="input-section-label">Link</label>
+                            <input type='text' name='fotoLink3' value={props.fotoLink3} onChange={event => props.handleChange(event)} />
+                        </div>
+                        <div className="input">
+                            <label className="input-section-label">Descrição</label>
+                            <input type='text' name='foto_alt3' value={props.foto_alt3} onChange={event => props.handleChange(event)} />
+                        </div>
+
                         <div className='input'>
                             <label className="input-section-label">Tratamentos</label>
                             <TextEditor
                                 editorState={props.editorState_tratamentosPatologia}
                                 onEditorStateChange={props.onEditorStateChange_tratamentosPatologia}
                             />
+                        </div>
+                        <div className='NoticiaInput-subtitle-foto'>Fotografia 4</div>
+                        <div className="input">
+                            <label className="input-section-label">Link</label>
+                            <input type='text' name='fotoLink4' value={props.fotoLink4} onChange={event => props.handleChange(event)} />
+                        </div>
+                        <div className="input">
+                            <label className="input-section-label">Descrição</label>
+                            <input type='text' name='foto_alt4' value={props.foto_alt4} onChange={event => props.handleChange(event)} />
                         </div>
                         <div className='input'>
                             <label className="input-section-label">Link</label>
@@ -89,6 +126,25 @@ const backofficePatologiasForm = (props) => {
                                     onEditorStateChange={props.onEditorStateChange_examesPatologia}
                                 />
                             </div>
+                            <div className='NoticiaInput-subtitle-foto'>Fotografia 1</div>
+                            <div className="input">
+                                <label className="input-section-label">Link</label>
+                                <input type='text' name='fotoLink1' value={props.fotoLink1} onChange={event => props.handleChange(event)} />
+                            </div>
+                            <div className="input">
+                                <label className="input-section-label">Descrição</label>
+                                <input type='text' name='foto_alt1' value={props.foto_alt1} onChange={event => props.handleChange(event)} />
+                            </div>
+
+                            <div className='NoticiaInput-subtitle-foto'>Fotografia 2</div>
+                            <div className="input">
+                                <label className="input-section-label">Link</label>
+                                <input type='text' name='fotoLink2' value={props.fotoLink2} onChange={event => props.handleChange(event)} />
+                            </div>
+                            <div className="input">
+                                <label className="input-section-label">Descrição</label>
+                                <input type='text' name='foto_alt2' value={props.foto_alt2} onChange={event => props.handleChange(event)} />
+                            </div>
                             <div className='input'>
                                 <label input-section-label>Sintomas</label>
                                 <TextEditor
@@ -96,12 +152,30 @@ const backofficePatologiasForm = (props) => {
                                     onEditorStateChange={props.onEditorStateChange_sintomasPatologia}
                                 />
                             </div>
+                            <div className='NoticiaInput-subtitle-foto'>Fotografia 3</div>
+                            <div className="input">
+                                <label className="input-section-label">Link</label>
+                                <input type='text' name='fotoLink3' value={props.fotoLink3} onChange={event => props.handleChange(event)} />
+                            </div>
+                            <div className="input">
+                                <label className="input-section-label">Descrição</label>
+                                <input type='text' name='foto_alt3' value={props.foto_alt3} onChange={event => props.handleChange(event)} />
+                            </div>
                             <div className='input'>
                                 <div className='input-section-label'>Tratamentos</div>
                                 <TextEditor
                                     editorState={props.editorState_tratamentosPatologia}
                                     onEditorStateChange={props.onEditorStateChange_tratamentosPatologia}
                                 />
+                            </div>
+                            <div className='NoticiaInput-subtitle-foto'>Fotografia 4</div>
+                            <div className="input">
+                                <label className="input-section-label">Link</label>
+                                <input type='text' name='fotoLink4' value={props.fotoLink4} onChange={event => props.handleChange(event)} />
+                            </div>
+                            <div className="input">
+                                <label className="input-section-label">Descrição</label>
+                                <input type='text' name='foto_alt4' value={props.foto_alt4} onChange={event => props.handleChange(event)} />
                             </div>
                             <div className='input'>
                                 <label input-section-label>Link</label>

@@ -13,7 +13,7 @@ import { withWindowSizeListener } from 'react-window-size-listener';
 class NavBar extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { patologias: [] }
+        this.state = { patologias: []}
     }
 
     loadData = () => {

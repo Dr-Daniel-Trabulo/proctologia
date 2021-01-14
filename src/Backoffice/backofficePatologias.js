@@ -24,6 +24,14 @@ class backofficePatologias extends React.Component {
             sintomasPatologia: '',
             linkPatologia: '',
             idPatologia: '',
+            foto_alt1: '',
+            foto_alt2: '',
+            foto_alt3: '',
+            foto_alt4: '',
+            fotoLink1: '',
+            fotoLink2: '',
+            fotoLink3: '',
+            fotoLink4: '',
             editorState_examesPatologia: EditorState.createEmpty(),
             editorState_sintomasPatologia: EditorState.createEmpty(),
             editorState_tratamentosPatologia: EditorState.createEmpty(),
@@ -86,6 +94,14 @@ class backofficePatologias extends React.Component {
                     sintomasPatologia: patologia.sintomasPatologia,
                     linkPatologia: patologia.linkPatologia,
                     idPatologia: patologia.idPatologia,
+                    foto_alt1: patologia.foto_alt1,
+                    foto_alt2: patologia.foto_alt2,
+                    foto_alt3: patologia.foto_alt3,
+                    foto_alt4: patologia.foto_alt4,
+                    fotoLink1: patologia.fotoLink1,
+                    fotoLink2: patologia.fotoLink2,
+                    fotoLink3: patologia.fotoLink3,
+                    fotoLink4: patologia.fotoLink4,
                     editorState_examesPatologia: formatContent_examesPatologia,
                     editorState_sintomasPatologia: formatContent_sintomasPatologia,
                     editorState_tratamentosPatologia: formatContent_tratamentosPatologia
@@ -209,7 +225,7 @@ class backofficePatologias extends React.Component {
                 this.setState({ emailTypeAlert: 'successPost', showEmailAlert: true })
                 window.setTimeout(() => {
                     this.setState({ showEmailAlert: false })
-                    window.location.href="/backoffice/patologias"
+                    window.location.href = "/backoffice/patologias"
                     this.getData()
                 }, 5000);
             })
@@ -243,7 +259,7 @@ class backofficePatologias extends React.Component {
                                     )
                                 })}
                             </select>
-                            <Link to='/backoffice/patologias/new' onClick={() => {window.location.href="/backoffice/patologias/new"}}>
+                            <Link to='/backoffice/patologias/new' onClick={() => { window.location.href = "/backoffice/patologias/new" }}>
                                 <div className="NoticiaInput-section-button">
                                     <button className="login-button">Nova Patologia</button>
                                 </div>
@@ -260,6 +276,14 @@ class backofficePatologias extends React.Component {
                         sintomasPatologia={this.state.sintomasPatologia}
                         examesPatologia={this.state.examesPatologia}
                         tratamentosPatologia={this.state.tratamentosPatologia}
+                        foto_alt1={this.state.foto_alt1}
+                        foto_alt2={this.state.foto_alt2}
+                        foto_alt3={this.state.foto_alt3}
+                        foto_alt4={this.state.foto_alt4}
+                        fotoLink1={this.state.fotoLink1}
+                        fotoLink2={this.state.fotoLink2}
+                        fotoLink3={this.state.fotoLink3}
+                        fotoLink4={this.state.fotoLink4}
                         editorState_examesPatologia={this.state.editorState_examesPatologia}
                         editorState_sintomasPatologia={this.state.editorState_sintomasPatologia}
                         editorState_tratamentosPatologia={this.state.editorState_tratamentosPatologia}

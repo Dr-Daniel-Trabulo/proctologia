@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@draft-js-plugins/editor": "^4.0.0",
+    "@draft-js-plugins/inline-toolbar": "^4.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.13",
@@ -20,6 +22,8 @@
     "create-use-context": "^1.0.1",
     "dotenv": "^8.2.0",
     "draft-js": "^0.11.7",
+    "draft-js-buttons": "^2.0.2",
+    "draft-js-inline-toolbar-plugin": "^3.0.1",
     "draftjs-to-html": "^0.9.1",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
@@ -85,5 +89,9 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000/"
+  "proxy": "http://localhost:5000/",
+  "devDependencies": {
+    "css-loader": "^5.0.1",
+    "style-loader": "^2.0.0"
+  }
 }
