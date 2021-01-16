@@ -25,13 +25,7 @@ class backofficeDestaquesSintomas extends React.Component {
             editorState_texto: EditorState.createEmpty(),
             nome: '',
             foto_alt1: '',
-            foto_alt2: '',
-            foto_alt3: '',
-            foto_alt4: '',
             fotoLink1: '',
-            fotoLink2: '',
-            fotoLink3: '',
-            fotoLink4: '',
             pathnameSintomas: '',
             pathNew: '',
             seccao: '',
@@ -98,13 +92,7 @@ class backofficeDestaquesSintomas extends React.Component {
                     texto: destaque.texto,
                     nome: destaque.nome,
                     foto_alt1: destaque.foto_alt1,
-                    foto_alt2: destaque.foto_alt2,
-                    foto_alt3: destaque.foto_alt3,
-                    foto_alt4: destaque.foto_alt4,
                     fotoLink1: destaque.fotoLink1,
-                    fotoLink2: destaque.fotoLink2,
-                    fotoLink3: destaque.fotoLink3,
-                    fotoLink4: destaque.fotoLink4,
                     editorState_texto: formatContentPT
                 })
             }
@@ -323,13 +311,7 @@ class backofficeDestaquesSintomas extends React.Component {
                     editorState_texto={this.state.editorState_texto}
                     nome={this.state.nome}
                     foto_alt1={this.state.foto_alt1}
-                    foto_alt2={this.state.foto_alt2}
-                    foto_alt3={this.state.foto_alt3}
-                    foto_alt4={this.state.foto_alt4}
                     fotoLink1={this.state.fotoLink1}
-                    fotoLink2={this.state.fotoLink2}
-                    fotoLink3={this.state.fotoLink3}
-                    fotoLink4={this.state.fotoLink4}
                     editorState_texto={this.state.editorState_texto}
                     pathNew={this.state.pathNew}
                     seccao={this.state.seccao}

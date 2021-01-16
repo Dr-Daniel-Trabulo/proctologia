@@ -50,11 +50,8 @@ class Sintomas extends React.Component {
                                 sintoma.publish === 1 &&
                                 <li id={sintoma.nome}>
                                     <div className='titulo'>{ReactHtmlParser(sintoma.nome)}</div>
-                                    <div className='conteudo'>{ReactHtmlParser(sintoma.texto)}
+                                    <div className='conteudoSintomas'>{ReactHtmlParser(sintoma.texto)}
                                         {sintoma.fotoLink1 && <img src={sintoma.fotoLink1} alt={sintoma.foto_alt1} />}
-                                        {sintoma.fotoLink2 && <img src={sintoma.fotoLink2} alt={sintoma.foto_alt2} />}
-                                        {sintoma.fotoLink3 && <img src={sintoma.fotoLink3} alt={sintoma.foto_alt3} />}
-                                        {sintoma.fotoLink4 && <img src={sintoma.fotoLink4} alt={sintoma.foto_alt4} />}
                                     </div>
                                 </li>
                             )
