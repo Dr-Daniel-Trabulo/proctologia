@@ -2,18 +2,27 @@ import React from 'react'
 import axios from 'axios'
 import Footer from './Footer'
 import ReactHtmlParser from "react-html-parser";
-import { UncontrolledCollapse, Button, CardBody, Card } from 'reactstrap';
+// import { UncontrolledCollapse, Collapse, Button, CardBody, Card } from 'reactstrap';
 import './PatologiasDestaquesSintomas.css'
+// import Accordion from 'react-bootstrap/Accordion'
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemHeading,
+    AccordionItemButton,
+    AccordionItemPanel,
+} from 'react-accessible-accordion';
 
 class Destaques extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            destaques: [], id: []
+            destaques: [],
+            id: [],
         }
     }
 
-    componentDidMount() {
+    loadDestaques = () => {
         window.scrollTo(0, 0)
         axios
             .get('/destaques')
@@ -31,6 +40,10 @@ class Destaques extends React.Component {
             })
     }
 
+    componentDidMount = () => {
+        this.loadDestaques()
+    }
+
 
     render() {
         const max = Math.max(...this.state.id);
@@ -40,7 +53,7 @@ class Destaques extends React.Component {
                 <div className='MainDestaques'>
                     {this.state.destaques.map((destaque) => {
                         return (
-                            <div className='estrutura'>
+                            <div>
                                 {
                                     destaque.publish === 1 &&
                                         destaque.ID === max ?
@@ -50,22 +63,21 @@ class Destaques extends React.Component {
                                             <div>{ReactHtmlParser(destaque.texto)}</div>
                                         </div>
                                         :
-                                        destaque.publish === 1 &&
-                                        <div className='dropdown'>
-                                            <Button className='toggle' color="none" id="toggler" style={{ marginBottom: '1rem' }}>
-                                                <div>{destaque.nome}</div>
-                                            </Button>
-                                            <UncontrolledCollapse toggler="#toggler">
-                                                <Card>
-                                                    <CardBody>
-                                                        <div className='destaqueCompleto'>
-                                                            {destaque.fotoLink1 && <img src={destaque.fotoLink1} alt={destaque.foto_alt1} />}
-                                                            <div>{ReactHtmlParser(destaque.texto)}</div>
-                                                        </div>
-                                                    </CardBody>
-                                                </Card>
-                                            </UncontrolledCollapse>
-                                        </div>
+                                        <Accordion>
+                                            <AccordionItem>
+                                                <AccordionItemHeading>
+                                                    <AccordionItemButton>
+                                                        {destaque.nome}
+                                                    </AccordionItemButton>
+                                                </AccordionItemHeading>
+                                                <AccordionItemPanel>
+                                                    <div className='destaqueCompleto'>
+                                                        {destaque.fotoLink1 && <img src={destaque.fotoLink1} alt={destaque.foto_alt1} />}
+                                                        <div>{ReactHtmlParser(destaque.texto)}</div>
+                                                    </div>
+                                                </AccordionItemPanel>
+                                            </AccordionItem>
+                                        </Accordion>
                                 }
                             </div>
                         )

@@ -55,7 +55,6 @@ class backofficeDestaquesSintomas extends React.Component {
         } else {
             axios
                 .get('/destaques')
-
                 .then((res) => {
                     const results = res.data
                     this.setState({ destaques: results })

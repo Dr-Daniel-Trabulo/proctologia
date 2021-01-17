@@ -27,6 +27,7 @@ CREATE TABLE destaques (
     publish INTEGER NOT NULL,
     nome VARCHAR(200),
     texto MEDIUMTEXT,
+    toggle 
     fotoLink1 VARCHAR(200),
     foto_alt1 VARCHAR(200),
     PRIMARY KEY (`ID`)

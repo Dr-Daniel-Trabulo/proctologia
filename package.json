@@ -43,6 +43,7 @@
     "prop-types": "^15.7.2",
     "rc-datepicker": "^5.0.16",
     "react": "^17.0.1",
+    "react-accessible-accordion": "^3.3.3",
     "react-alert": "^7.0.2",
     "react-bootstrap": "^1.4.0",
     "react-copyright-year": "^0.1.1",
