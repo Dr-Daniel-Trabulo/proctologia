@@ -3,14 +3,9 @@ import axios from 'axios'
 import Footer from './Footer'
 import ReactHtmlParser from "react-html-parser";
 import './PatologiasDestaquesSintomas.css'
-import {
-    Accordion,
-    AccordionItem,
-    AccordionItemHeading,
-    AccordionItemButton,
-    AccordionItemPanel,
-} from 'react-accessible-accordion';
-import 'react-accessible-accordion/dist/fancy-example.css'
+import Collapsible from 'react-collapsible';
+import arrow from './Assets/dropdown-icon.jpg'
+import arrowGrey from './Assets/dropdown-grey.png'
 
 class Destaques extends React.Component {
     constructor(props) {
@@ -50,7 +45,7 @@ class Destaques extends React.Component {
             <div>
                 <div className='destaques'>Destaques</div>
                 <div className='MainDestaques'>
-                    {/* {
+                    {
                         this.state.destaques.map((destaque) => {
                             return (
                                 <div>
@@ -67,35 +62,31 @@ class Destaques extends React.Component {
                                 </div>
                             )
                         })
-                    } */}
-                    <div className='teste'>
-                        <Accordion allowMultipleExpanded={false}>
-                            {
-                                this.state.destaques.map((destaque) => {
-                                    return (
-                                        destaque.publish === 1 &&
-                                        destaque.ID !== max &&
-                                        <AccordionItem key={destaque.ID}>
-                                            <AccordionItemHeading>
-                                                <AccordionItemButton>
-                                                    {<div className='tituloDestaques'>{destaque.nome}</div>}
-                                                </AccordionItemButton>
-                                            </AccordionItemHeading>
-                                            <AccordionItemPanel>
-                                                {
-                                                    <div className='destaqueCompleto'>
-                                                        {destaque.fotoLink1 && <img src={destaque.fotoLink1} alt={destaque.foto_alt1} />}
-                                                        {<div className='textoDestaques'>{ReactHtmlParser(destaque.texto)}</div>}
-                                                    </div>
-                                                }
-                                            </AccordionItemPanel>
-                                        </AccordionItem>
-                                    )
-                                })
-                            }
-                        </Accordion>
-                    </div>
+                    }
+                    {
+                        this.state.destaques.map((destaque) => {
+                            return (
+
+                                destaque.publish === 1 &&
+                                destaque.ID !== max &&
+                                <Collapsible
+                                    trigger=
+                                    {
+                                        // this.props.open === true &&
+                                        <div className='dropdownItem'>{destaque.nome}
+                                            {<img className='arrow' src={arrowGrey} alt='dropdown Doenças Anais' />}
+                                        </div>
+                                    }>
+                                    <div className='destaqueCompleto'>
+                                        {destaque.fotoLink1 && <img className='fotoDestaques' src={destaque.fotoLink1} alt={destaque.foto_alt1} />}
+                                        {<div className='textoDestaques'>{ReactHtmlParser(destaque.texto)}</div>}
+                                    </div>
+                                </Collapsible>
+                            )
+                        })
+                    }
                 </div>
+
                 <Footer />
             </div >
         )

@@ -21,7 +21,6 @@
   margin-bottom: 170px;
   margin-left:80px;
   margin-right: 80px;
-  height: 5000px;
 }
 
 .conteudoSintomas{
@@ -120,7 +119,8 @@
     font-weight: bold;
     padding-bottom: 5px !important;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
+    margin-left: 10px;
   }  
 
   .accordion{
@@ -146,31 +146,6 @@
     flex-direction: row;
     padding: 0 !important;
   } 
-
-  /* .accordion__item {
-    position: relative;
-}
-.accordion__arrow {
-    display: inline-block;
-    width: 24px;
-    height: 12px;
-    position: absolute;
-    top: 40px;
-    right: 15px;
-    margin-top: -6px;
-} */
-
-  /* .tituloDestaques_Accordion{
-    height: 30px;
-    padding:0,0,0,0;
-    width: 500px;
-  } */
-
-  /* .destaqueCompleto_Accordion{
-    height: 30px;
-    padding:0,0,0,0;
-    width: 50%;
-  } */
 
 .menu{
   background-color: rgb(245, 244, 244);
@@ -272,6 +247,37 @@ color:rgb(72,72,72);
   margin-top: 25px;
   text-align: justify;
 }
+
+.Collapsible__trigger{
+  font-size: 21px;
+  color: rgb(120, 120, 120);
+  font-weight: bold;
+  padding-bottom: 5px !important;
+  margin-bottom: 20px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-left: 0;
+}
+
+.Collapsible__trigger:hover{
+  text-decoration: underline;
+}
+
+.fotoDestaques{
+  margin-top:20px;
+}
+.arrow{
+  height: 20px;
+  margin-left: 10px;
+  margin-top:5px;
+}
+.dropdownItem{
+  display: flex;
+  flex-direction: row;
+}
+
 
 @media(max-width:1100px){
     .estrutura{
