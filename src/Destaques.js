@@ -2,9 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Footer from './Footer'
 import ReactHtmlParser from "react-html-parser";
-// import { UncontrolledCollapse, Collapse, Button, CardBody, Card } from 'reactstrap';
 import './PatologiasDestaquesSintomas.css'
-// import Accordion from 'react-bootstrap/Accordion'
 import {
     Accordion,
     AccordionItem,
@@ -12,6 +10,7 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
+import 'react-accessible-accordion/dist/fancy-example.css'
 
 class Destaques extends React.Component {
     constructor(props) {
@@ -47,49 +46,62 @@ class Destaques extends React.Component {
 
     render() {
         const max = Math.max(...this.state.id);
-        console.log(max)
         return (
             <div>
+                <div className='destaques'>Destaques</div>
                 <div className='MainDestaques'>
-                    {this.state.destaques.map((destaque) => {
-                        return (
-                            <div>
-                                {
-                                    destaque.publish === 1 &&
-                                        destaque.ID === max ?
+                    {/* {
+                        this.state.destaques.map((destaque) => {
+                            return (
+                                <div>
+                                    {
+                                        destaque.publish === 1 &&
+                                        destaque.ID === max &&
                                         <div className='destaqueCompleto'>
-                                            <div>{destaque.nome}</div>
+                                            <div className='tituloDestaques'>{destaque.nome}</div>
                                             {destaque.fotoLink1 && <img src={destaque.fotoLink1} alt={destaque.foto_alt1} />}
-                                            <div>{ReactHtmlParser(destaque.texto)}</div>
+                                            <div className='textoDestaques'>{ReactHtmlParser(destaque.texto)}</div>
                                         </div>
-                                        :
-                                        <Accordion>
-                                            <AccordionItem>
-                                                <AccordionItemHeading>
-                                                    <AccordionItemButton>
-                                                        {destaque.nome}
-                                                    </AccordionItemButton>
-                                                </AccordionItemHeading>
-                                                <AccordionItemPanel>
+
+                                    }
+                                </div>
+                            )
+                        })
+                    } */}
+                    <div className='teste'>
+                        <Accordion allowMultipleExpanded={false}>
+                            {
+                                this.state.destaques.map((destaque) => {
+                                    return (
+                                        destaque.publish === 1 &&
+                                        destaque.ID !== max &&
+                                        <AccordionItem key={destaque.ID}>
+                                            <AccordionItemHeading>
+                                                <AccordionItemButton>
+                                                    {<div className='tituloDestaques'>{destaque.nome}</div>}
+                                                </AccordionItemButton>
+                                            </AccordionItemHeading>
+                                            <AccordionItemPanel>
+                                                {
                                                     <div className='destaqueCompleto'>
                                                         {destaque.fotoLink1 && <img src={destaque.fotoLink1} alt={destaque.foto_alt1} />}
-                                                        <div>{ReactHtmlParser(destaque.texto)}</div>
+                                                        {<div className='textoDestaques'>{ReactHtmlParser(destaque.texto)}</div>}
                                                     </div>
-                                                </AccordionItemPanel>
-                                            </AccordionItem>
-                                        </Accordion>
-                                }
-                            </div>
-                        )
-                    })
-                    }
+                                                }
+                                            </AccordionItemPanel>
+                                        </AccordionItem>
+                                    )
+                                })
+                            }
+                        </Accordion>
+                    </div>
                 </div>
                 <Footer />
             </div >
-
-
         )
     }
 }
 
 export default Destaques
+
+

@@ -16,53 +16,163 @@
 }
 
 .MainDestaques{
-  margin-top: 95px;
+  margin-top: 100px;
   font-family: Aileron !important;
   margin-bottom: 170px;
-  width: 100%;
-}
-
-.estrutura{
-    margin-left:225px;
-    margin-right: 100px;
-    margin-top: -25px;
-    text-align: justify;
-}
-
-.titulo{
-font-size: 25px;
-font-weight: bold;
-position:fixed;
-top:60px;
-width: 100%;
-background-color:white;
-padding-bottom: 5px !important;
-}
-
-.conteudo{
-  margin-top:120px;
-  display: flex;
-flex-direction: row;
+  margin-left:80px;
+  margin-right: 80px;
+  height: 5000px;
 }
 
 .conteudoSintomas{
-  margin-top:120px;
+  margin-top:200px;
   display: inline;
 }
 
-.sintomas{
-  font-family: Aileron;
-  font-size: 27px;
+.sintomasPatologia{
+  font-family: Aileron !important;
+  font-size: 22px;
   font-weight: bold;
   margin-top: -20px;
-  margin-left:-15px;
   position: fixed;
-  top:80px;
+  top:76px;
   background-color: white;
   width: 100%;
+  margin-left:205px;
 }
 
-.menuPatologias{
+.destaques{
+  font-family: Aileron !important;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: -20px;
+  padding-top:10px;
+  position: fixed;
+  top:76px;
+  background-color: white;
+  width: 100%;
+  padding-left: 80px;
+}
+
+.estrutura{
+  margin-left:225px;
+  margin-right: 100px;
+  margin-top: 0px;
+  text-align: justify;
+}
+.estruturaPatologias{
+  margin-left:225px;
+  margin-right: 50px;
+  margin-top: 0px;
+  text-align: justify;
+}
+.teste{
+  height: auto;
+}
+
+.estruturaSintomas{
+  margin-left:225px;
+  margin-right: 100px;
+  margin-top: 0px;
+  text-align: justify;
+}
+
+.conteudo{
+  margin-top:125px;
+  display: flex;
+  flex-direction: row;
+}
+
+.conteudo_intermedio{
+  display: flex;
+  flex-direction: row;
+}
+
+.titulo{
+  font-size: 20px !important;
+  color: rgb(120, 120, 120);
+  font-weight: bold;
+  position:fixed;
+  top:100px;
+  width: 100%;
+  background-color:white;
+  padding-bottom: 5px !important;
+  margin-top: -11px;
+  }
+
+  .tituloSintomas{
+    font-size: 20px !important;
+    color: rgb(120, 120, 120);
+    font-weight: bold;
+    width: 100%;
+    background-color:white;
+    padding-bottom: 5px !important;
+    margin-top: -11px;
+    height: 120px;
+    vertical-align: text-bottom;
+    padding-top:100px;
+    margin-bottom: 35px;
+    }
+
+  .tituloDestaques{
+    font-size: 21px;
+    color: rgb(120, 120, 120);
+    font-weight: bold;
+    padding-bottom: 5px !important;
+    margin-bottom: 20px;
+    text-align: center;
+  }  
+
+  .accordion{
+    height: 30px;
+    padding:0,0,0,0;
+  }
+
+  .accordion__item{
+    height: 30px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+   
+  }
+
+  .accordion__heading{
+    height: 30px;
+  }
+
+  .accordion__button{
+    display: flex;
+    flex-direction: row;
+    padding: 0 !important;
+  } 
+
+  /* .accordion__item {
+    position: relative;
+}
+.accordion__arrow {
+    display: inline-block;
+    width: 24px;
+    height: 12px;
+    position: absolute;
+    top: 40px;
+    right: 15px;
+    margin-top: -6px;
+} */
+
+  /* .tituloDestaques_Accordion{
+    height: 30px;
+    padding:0,0,0,0;
+    width: 500px;
+  } */
+
+  /* .destaqueCompleto_Accordion{
+    height: 30px;
+    padding:0,0,0,0;
+    width: 50%;
+  } */
+
+.menu{
   background-color: rgb(245, 244, 244);
   margin-top: -35px;
   display: flex;
@@ -82,26 +192,59 @@ flex-direction: row;
   text-align: left;
 }
 
-.menuPatologias_ul{
-  padding-left:20px;
-}
-
-.menuPatologias_li{
+.menu_ul{
+  padding-left:0px;
   display: inline;
-  text-align: left;
-  padding-left: 15px;
+  list-style-type: none;
 }
 
-.menuPatologias_li a:hover{
+.menu_li{
+  text-align: left;
+  margin-bottom: 12px;
+  line-height: 1.25;
+  padding-left:20px;
+  padding-top:8px;
+}
+
+.menu_li_bold{
+  text-align: left;
+  padding-bottom: 12px;
+  line-height: 1.25;
+  font-weight: bold;
+  background-color: rgb(100, 99, 99);
+  padding-left: 20px;
+  padding-top:8px;
+}
+
+.menu_li_bold a{
+  color: white;
+}
+
+.menu_li a:hover{
 font-weight: bold;
 text-decoration: none;
 color:rgb(72,72,72);
 }
 
-.linkPatologia{
+.menu_li_bold a:hover{
+  font-weight: bold;
+  text-decoration: none;
+  color:white;
+  }
+
+.link{
   color: rgb(72, 72, 72);
-  margin-left: -15px;
+  /* margin-left: -15px; */
   text-align: left;
+  display: inline;
+
+}
+
+.sintomas_ul{
+  list-style-type: none;
+  display:flex;
+  flex-direction: column;
+  padding-left:0px;
 }
 
 .fotos{
@@ -114,6 +257,20 @@ color:rgb(72,72,72);
   display: flex;
   flex-direction: column;
   margin-right: 25px;
+  margin-left: 25px;
+}
+
+.destaqueCompleto img{
+  width: 70%;
+  height: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.textoDestaques{
+  margin-top: 25px;
+  text-align: justify;
 }
 
 @media(max-width:1100px){
@@ -121,21 +278,88 @@ color:rgb(72,72,72);
       margin-left:50px;
       margin-right: 50px;  
     }
+    .estruturaPatologias{
+      margin-left:225px;
+      margin-right: 0px; 
+    }
     .conteudo{
       margin-top:0px;
     }
+}
+
+@media(max-width:991px){
+   .estruturaSintomas{
+      margin-left:50px;
+      margin-right: 50px; 
+    }
+    .estruturaPatologias{
+      margin-left:40px;
+      margin-right: 0px; 
+    }
+    .sintomasPatologia{
+      padding-left:50px;
+      width: 100%;
+      margin-left: 30px;
+      padding-left:0px;
+    }
+    .tituloSintomas{
+      padding-top: 0px;
+      height: auto;
+      margin-bottom: 0px !important;
+      /* vertical-align:auto; */
+    } 
+}
+
+@media(max-width:750px){
+  .conteudo_intermedio {
+    display: flex;
+    flex-direction: column;
   }
+  .conteudo{
+    display: flex;
+    flex-direction: column;
+  }
+  .fotos{
+    align-items: center;
+    margin:0;
+    width: 100%;
+    margin-right:30px;
+  }
+
+  .textoPatologia{
+    margin-right:50px;
+  }
+}
 
 @media(max-width:650px){
    .estrutura{
      margin-left:30px;
      margin-right:30px;  
    }
+   .textoPatologia{
+    margin-right:40px;
+  }
  } 
-  @media(max-width:400px){
-    .estrutura{
+
+ @media(max-width:400px){
+   .estrutura{
       margin-left:25px;
       margin-right:25px;  
     }
+    .fotos{
+      width: 260px;
+      margin-right: 20px;
+      margin-left: 0px;
+    }
+    .textoPatologia{
+      margin-right:30px;
+    }
   }    
+
+  @media(max-width:350px){
+    .textoPatologia{
+      margin-right:0px;
+    }
+
+  }
 

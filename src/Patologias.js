@@ -33,31 +33,29 @@ class Patologias extends React.Component {
 
     render() {
         let patologiaLink = this.props.match.params.patologia
-
+        console.log(patologiaLink)
         return (
             <div className='Main'>
                 {
                     this.props.windowSize.windowWidth > 991 &&
-                    <div className='menuPatologias'>
+                    <div className='menu'>
                         <div className='submenuNome'>Patologias</div>
-                        {/* {
-                            this.state.patologias.map((patologia) => {
-                                return (
-                                    <ul className='menuPatologias_ul'>
-                                        <li className='menuPatologias_li'><a className='linkPatologia' href={`./${patologia.linkPatologia}`}>{patologia.nomePatologia}</a></li>
-                                    </ul>
-                                )
-                            })
-                        } */}
-                        <ul className='menuPatologias_ul'>
+                        <ul className='menu_ul'>
                             {
                                 this.state.patologias.map((patologia) => {
                                     return (
-                                        <li className='menuPatologias_li'>
-                                            <a className='linkPatologia' href={`./${patologia.linkPatologia}`}>
-                                                {patologia.nomePatologia}
-                                            </a>
-                                        </li>
+                                        patologiaLink === patologia.linkPatologia ?
+                                            <li className='menu_li_bold'>
+                                                <a className='link' href={`./${patologia.linkPatologia}`}>
+                                                    {patologia.nomePatologia}
+                                                </a>
+                                            </li>
+                                            :
+                                            <li className='menu_li'>
+                                                <a className='link' href={`./${patologia.linkPatologia}`}>
+                                                    {patologia.nomePatologia}
+                                                </a>
+                                            </li>
                                     )
                                 })
                             }
@@ -70,35 +68,39 @@ class Patologias extends React.Component {
                             <div>
                                 {
                                     patologia.linkPatologia === patologiaLink &&
-                                    <div className='estrutura'>
-                                        <div className='titulo'>{patologia.nomePatologia}</div>
-                                        <div className='conteudo'>
-                                            <div className='fotosSeccao'>
-                                                {patologia.fotoLink1 && <img className='fotos' src={patologia.fotoLink1} alt={patologia.foto_alt1} />}
-                                                {patologia.fotoLink2 && <img className='fotos' src={patologia.fotoLink2} alt={patologia.foto_alt2} />}
-                                            </div>
-                                            <div> {ReactHtmlParser(patologia.examesPatologia)}</div>
-                                        </div>
-                                        <div className='conteudo'>
-                                            {
-                                                patologia.fotoLink3 &&
-                                                <div>
-                                                    <img className='fotos' src={patologia.fotoLink3} alt={patologia.foto_alt3} />
+                                    <div>
+                                        <div className='sintomasPatologia'>Patologias</div>
+                                        <div className='estruturaPatologias'>
+                                            <div className='titulo'>{patologia.nomePatologia}</div>
+                                            <div className='conteudo'>
+                                                <div className='textoPatologia'> {ReactHtmlParser(patologia.examesPatologia)}</div>
+                                                <div className='fotosSeccao'>
+                                                    {patologia.fotoLink1 && <img className='fotos' src={patologia.fotoLink1} alt={patologia.foto_alt1} />}
+                                                    {patologia.fotoLink2 && <img className='fotos' src={patologia.fotoLink2} alt={patologia.foto_alt2} />}
                                                 </div>
-                                            }
-                                            <div>{ReactHtmlParser(patologia.sintomasPatologia)}</div>
-                                        </div>
-                                        <div className='conteudo'>
-                                            {
-                                                patologia.fotoLink4 &&
+                                            </div>
+                                            <div className='conteudo_intermedio'>
+                                                <div className='textoPatologia'>{ReactHtmlParser(patologia.sintomasPatologia)}</div>
+                                                {
+                                                    patologia.fotoLink3 &&
+                                                    <div className='fotosSeccao'    >
+                                                        <img className='fotos' src={patologia.fotoLink3} alt={patologia.foto_alt3} />
+                                                    </div>
+                                                }
+                                            </div>
+                                            <div className='conteudo_intermedio'>
+                                                <div className='textoPatologia'> {ReactHtmlParser(patologia.tratamentosPatologia)}</div>
+                                                {
+                                                    patologia.fotoLink4 &&
+                                                    <div className='fotosSeccao'>
+                                                        <img className='fotos' src={patologia.fotoLink4} alt={patologia.foto_alt4} />
+                                                    </div>
+                                                }
                                                 <div>
-                                                    <img className='fotos' src={patologia.fotoLink4} alt={patologia.foto_alt4} />
                                                 </div>
-                                            }
-                                            <div>
-                                                {ReactHtmlParser(patologia.tratamentosPatologia)}
                                             </div>
                                         </div>
+
                                     </div>
                                 }
                             </div>
