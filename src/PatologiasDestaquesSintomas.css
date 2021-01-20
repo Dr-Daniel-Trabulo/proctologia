@@ -21,6 +21,7 @@
   margin-bottom: 170px;
   margin-left:80px;
   margin-right: 80px;
+  height: auto;
 }
 
 .conteudoSintomas{
@@ -291,6 +292,13 @@ color:rgb(72,72,72);
     .conteudo{
       margin-top:0px;
     }
+    .MainDestaques{
+      margin-left:50px;
+      margin-right: 50px;  
+    }
+    .destaques{
+      padding-left: 50px;
+    }
 }
 
 @media(max-width:991px){
@@ -314,6 +322,9 @@ color:rgb(72,72,72);
       margin-bottom: 0px !important;
       /* vertical-align:auto; */
     } 
+    .destaqueCompleto img{
+      width: 80%;
+    }
 }
 
 @media(max-width:750px){
@@ -331,9 +342,11 @@ color:rgb(72,72,72);
     width: 100%;
     margin-right:30px;
   }
-
   .textoPatologia{
     margin-right:50px;
+  }
+  .destaqueCompleto img{
+    width: 90%;
   }
 }
 
@@ -344,6 +357,16 @@ color:rgb(72,72,72);
    }
    .textoPatologia{
     margin-right:40px;
+  }
+  .MainDestaques{
+    margin-left:25px;
+    margin-right: 25px;  
+  }
+  .destaques{
+    padding-left:25px;
+  }
+  .destaqueCompleto img{
+    width: 95%;
   }
  } 
 
@@ -360,6 +383,10 @@ color:rgb(72,72,72);
     .textoPatologia{
       margin-right:30px;
     }
+    .destaqueCompleto img{
+      width: 100%;
+    }
+    
   }    
 
   @media(max-width:350px){

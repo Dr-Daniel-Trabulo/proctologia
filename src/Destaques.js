@@ -72,7 +72,6 @@ class Destaques extends React.Component {
                                 <Collapsible
                                     trigger=
                                     {
-                                        // this.props.open === true &&
                                         <div className='dropdownItem'>{destaque.nome}
                                             {<img className='arrow' src={arrowGrey} alt='dropdown Doenças Anais' />}
                                         </div>

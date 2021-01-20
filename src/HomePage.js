@@ -35,7 +35,7 @@ class HomePage extends React.Component {
                         <img src={this.state.CV_pic} alt='Dr Daniel Trabulo-doença anal' />
                     </div>
                     <div className='texto'>
-                        <div className='titulo'>O Dr. Daniel Trabulo</div>
+                        <div className='tituloHomepage'>O Dr. Daniel Trabulo</div>
                         <div className='CVText'>{ReactHtmlParser(this.state.CV_text)}</div>
                     </div>
                 </span>
