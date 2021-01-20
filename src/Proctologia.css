@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'Aileron';
+    src: url('./Fonts/Aileron-Thin-webfont.eot');
+    src: url('./Fonts/Aileron-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./Fonts/Aileron-Thin-webfont.woff') format('woff'),
+         url('./Fonts/Aileron-Thin-webfont.ttf') format('truetype'),
+         url('./Fonts/Aileron-Thin-webfont.svg#aileronthin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+.MainProctologia{
+    margin-top: 125px;
+    font-family: Aileron !important;
+    margin-bottom: 170px;
+}
+
+.estruturaProctologia{
+    margin-right: 100px;
+    margin-top: 0px;
+    text-align: justify;
+    margin-top: 120px;
+    margin-left: 50px;
+    font-style: italic;
+}
+
+.tituloProctologia{
+    font-size: 22px !important;
+    color: rgb(120, 120, 120);
+    color:black;    
+    /* font-weight: bold; */
+    position:fixed;
+    top:85px;
+    width: 100%;
+    background-color:white;
+    padding-bottom: 5px !important;
+    margin-top: -11px;
+    margin-left: 50px;
+
+}
+
+@media(max-width:1100px){
+    .estruturaProctologia{
+      margin-left:50px;
+      margin-right: 50px;  
+    }
+    .tituloProctologia{
+        margin-left:50px;
+        margin-right: 50px;  
+      }
+}
+
+@media(max-width:650px){
+    .estruturaProctologia{
+      margin-left:30px;
+      margin-right:30px;  
+    }
+    .tituloProctologia{
+        margin-left:30px;
+        margin-right: 30px;  
+      }
+}
+
+@media(max-width:400px){
+    .estruturaProctologia{
+       margin-left:25px;
+       margin-right:25px;  
+     }
+     .tituloProctologia{
+        margin-left:25px;
+        margin-right: 25px;  
+      }
+}

@@ -15,6 +15,7 @@ import Login from './Backoffice/Login'
 import ForgotPassword from './Backoffice/ForgotPassword'
 import Proctologia from './Proctologia'
 import BackofficeProctologia from './Backoffice/backofficeProctologia'
+import Teste from './teste'
 import React, { useContext } from 'react';
 import { UserContext } from './context/UserContext'
 
@@ -32,6 +33,7 @@ const App = () => {
           <Route exact path='/destaques_doenca_proctologica' component={Destaques} />
           <Route exact path='/contactos_dr_daniel_trabulo' component={Contactos} />
           <Route exact path='/proctologia' component={Proctologia} />
+          <Route exact path='/teste' component={Teste} />
 
           <Route exact path="/login" component={Login} />
           <Route exact path="/login-password" component={ForgotPassword} />

@@ -27,16 +27,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                             editorState={props.editorState_texto}
                             onEditorStateChange={props.onEditorStateChange_texto}
                         />
-                        {/* <div className='NoticiaInput-subtitle-foto'>Fotografia 1</div>
-                        <div className="input">
-                            <label className="input-section-label">Link</label>
-                            <input type='text' name='fotoLink1' value={props.fotoLink1} onChange={event => props.handleChange(event)} />
-                        </div>
-                        <div className="input">
-                            <label className="input-section-label">Descrição</label>
-                            <input type='text' name='foto_alt1' value={props.foto_alt1} onChange={event => props.handleChange(event)} />
-                        </div> */}
-                        <div className='NoticiaInput-subtitle-foto'>Fotografia 1</div>
+                        <div className='NoticiaInput-subtitle-foto'>Fotografia</div>
                         <div className="input">
                             <label className="input-section-label">Link</label>
                             <input type='text' name='fotoLink1' value={props.fotoLink1} onChange={event => props.handleChange(event)} />
@@ -46,7 +37,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                             <input type='text' name='foto_alt1' value={props.foto_alt1} onChange={event => props.handleChange(event)} />
                         </div>
 
-                        <div className='NoticiaInput-subtitle-foto'>Fotografia 2</div>
+                        {/* <div className='NoticiaInput-subtitle-foto'>Fotografia 2</div>
                         <div className="input">
                             <label className="input-section-label">Link</label>
                             <input type='text' name='fotoLink2' value={props.fotoLink2} onChange={event => props.handleChange(event)} />
@@ -72,7 +63,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                         <div className="input">
                             <label className="input-section-label">Descrição</label>
                             <input type='text' name='foto_alt4' value={props.foto_alt4} onChange={event => props.handleChange(event)} />
-                        </div>
+                        </div> */}
                         <div className="alert-section">
                             <Alert className="form-alert" show={props.showEmailAlert} variant={props.emailTypeAlert}>
                                 <FontAwesomeIcon icon={props.messageIcon} className="message-icon" />
@@ -114,7 +105,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                                     onEditorStateChange={props.onEditorStateChange_texto}
                                 />
                             </div>
-                            <div className='NoticiaInput-subtitle-foto'>Fotografia 1</div>
+                            <div className='NoticiaInput-subtitle-foto'>Fotografia</div>
                             <div className="input">
                                 <label className="input-section-label">Link</label>
                                 <input type='text' name='fotoLink1' value={props.fotoLink1} onChange={event => props.handleChange(event)} />
@@ -123,7 +114,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                                 <label className="input-section-label">Descrição</label>
                                 <input type='text' name='foto_alt1' value={props.foto_alt1} onChange={event => props.handleChange(event)} />
                             </div>
-                            <div className='NoticiaInput-subtitle-foto'>Fotografia 2</div>
+                            {/* <div className='NoticiaInput-subtitle-foto'>Fotografia 2</div>
                             <div className='input'>
                                 <label className="input-section-label">Link</label>
                                 <input type='text' name='fotoLink2' value={props.fotoLink2} onChange={event => props.handleChange(event)} />
@@ -149,7 +140,7 @@ const BackOfficeDestaquesSintomasForm = (props) => {
                             <div className='input'>
                                 <label className='input-section-label'>Descrição</label>
                                 <input type='text' name='foto_alt4' value={props.foto_alt4} onChange={event => props.handleChange(event)} />
-                            </div>
+                            </div> */}
                             <div className="alert-section">
                                 <Alert className="form-alert" show={props.showEmailAlert} variant={props.emailTypeAlert}>
                                     <FontAwesomeIcon icon={props.messageIcon} className="message-icon" />

@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Footer from './Footer'
 import ReactHtmlParser from "react-html-parser";
-import './PatologiasDestaquesSintomas.css'
+import './Proctologia.css'
 
 
 class Proctologia extends React.Component {
@@ -18,18 +18,16 @@ class Proctologia extends React.Component {
             .get('/proctologia')
             .then((res) => {
                 const results = res.data[0]
-                console.log(res.data)
-                console.log(res.data[0])
-                console.log(results)
                 this.setState({ texto: results.texto })
             })
     }
 
     render() {
         return (
-            <div className='Main'>
-                <div className='estrutura'>
-                    <div className='titulo'>O que é a proctologia?</div>
+            <div className='MainProctologiaProctologia'>
+                <div className='tituloProctologia'>O que é a proctologia?</div>
+
+                <div className='estruturaProctologia'>
                     <div>{ReactHtmlParser(this.state.texto)}</div>
                 </div>
                 <Footer />

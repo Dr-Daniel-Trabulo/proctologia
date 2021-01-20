@@ -49,11 +49,19 @@
     margin-bottom: 170px;
 }
 
-.titulo{
+.tituloHomepage{
     font-size: 25px;
     font-weight: bold;
-    padding-top: 0px;
+    padding-top: 25px;
     padding-bottom: 20px;
+    margin-top: -40px;
+    height: 70px;
+    position:fixed;
+    top:100px;
+    width: 100%;
+    background-color:white;
+    font-size: 24px !important;
+    color: rgb(120, 120, 120);
 }
 
 .CVText{
@@ -61,6 +69,8 @@
     text-justify: inter-word;
     line-height: 2;
     font-size: 17px;
+    padding-top: 50px;
+
 }
 
  @media(max-width: 1150px) {
@@ -147,7 +157,7 @@
         padding-right:30px;
         padding-left: 30px;
     }
-    .titulo{
+    .tituloHomepage{
         padding-bottom: 5px;
     }
 }  
@@ -181,7 +191,7 @@
         padding-right:30px;
         padding-left: 30px;
     }
-    .titulo{
+    .tituloHomepage{
         padding-bottom: 5px;
     }
 }  
@@ -216,7 +226,7 @@
         padding-right:30px;
         padding-left: 30px;
     }
-    .titulo{
+    .tituloHomepage{
         padding-bottom: 5px;
         font-size: 20px;
     }
@@ -252,7 +262,7 @@
         padding-right:30px;
         padding-left: 30px;
     }
-    .titulo{
+    .tituloHomepage{
         padding-bottom: 5px;
         font-size: 20px;
     }

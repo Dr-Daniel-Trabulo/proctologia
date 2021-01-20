@@ -32,10 +32,10 @@ class HomePage extends React.Component {
                 <span className='Homepage'>
                     {/* <link rel="manifest" href='../public/manifest.json'></link> */}
                     <div className='CVPic'>
-                        <img src='https://drive.google.com/uc?export=view&id=1w8iZUzbIL5WIytDLzQonPN_uSu4kGNMi' alt='Dr Daniel Trabulo-doença anal' />
+                        <img src={this.state.CV_pic} alt='Dr Daniel Trabulo-doença anal' />
                     </div>
                     <div className='texto'>
-                        <div className='titulo'>O Dr. Daniel Trabulo</div>
+                        <div className='tituloHomepage'>O Dr. Daniel Trabulo</div>
                         <div className='CVText'>{ReactHtmlParser(this.state.CV_text)}</div>
                     </div>
                 </span>

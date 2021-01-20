@@ -3,6 +3,8 @@ import axios from 'axios'
 import Footer from './Footer'
 import ReactHtmlParser from "react-html-parser";
 import './PatologiasDestaquesSintomas.css'
+import { withWindowSizeListener } from 'react-window-size-listener';
+
 
 class Sintomas extends React.Component {
     constructor(props) {
@@ -15,7 +17,7 @@ class Sintomas extends React.Component {
 
 
     componentDidMount = () => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0,100)
         axios
             .get('/sintomas')
             .then((res) => {
@@ -28,24 +30,39 @@ class Sintomas extends React.Component {
     render() {
         return (
             <div className='Main'>
-                {/* <h1>Sintomas de doença proctológica</h1> */}
-                {this.state.sintomas.map((sintoma) => {
-                    return (
-                        <div className='estrutura'>
-                            {sintoma.publish === 1 &&
-                                <div>
-                                    <div className='titulo'>{ReactHtmlParser(sintoma.nome)}</div>
-                                    <div>{ReactHtmlParser(sintoma.texto)}</div>
-                                    {sintoma.fotoLink1 && <img src={sintoma.fotoLink1} alt={sintoma.foto_alt1} />}
-                                    {sintoma.fotoLink2 && <img src={sintoma.fotoLink2} alt={sintoma.foto_alt2} />}
-                                    {sintoma.fotoLink3 && <img src={sintoma.fotoLink3} alt={sintoma.foto_alt3} />}
-                                    {sintoma.fotoLink4 && <img src={sintoma.fotoLink4} alt={sintoma.foto_alt4} />}
-                                </div>
+                {
+                    this.props.windowSize.windowWidth > 991 &&
+                    <div className='menu'>
+                        <div className='submenuNome'>Sintomas</div>
+                        <div className='menu_ul'>
+                            {
+                                this.state.sintomas.map((sintoma) => {
+                                    return (
+                                        <div className='menu_li'>
+                                            <a className='link' href={`#${sintoma.nome}`}>{sintoma.nome}</a>
+                                        </div>
+                                    )
+                                })
                             }
-
                         </div>
-                    )
-                })}
+                    </div>
+                }
+                <div className='sintomasPatologia'>Sintomas</div>
+                <div className='estruturaSintomas'>
+                    <ul className='sintomas_ul'>
+                        {this.state.sintomas.map((sintoma) => {
+                            return (
+                                sintoma.publish === 1 &&
+                                <li id={sintoma.nome}>
+                                    <div className='tituloSintomas'>{ReactHtmlParser(sintoma.nome)}</div>
+                                    <div className='conteudoSintomas'>{ReactHtmlParser(sintoma.texto)}
+                                        {sintoma.fotoLink1 && <img src={sintoma.fotoLink1} alt={sintoma.foto_alt1} />}
+                                    </div>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
                 <Footer />
 
             </div>
@@ -53,4 +70,4 @@ class Sintomas extends React.Component {
     }
 }
 
-export default Sintomas
+export default withWindowSizeListener(Sintomas)

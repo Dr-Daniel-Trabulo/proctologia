@@ -3,54 +3,95 @@ import axios from 'axios'
 import Footer from './Footer'
 import ReactHtmlParser from "react-html-parser";
 import './PatologiasDestaquesSintomas.css'
+import Collapsible from 'react-collapsible';
+import arrow from './Assets/dropdown-icon.jpg'
+import arrowGrey from './Assets/dropdown-grey.png'
 
 class Destaques extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            destaques: []
+            destaques: [],
+            id: [],
         }
     }
 
-    componentDidMount() {
+    loadDestaques = () => {
         window.scrollTo(0, 0)
         axios
             .get('/destaques')
             .then((res) => {
                 const resultsDestaques = res.data
-                console.log(resultsDestaques)
+
                 this.setState({ destaques: resultsDestaques })
+                const id = resultsDestaques.map((result) => {
+                    return (
+                        result.publish === 1 &&
+                        result.ID
+                    )
+                })
+                this.setState({ id: id })
             })
+    }
+
+    componentDidMount = () => {
+        this.loadDestaques()
     }
 
 
     render() {
+        const max = Math.max(...this.state.id);
         return (
             <div>
-                <div className='Main'>
-                    {this.state.destaques.map((destaque) => {
-                        return (
-                            <div className='estrutura'>{destaque.publish === 1 &&
+                <div className='destaques'>Destaques</div>
+                <div className='MainDestaques'>
+                    {
+                        this.state.destaques.map((destaque) => {
+                            return (
                                 <div>
-                                    <div className='titulo'>{destaque.nome}</div>
-                                    <div>{ReactHtmlParser(destaque.texto)}</div>
-                                    {destaque.fotoLink1 && <img src={destaque.fotoLink1} alt={destaque.foto_alt1} />}
-                                    {destaque.fotoLink2 && <img src={destaque.fotoLink2} alt={destaque.foto_alt2} />}
-                                    {destaque.fotoLink3 && <img src={destaque.fotoLink3} alt={destaque.foto_alt3} />}
-                                    {destaque.fotoLink2 && <img src={destaque.fotoLink4} alt={destaque.foto_alt4} />}
+                                    {
+                                        destaque.publish === 1 &&
+                                        destaque.ID === max &&
+                                        <div className='destaqueCompleto'>
+                                            <div className='tituloDestaques'>{destaque.nome}</div>
+                                            {destaque.fotoLink1 && <img src={destaque.fotoLink1} alt={destaque.foto_alt1} />}
+                                            <div className='textoDestaques'>{ReactHtmlParser(destaque.texto)}</div>
+                                        </div>
+
+                                    }
                                 </div>
-                            }
-                            </div>
-                        )
-                    })
+                            )
+                        })
+                    }
+                    {
+                        this.state.destaques.map((destaque) => {
+                            return (
+
+                                destaque.publish === 1 &&
+                                destaque.ID !== max &&
+                                <Collapsible
+                                    trigger=
+                                    {
+                                        <div className='dropdownItem'>{destaque.nome}
+                                            {<img className='arrow' src={arrowGrey} alt='dropdown Doenças Anais' />}
+                                        </div>
+                                    }>
+                                    <div className='destaqueCompleto'>
+                                        {destaque.fotoLink1 && <img className='fotoDestaques' src={destaque.fotoLink1} alt={destaque.foto_alt1} />}
+                                        {<div className='textoDestaques'>{ReactHtmlParser(destaque.texto)}</div>}
+                                    </div>
+                                </Collapsible>
+                            )
+                        })
                     }
                 </div>
+
                 <Footer />
             </div >
-
-
         )
     }
 }
 
 export default Destaques
+
+

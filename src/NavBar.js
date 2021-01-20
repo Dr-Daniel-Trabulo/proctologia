@@ -13,7 +13,7 @@ import { withWindowSizeListener } from 'react-window-size-listener';
 class NavBar extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { patologias: [] }
+        this.state = { patologias: []}
     }
 
     loadData = () => {
@@ -64,7 +64,7 @@ class NavBar extends React.Component {
                                                 }
                                             </NavDropdown>
                                         </div>
-                                        <Nav.Link><Link className='li' to='destaques_doenca_proctologica'>Destaques</Link></Nav.Link>
+                                        <Nav.Link><Link className='li' to='/destaques_doenca_proctologica'>Destaques</Link></Nav.Link>
                                         <Nav.Link><Link className='li' to='/contactos_dr_daniel_trabulo'>Contactos</Link></Nav.Link>
                                     </Nav>
                                 </Navbar.Collapse>

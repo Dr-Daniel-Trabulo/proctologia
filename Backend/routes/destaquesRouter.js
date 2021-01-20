@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 
 
 router.get('/', (req, res) => {
-    connection.query('SELECT * FROM destaques',
+    connection.query('SELECT * FROM destaques ORDER BY ID DESC',
         (err, results) => {
             if (err) {
                 res.status(400).send('Query Error')
