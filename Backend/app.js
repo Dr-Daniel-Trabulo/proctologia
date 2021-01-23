@@ -149,11 +149,12 @@ app.post('/email', (req, res) => {
 
 
 
-app.listen(port, (err) => {
+
+
+app.listen(process.env.port || port, (err) => {
     err ?
         console.log(err)
         :
         console.log(`The app is running on port ${port}`)
 })
-
 
