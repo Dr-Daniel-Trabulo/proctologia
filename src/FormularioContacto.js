@@ -37,7 +37,7 @@ class FormularioContacto extends React.Component {
         } = this.state
         axios({
             method: 'POST',
-            url: '/email1',
+            url: '/email',
             data: dataSend
         })
             .then((response) => {
