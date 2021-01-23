@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ce6844b2.chunk.css",
+    "main.js": "/static/js/main.4c518f3b.chunk.js",
+    "main.js.map": "/static/js/main.4c518f3b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5bbb3872.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5bbb3872.js.map",
+    "static/css/2.e46042f3.chunk.css": "/static/css/2.e46042f3.chunk.css",
+    "static/js/2.98662b10.chunk.js": "/static/js/2.98662b10.chunk.js",
+    "static/js/2.98662b10.chunk.js.map": "/static/js/2.98662b10.chunk.js.map",
+    "static/js/3.11f435c2.chunk.js": "/static/js/3.11f435c2.chunk.js",
+    "static/js/3.11f435c2.chunk.js.map": "/static/js/3.11f435c2.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.e46042f3.chunk.css.map": "/static/css/2.e46042f3.chunk.css.map",
+    "static/css/main.ce6844b2.chunk.css.map": "/static/css/main.ce6844b2.chunk.css.map",
+    "static/js/2.98662b10.chunk.js.LICENSE.txt": "/static/js/2.98662b10.chunk.js.LICENSE.txt",
+    "static/media/Proctologia.css": "/static/media/Aileron-Thin-webfont.6f33935c.svg",
+    "static/media/LogoDT.4886c8ee.png": "/static/media/LogoDT.4886c8ee.png",
+    "static/media/email.3b6f9149.png": "/static/media/email.3b6f9149.png",
+    "static/media/email_black.abab69fa.png": "/static/media/email_black.abab69fa.png",
+    "static/media/telefone_black.57885e7c.png": "/static/media/telefone_black.57885e7c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5bbb3872.js",
+    "static/css/2.e46042f3.chunk.css",
+    "static/js/2.98662b10.chunk.js",
+    "static/css/main.ce6844b2.chunk.css",
+    "static/js/main.4c518f3b.chunk.js"
+  ]
+}
