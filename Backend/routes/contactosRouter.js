@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
         (err, results) => {
             if (err) {
                 res.status(400).send('Query Error')
+                console.log(err)
             } else {
                 res.status(200).json(results);
             }
