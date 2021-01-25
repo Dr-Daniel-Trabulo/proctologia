@@ -20,6 +20,7 @@ class HomePage extends React.Component {
             .get('/homepage')
             .then((res) => {
                 const results = res.data[0]
+                console.log(results)
                 this.setState({ CV_text: results.CV_Text })
                 this.setState({ CV_pic: results.CV_Pic })
             })
